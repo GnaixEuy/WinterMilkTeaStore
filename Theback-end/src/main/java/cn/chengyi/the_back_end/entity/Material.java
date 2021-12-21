@@ -1,9 +1,6 @@
 package cn.chengyi.the_back_end.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * <img src="http://blog.GnaixEuy.cn/wp-content/uploads/2021/08/bug.jpeg"/>
@@ -16,10 +13,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class RawMaterial {
+public class Material {
 
 	private String name;
 	private Integer stock;
 	private Double price;
 
+	public Material(String name) {
+		this.name = name;
+	}
 }

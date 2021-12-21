@@ -4,4 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.chengyi.the_back_end.dao.ProductDao">
 
+    <resultMap id="product" type="cn.chengyi.the_back_end.entity.Product">
+        <id column="product_id" property="productId"/>
+        <result column="product_name" property="productName"/>
+        <result column="product_type" property="productType"/>
+        <result column="product_price" property="productPrice"/>
+        <result column="product_image_id" property="productImageId"/>
+        <result column="product_material_list" property="productMaterialList" typeHandler="cn.chengyi.the_back_end.typehandler.ListToVarcharTypeHandler"/>
+    </resultMap>
+
+    <select id="selectProductById" resultType="cn.chengyi.the_back_end.entity.Product">
+        select * from wintermilktea.Product where product_id = #{productId}
+    </select>
+
+    <select id="findAllProduct" resultType="cn.chengyi.the_back_end.entity.Product">
+        select * from wintermilktea.Product
+    </select>
+
+    <insert id="addProduct" parameterType="cn.chengyi.the_back_end.entity.Product">
+        insert into  wintermilktea.product (product_name,product_type,product_price,product_image_id,product_materia_list)
+        values (#{productName},#{productType},#{productPrice},#{productImageId},#{productMaterialList})
+    </insert>
+
 </mapper>

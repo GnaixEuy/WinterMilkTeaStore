@@ -1,6 +1,7 @@
 package cn.chengyi.the_back_end.dao;
 
 import cn.chengyi.the_back_end.entity.Product;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -11,9 +12,10 @@ import java.util.List;
  * @date 2021/12/21
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
+@Mapper
 public interface ProductDao {
 
-	Product selectProductById();
+	Product selectProductById(Integer productId);
 
 	Product selectProductByName();
 
