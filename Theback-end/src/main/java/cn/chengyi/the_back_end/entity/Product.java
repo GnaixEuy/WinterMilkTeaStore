@@ -17,12 +17,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ProductInfo {
+public class Product {
 
+	private Integer productId;
 	private String productName;
-	private String productId;
 	private String productType;
 	private Double productPrice;
-	private String imageId;
+	private String productImageId;
 
 }
