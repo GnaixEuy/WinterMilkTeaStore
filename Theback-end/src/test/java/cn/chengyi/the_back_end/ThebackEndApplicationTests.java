@@ -1,4 +1,4 @@
-package cn.chengyi.thebackend;
+package cn.chengyi.the_back_end;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package cn.chengyi.thebackend.utils;
+package cn.chengyi.the_back_end.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

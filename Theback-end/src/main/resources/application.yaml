@@ -5,7 +5,7 @@ spring:
     druid:
       password: 123456
       username: root
-      url: jdbc:mysql://localhost:3306/xiaomissm?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://localhost:3306/wintermiketea?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
       filters: stat
       max-active: 20
       initial-size: 1
@@ -19,3 +19,13 @@ spring:
       test-on-return: false
       pool-prepared-statements: true
       max-open-prepared-statements: 20
+
+mybatis:
+  type-aliases-package: cn.chengyi.the_back_end.entity
+  mapper-locations: classpath:cn/chengyi/the_back_end/dao/impl/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+server:
+  port: 8888
