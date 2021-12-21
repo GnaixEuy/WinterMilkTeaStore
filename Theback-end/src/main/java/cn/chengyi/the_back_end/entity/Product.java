@@ -5,6 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.beans.Transient;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <img src="http://blog.GnaixEuy.cn/wp-content/uploads/2021/08/bug.jpeg"/>
  *  <p>产品实体类</p>
@@ -24,5 +28,17 @@ public class Product {
 	private String productType;
 	private Double productPrice;
 	private String productImageId;
+//	private String productMaterialListString;
+	private List<String> productMaterialList;
+
+	public static List<Material> stringToMaterialList(String productMaterialListString){
+		final String[] split = productMaterialListString.split("@");
+		final ArrayList<Material> materials = new ArrayList<>();
+		for (String s : split) {
+			System.out.println(s);
+			materials.add(new Material(s));
+		}
+		return materials;
+	}
 
 }

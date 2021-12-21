@@ -4,6 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.chengyi.the_back_end.dao.AdminDao">
     <select id="findAdminById" resultType="cn.chengyi.the_back_end.entity.Admin">
-        select * from wintermiketea.Admin where admin_id = #{id}
+        select * from wintermilktea.Admin where admin_id = #{id}
     </select>
 </mapper>
