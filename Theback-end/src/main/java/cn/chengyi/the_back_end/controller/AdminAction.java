@@ -4,6 +4,7 @@ import cn.chengyi.the_back_end.entity.Admin;
 import cn.chengyi.the_back_end.model.AdminLoginModel;
 import cn.chengyi.the_back_end.service.AdminService;
 import cn.chengyi.the_back_end.utils.DateTimeUtil;
+import cn.chengyi.the_back_end.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,15 +33,14 @@ public class AdminAction {
 
 	@RequestMapping(value = {"/login.do",})
 	public AdminLoginModel adminLogin(Integer id, String password) {
-		System.out.println(id);
-		System.out.println(password);
 		if (id == null || password == null) {
 			return new AdminLoginModel("failed");
 		}else {
+			String encryptionPassword = MD5Util.getMD5(password);
 			final Admin admin = this.adminService.findAdminById(id);
 			if (admin == null){
 				return new AdminLoginModel("id error",DateTimeUtil.getDateTime());
-			}else if (admin.getAdminPassword().equals(password)){
+			}else if (admin.getAdminPassword().equals(encryptionPassword)){
 				return new AdminLoginModel(admin,"success", DateTimeUtil.getDateTime());
 			}else {
 				return new AdminLoginModel("password error",DateTimeUtil.getDateTime());
