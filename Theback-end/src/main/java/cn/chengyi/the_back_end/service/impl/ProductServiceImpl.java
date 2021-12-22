@@ -3,6 +3,8 @@ package cn.chengyi.the_back_end.service.impl;
 import cn.chengyi.the_back_end.dao.ProductDao;
 import cn.chengyi.the_back_end.entity.Product;
 import cn.chengyi.the_back_end.service.ProductService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -103,8 +105,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> splitPage(Integer pageNum, Integer pageSize) {
-
-		return null;
+	public PageInfo<Product> splitPage(Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum,pageSize);
+		final List<Product> productByIdAsc = this.productDao.findAllProduct("product_id ASC");
+		return new PageInfo<>(productByIdAsc);
 	}
 }

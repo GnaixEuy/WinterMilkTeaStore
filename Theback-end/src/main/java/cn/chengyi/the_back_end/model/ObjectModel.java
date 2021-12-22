@@ -27,9 +27,11 @@ public class ObjectModel {
 	private Object object;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	private Date dateTime;
+	private String requestServiceStatus;
 
 	public ObjectModel(Object object) {
 		this.object = object;
 		this.dateTime = new Date();
+		this.requestServiceStatus = "success";
 	}
 }

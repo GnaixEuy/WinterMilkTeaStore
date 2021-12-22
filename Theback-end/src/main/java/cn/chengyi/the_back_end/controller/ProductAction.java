@@ -3,7 +3,7 @@ package cn.chengyi.the_back_end.controller;
 import cn.chengyi.the_back_end.entity.Product;
 import cn.chengyi.the_back_end.model.ObjectModel;
 import cn.chengyi.the_back_end.service.ProductService;
-import cn.chengyi.the_back_end.utils.DateTimeUtil;
+import com.github.pagehelper.PageInfo;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,13 @@ import java.util.List;
 @ResponseBody
 public class ProductAction {
 
+	/**
+	 * 每个商品页面默认展示的商品条数
+	 */
+	private static final int PAGE_SHOW_SIZE = 5;
+
 	private final ProductService productService;
+
 	@Autowired
 	public ProductAction(ProductService productService) {
 		this.productService = productService;
@@ -44,7 +50,7 @@ public class ProductAction {
 	public Product addProduct(@NotNull Product product, @RequestParam(value = "productMaterialList") String[] productMaterialList) {
 		System.out.println(product.getProductName());
 		try {
-			this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(),productMaterialList);
+			this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(), productMaterialList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,14 +68,19 @@ public class ProductAction {
 		if (allProducts != null) {
 			return new ObjectModel(allProducts);
 		} else {
-			return new ObjectModel(null);
+			final ObjectModel objectModel = new ObjectModel(null);
+			objectModel.setRequestServiceStatus("false");
+			return objectModel;
 		}
 	}
 
-//	public ObjectModel ajaxProductPagination(Integer integer){
-//
-//
-//	}
-
+	@RequestMapping(value = {"/ajaxPage.do"})
+	public ObjectModel ajaxProductPagination(Integer pageNum) {
+		if (pageNum == null || pageNum == 0) {
+			pageNum = 1;
+		}
+		final PageInfo<Product> productPageInfo = this.productService.splitPage(pageNum, PAGE_SHOW_SIZE);
+		return new ObjectModel(productPageInfo);
+	}
 
 }
