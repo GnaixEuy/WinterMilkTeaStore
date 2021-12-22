@@ -20,13 +20,14 @@ public interface ProductService {
 
 	Product findProductByName(String productName);
 
-	List<Product> findProductByType();
+	List<Product> findProductByType(String productType);
 
 	boolean addProduct(String productName, String productType, Double price, String productImageId, String[] materialListString);
 
 	boolean deleteProduct(Integer productId);
 
-	boolean updateProduct(String productId, Product product);
+	boolean updateProduct(Integer productId, Product product);
 
+	List<Product> splitPage(Integer pageNum, Integer pageSize);
 
 }

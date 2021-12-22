@@ -30,4 +30,13 @@ mybatis:
 server:
   port: 8888
 
+#debug日志开关
 debug: false
+
+#PageHelper
+pagehelper:
+  dialect: com.github.pagehelper.dialect.helper.MySqlDialect
+  reasonable: true
+  support-methods-arguments: true
+  row-bounds-with-count: true
+  offset-as-page-num: true

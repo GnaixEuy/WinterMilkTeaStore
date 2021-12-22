@@ -1,12 +1,15 @@
 package cn.chengyi.the_back_end.controller;
 
 import cn.chengyi.the_back_end.entity.Product;
+import cn.chengyi.the_back_end.model.ObjectModel;
 import cn.chengyi.the_back_end.service.ProductService;
+import cn.chengyi.the_back_end.utils.DateTimeUtil;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
@@ -24,7 +27,6 @@ import java.util.List;
 public class ProductAction {
 
 	private final ProductService productService;
-
 	@Autowired
 	public ProductAction(ProductService productService) {
 		this.productService = productService;
@@ -38,18 +40,36 @@ public class ProductAction {
 	 * @return
 	 */
 	@RequestMapping(value = {"/addProduct.do"})
-	public Product addProduct(Product product) {
+	@Deprecated
+	public Product addProduct(@NotNull Product product, @RequestParam(value = "productMaterialList") String[] productMaterialList) {
 		System.out.println(product.getProductName());
-		this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(), new String[]{});
+		try {
+			this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(),productMaterialList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@RequestMapping(value = {"/getProductById.do"})
-	public Product getProductById(Integer id) {
-		return this.productService.findProductById(id);
+	public ObjectModel getProductById(@NotNull Integer id) {
+		return new ObjectModel(this.productService.findProductById(id));
 	}
 
-	public List<Product> getAllProduct() {
-		return this.productService.findAllProducts();
+	@RequestMapping(value = {"/getAllProduct.do"})
+	public ObjectModel getAllProduct() {
+		List<Product> allProducts = this.productService.findAllProducts();
+		if (allProducts != null) {
+			return new ObjectModel(allProducts);
+		} else {
+			return new ObjectModel(null);
+		}
 	}
+
+//	public ObjectModel ajaxProductPagination(Integer integer){
+//
+//
+//	}
+
+
 }

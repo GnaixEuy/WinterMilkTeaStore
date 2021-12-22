@@ -35,10 +35,21 @@
     <select id="findAllProduct" resultType="cn.chengyi.the_back_end.entity.Product">
         select *
         from wintermilktea.Product
+        order by
+        <choose>
+            <when test="#{sorted != null}">
+                ${sorted}
+            </when>
+            <otherwise>
+                product_id Desc
+            </otherwise>
+        </choose>
     </select>
 
     <select id="selectProductByType" resultType="cn.chengyi.the_back_end.entity.Product">
-        select * from wintermilktea.Product where product_type = #{productType}
+        select *
+        from wintermilktea.Product
+        where product_type = #{productType}
     </select>
 
     <insert id="addProduct" parameterType="cn.chengyi.the_back_end.entity.Product">

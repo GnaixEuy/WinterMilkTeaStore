@@ -42,10 +42,10 @@ public interface ProductDao {
 
 	/**
 	 * 查询所有产品
-	 *
+	 * @param sorted 字段+排列方式 为空默认按照商品id降序
 	 * @return list<product>返回所有的产品集合
 	 */
-	List<Product> findAllProduct();
+	List<Product> findAllProduct(String sorted);
 
 	/**
 	 * 通过产品类型查找产品
