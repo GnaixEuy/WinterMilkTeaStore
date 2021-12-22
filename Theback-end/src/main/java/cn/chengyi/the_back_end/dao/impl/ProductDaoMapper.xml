@@ -14,10 +14,22 @@
                 typeHandler="cn.chengyi.the_back_end.typehandler.ListToVarcharTypeHandler"/>
     </resultMap>
 
-    <select id="selectProductById" resultType="cn.chengyi.the_back_end.entity.Product">
+    <select id="selectProductById" resultType="product">
         select *
         from wintermilktea.Product
         where product_id = #{productId}
+    </select>
+
+    <select id="selectProductByName" resultType="product">
+        select *
+        from wintermilktea.Product
+        where product_name = #{productName}
+    </select>
+
+    <select id="vagueSelectProductByName" resultType="product">
+        select *
+        from wintermilktea.Product
+        where product_name like concat(concat('%', #{likeName}), '%')
     </select>
 
     <select id="findAllProduct" resultType="cn.chengyi.the_back_end.entity.Product">
@@ -25,10 +37,30 @@
         from wintermilktea.Product
     </select>
 
+    <select id="selectProductByType" resultType="cn.chengyi.the_back_end.entity.Product">
+        select * from wintermilktea.Product where product_type = #{productType}
+    </select>
+
     <insert id="addProduct" parameterType="cn.chengyi.the_back_end.entity.Product">
         insert into wintermilktea.Product (product_name, product_type, product_price, product_image_id,
                                            product_materia_list)
         values (#{productName}, #{productType}, #{productPrice}, #{productImageId}, #{productMaterialList})
     </insert>
+
+    <delete id="deleteProduct">
+        delete
+        from wintermilktea.Product
+        where product_id = #{productId}
+    </delete>
+
+    <update id="updateProduct">
+        update wintermilktea.Product
+        set product_name=#{productName},
+            product_type=#{productType},
+            product_price=#{productPrice},
+            product_image_id=#{productImageId},
+            product_materia_list=#{productMateriaList}
+        where product_id = #{productId}
+    </update>
 
 </mapper>

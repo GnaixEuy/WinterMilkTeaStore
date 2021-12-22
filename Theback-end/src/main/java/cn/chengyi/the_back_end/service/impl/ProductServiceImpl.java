@@ -45,12 +45,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product findProductByName(String productName) {
-		return null;
+		return this.productDao.selectProductByName(productName);
 	}
 
 	@Override
 	public List<Product> findProductByType() {
-		return null;
+return null;
 	}
 
 	@Override
