@@ -15,11 +15,11 @@ import lombok.*;
 @ToString
 public class Material {
 
-	private String name;
-	private Integer stock;
-	private Double price;
+	private String materialName;
+	private Integer materialStock;
+	private Double materialPrice;
 
-	public Material(String name) {
-		this.name = name;
+	public Material(String materialName) {
+		this.materialName = materialName;
 	}
 }
