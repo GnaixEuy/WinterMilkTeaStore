@@ -18,7 +18,8 @@
 >   * alibaba encoding 编码规约Idea插件插件 	上传前请勾选优化导入
 >   * 接口需完成对应文档注释，使用前请参阅方法说明
 >     * <img src="README.assets/image-20211222164517631.png" alt="image-20211222164517631" style="zoom:25%;" />
->       * commit参照 gitmoji 规范 [**gitmoji中文文档参考**](https://gitmoji.js.org) 	后端可安装Idea插件
+>       * commit参照 gitmoji 规范  [**gitmoji中文文档参考**](https://gitmoji.js.org) 	  
+>         * 后端可安装Idea插件
 >     * 文档撰写采取 markdown
 >
 > ### 前端：
