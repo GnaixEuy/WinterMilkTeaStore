@@ -67,6 +67,13 @@ public interface ProductService {
 	boolean deleteProduct(Integer productId);
 
 	/**
+	 * 通过商品名字删除商品
+	 * @param productName 要删除的商品名称
+	 * @return 返回是否删除成功
+	 */
+	boolean deleteProductByName(String productName);
+
+	/**
 	 * 更新商品信息，两个信息分离同步，确保商品信息不丢失
 	 *
 	 * @param productId 旧的商品id

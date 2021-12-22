@@ -4,12 +4,12 @@ import cn.chengyi.the_back_end.entity.Product;
 import cn.chengyi.the_back_end.model.ObjectModel;
 import cn.chengyi.the_back_end.service.ProductService;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.ApiOperation;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -21,9 +21,8 @@ import java.util.List;
  * @date 2021/12/21
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
-@Controller
+@RestController
 @RequestMapping(value = {"/product"})
-@ResponseBody
 public class ProductAction {
 
 	/**
@@ -55,6 +54,30 @@ public class ProductAction {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	/**
+	 * 传入productId或productName都可以，当二者都不存在或参数信息错误时返回状态failed
+	 *
+	 * @param productId   商品的id
+	 * @param productName 商品的名字
+	 * @return 返回服务处理状态
+	 */
+	@ApiOperation(value = "商品删除", notes = "传入productId或productName都可以，当二者都不存在或参数信息错误时返回状态failed，业务成功则返回success状态码", httpMethod = "测试期间全开，前端匹配后关闭get或post")
+	@RequestMapping(value = {"/deleteProduct.do"})
+	public ObjectModel deleteProduct(Integer productId, String productName) {
+		if (productId != null) {
+			final boolean deleteSuccess = this.productService.deleteProduct(productId);
+			if (deleteSuccess) {
+				return new ObjectModel();
+			}
+		} else if (productName != null && !"".equals(productName)) {
+			this.productService.deleteProductByName(productName);
+			return new ObjectModel();
+		}
+		final ObjectModel objectModel = new ObjectModel();
+		objectModel.setRequestServiceStatus("failed");
+		return objectModel;
 	}
 
 	@RequestMapping(value = {"/getProductById.do"})
