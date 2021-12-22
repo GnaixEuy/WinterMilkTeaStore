@@ -16,7 +16,7 @@
 > * 规范约束：
 >   * alibaba encoding 编码规约Idea插件插件 	上传前请勾选优化导入
 >   * 接口需完成对应文档注释，使用前请参阅方法说明
->     * <img src="README.assets/image-20211222164517631.png" alt="image-20211222164517631" style="zoom:50%;" />
+>     * <img src="README.assets/image-20211222164517631.png" alt="image-20211222164517631" style="zoom:25%;" />
 >     * 
 >
 > ### 前端：
