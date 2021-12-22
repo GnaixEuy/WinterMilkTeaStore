@@ -2,9 +2,30 @@
 
 ---
 
+> ### 后端：
 >
+> * 开发IDE：IntelliJ IDEA 2021.3 (Ultimate Edition)
+> * JDK：11.0.13+7-b1751.19 x86_64
+> * 技术栈：
+>   * SpringBoot 2.5.5
+>   * Mybatis-Spring-Boot-Starter 2.2.0
+>   * 
+> * 插件：
+>   * pageHelper
+>   * alibaba druid
+> * 规范约束：
+>   * alibaba encoding 编码规约Idea插件插件 	上传前请勾选优化导入
+>   * 接口需完成对应文档注释，使用前请参阅方法说明
+>     * <img src="README.assets/image-20211222161239559.png" alt="image-20211222161239559" style="zoom:50%;" />
+>     * 
 >
->项目技术栈内容待更新 
+> ### 前端：
+>
+> * 开发IDE：
+> * 技术栈：
+>   * 
+> * 插件：
+>   * 
 
 ---
 
