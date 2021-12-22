@@ -1427,8 +1427,8 @@ span.mail a:hover{
 	margin-left:10px;
 }
 .text2 input[type="text"], .text2 textarea {
-	width: 97.7%;
-	margin: 12px 0;
+	width: 90%;
+	margin: center;
 	border: 1px solid rgba(192, 192, 192, 0.61);
 	color: #626262;
 	font-family: 'Open Sans', sans-serif;
@@ -1451,9 +1451,12 @@ span.mail a:hover{
 	-moz-border-radius: 4px;
 	-o-border-radius: 4px;
 }
-.text2 textarea{
+.text2 {
 	height:230px;
-	resize:none;
+	font-size: 30px;
+	font-family: "curlz mt";
+	color: #009AA9;
+	/* resize:none; */
 }
 .text2 input[type="text"]:hover,.text2 textarea:hover,.contact-to input[type="text"]:hover{
 	border: 1px solid #FE3026;
