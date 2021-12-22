@@ -40,30 +40,22 @@ public class ProductServiceImpl implements ProductService {
 	public Product findProductById(Integer productId) {
 		final Product product = this.productDao.selectProductById(productId);
 		System.out.println(product.getProductName());
-//		System.out.println(product.getProductMaterialListString());
 		return product;
 	}
 
 	@Override
 	public Product findProductByName(String productName) {
-		return null;
+		return this.productDao.selectProductByName(productName);
 	}
 
 	@Override
 	public List<Product> findProductByType() {
-		return null;
+return null;
 	}
 
 	@Override
 	public boolean addProduct(String productName, String productType, Double productPrice, String productImageId, String[] materialListString) {
 
-//		StringBuilder stringBuilder = new StringBuilder();
-//		for (int i = 0; i < materialListString.length; i++) {
-//			stringBuilder.append(materialListString[i]);
-//			if (i != materialListString.length - 1) {
-//				stringBuilder.append("@");
-//			}
-//		}
 		final ArrayList<String> strings = new ArrayList<>(Arrays.asList(materialListString));
 		final Product addProduct = new Product(null, productName, productType, productPrice, productImageId, strings);
 		final int ret = this.productDao.addProduct(addProduct);
