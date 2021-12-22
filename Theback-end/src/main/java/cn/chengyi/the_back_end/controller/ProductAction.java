@@ -1,12 +1,15 @@
 package cn.chengyi.the_back_end.controller;
 
 import cn.chengyi.the_back_end.entity.Product;
+import cn.chengyi.the_back_end.model.ObjectModel;
 import cn.chengyi.the_back_end.service.ProductService;
+import com.github.pagehelper.PageInfo;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
@@ -23,6 +26,11 @@ import java.util.List;
 @ResponseBody
 public class ProductAction {
 
+	/**
+	 * 每个商品页面默认展示的商品条数
+	 */
+	private static final int PAGE_SHOW_SIZE = 5;
+
 	private final ProductService productService;
 
 	@Autowired
@@ -38,18 +46,41 @@ public class ProductAction {
 	 * @return
 	 */
 	@RequestMapping(value = {"/addProduct.do"})
-	public Product addProduct(Product product) {
+	@Deprecated
+	public Product addProduct(@NotNull Product product, @RequestParam(value = "productMaterialList") String[] productMaterialList) {
 		System.out.println(product.getProductName());
-		this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(), new String[]{});
+		try {
+			this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(), productMaterialList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@RequestMapping(value = {"/getProductById.do"})
-	public Product getProductById(Integer id) {
-		return this.productService.findProductById(id);
+	public ObjectModel getProductById(@NotNull Integer id) {
+		return new ObjectModel(this.productService.findProductById(id));
 	}
 
-	public List<Product> getAllProduct() {
-		return this.productService.findAllProducts();
+	@RequestMapping(value = {"/getAllProduct.do"})
+	public ObjectModel getAllProduct() {
+		List<Product> allProducts = this.productService.findAllProducts();
+		if (allProducts != null) {
+			return new ObjectModel(allProducts);
+		} else {
+			final ObjectModel objectModel = new ObjectModel(null);
+			objectModel.setRequestServiceStatus("false");
+			return objectModel;
+		}
 	}
+
+	@RequestMapping(value = {"/ajaxPage.do"})
+	public ObjectModel ajaxProductPagination(Integer pageNum) {
+		if (pageNum == null || pageNum == 0) {
+			pageNum = 1;
+		}
+		final PageInfo<Product> productPageInfo = this.productService.splitPage(pageNum, PAGE_SHOW_SIZE);
+		return new ObjectModel(productPageInfo);
+	}
+
 }

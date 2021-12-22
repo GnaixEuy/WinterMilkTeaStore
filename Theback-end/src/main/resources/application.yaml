@@ -19,7 +19,12 @@ spring:
       test-on-return: false
       pool-prepared-statements: true
       max-open-prepared-statements: 20
-
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+#   修正swagger不匹配springboot2.6.*   Springfox使用的路径匹配是基于AntPathMatcher的，而Spring Boot 2.6.X使用的是PathPatternMatcher。 解决： 修改application.yaml spring: mvc: pathmatch: matching-strategy: ANT_PATH_MATCHER
+  application:
+    name: springfox-swagger
 mybatis:
   type-aliases-package: cn.chengyi.the_back_end.entity
   mapper-locations: classpath:cn/chengyi/the_back_end/dao/impl/*.xml
@@ -30,4 +35,29 @@ mybatis:
 server:
   port: 8888
 
+#debug日志开关
 debug: false
+
+#PageHelper
+pagehelper:
+  dialect: com.github.pagehelper.dialect.helper.MySqlDialect
+  reasonable: true
+  support-methods-arguments: true
+  row-bounds-with-count: true
+  offset-as-page-num: true
+
+
+# ===== 自定义swagger配置 ===== # ${spring.application.name}
+swagger:
+  enable: true
+  application-name: 冬至奶茶店
+  application-version: 1.0
+  application-description: springfox swagger 3.0整合
+  try-host: http://localhost:${server.port}
+
+
+
+
+
+
+
