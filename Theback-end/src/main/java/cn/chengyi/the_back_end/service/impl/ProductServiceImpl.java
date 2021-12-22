@@ -73,6 +73,22 @@ public class ProductServiceImpl implements ProductService {
 		return i == 1;
 	}
 
+	/**
+	 * 通过商品名字删除商品
+	 *
+	 * @param productName 要删除的商品名称
+	 * @return 返回是否删除成功
+	 */
+	@Override
+	public boolean deleteProductByName(String productName) {
+		final Product product = this.productDao.selectProductByName(productName);
+		if (product == null) {
+			return false;
+		} else {
+			return this.productDao.deleteProduct(product.getProductId()) == 1;
+		}
+	}
+
 	@Override
 	public boolean updateProduct(Integer productId, Product product) {
 		Product oldProduct;
@@ -106,7 +122,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public PageInfo<Product> splitPage(Integer pageNum, Integer pageSize) {
-		PageHelper.startPage(pageNum,pageSize);
+		PageHelper.startPage(pageNum, pageSize);
 		final List<Product> productByIdAsc = this.productDao.findAllProduct("product_id ASC");
 		return new PageInfo<>(productByIdAsc);
 	}

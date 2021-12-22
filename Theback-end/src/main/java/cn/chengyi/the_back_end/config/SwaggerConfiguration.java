@@ -2,6 +2,7 @@ package cn.chengyi.the_back_end.config;
 
 import io.swagger.models.auth.In;
 import org.apache.commons.lang3.reflect.FieldUtils;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootVersion;
 import org.springframework.context.annotation.Bean;
@@ -74,7 +75,7 @@ public class SwaggerConfiguration implements WebMvcConfigurer {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title(swaggerProperties.getApplicationName() + " Api Doc")
 				.description(swaggerProperties.getApplicationDescription())
-				.contact(new Contact("lighter", null, "SGGHCJ@live.com"))
+				.contact(new Contact("GnaixEuy", null, "SGGHCJ@live.com"))
 				.version("Application Version: " + swaggerProperties.getApplicationVersion() + ", Spring Boot Version: " + SpringBootVersion.getVersion())
 				.build();
 	}
@@ -99,7 +100,7 @@ public class SwaggerConfiguration implements WebMvcConfigurer {
 	}
 
 	@SafeVarargs
-	private final <T> Set<T> newHashSet(T... ts) {
+	private <T> Set<T> newHashSet(T... ts) {
 		if (ts.length > 0) {
 			return new LinkedHashSet<>(Arrays.asList(ts));
 		}
@@ -111,7 +112,7 @@ public class SwaggerConfiguration implements WebMvcConfigurer {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
+	public void addInterceptors(@NotNull InterceptorRegistry registry) {
 		try {
 			Field registrationsField = FieldUtils.getField(InterceptorRegistry.class, "registrations", true);
 			List<InterceptorRegistration> registrations = (List<InterceptorRegistration>) ReflectionUtils.getField(registrationsField, registry);

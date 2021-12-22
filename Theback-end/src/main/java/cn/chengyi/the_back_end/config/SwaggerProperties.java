@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * <img src="http://blog.GnaixEuy.cn/wp-content/uploads/2021/08/bug.jpeg"/>
- * <p>SwaggerProperties</p>
+ * <p>SwaggerProperties配置文件实体类</p>
  * @author GnaixEuy
  * @date 2021/12/22
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>

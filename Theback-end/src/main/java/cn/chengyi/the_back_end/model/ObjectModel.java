@@ -19,19 +19,22 @@ import java.util.List;
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class ObjectModel {
 
 	private Object object;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date dateTime;
 	private String requestServiceStatus;
 
-	public ObjectModel(Object object) {
-		this.object = object;
+	public ObjectModel() {
 		this.dateTime = new Date();
 		this.requestServiceStatus = "success";
+	}
+
+	public ObjectModel(Object object) {
+		this();
+		this.object = object;
 	}
 }
