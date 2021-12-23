@@ -78,17 +78,18 @@ public class ProductAction {
 	@ApiOperation(value = "商品删除", notes = "传入productId或productName都可以，当二者都不存在或参数信息错误时返回状态failed，业务成功则返回success状态码")
 	@RequestMapping(value = {"/deleteProduct.do"})
 	public ObjectModel deleteProduct(Integer productId, String productName) {
+		final ObjectModel objectModel = new ObjectModel();
 		if (productId != null) {
 			final boolean deleteSuccess = this.productService.deleteProduct(productId);
-			if (deleteSuccess) {
-				return new ObjectModel();
+			if (!deleteSuccess) {
+				objectModel.setRequestServiceStatus("failed");
 			}
 		} else if (productName != null && !"".equals(productName)) {
-			this.productService.deleteProductByName(productName);
-			return new ObjectModel();
+			final boolean deleteProductByName = this.productService.deleteProductByName(productName);
+			if (!deleteProductByName){
+				objectModel.setRequestServiceStatus("failed");
+			}
 		}
-		final ObjectModel objectModel = new ObjectModel();
-		objectModel.setRequestServiceStatus("failed");
 		return objectModel;
 	}
 

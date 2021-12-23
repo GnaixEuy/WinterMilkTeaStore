@@ -47,14 +47,14 @@ public interface ProductService {
 	List<Product> findProductByType(String productType);
 
 	/**
-	 * 添加商品 未完成
+	 * 添加商品
 	 *
-	 * @param productName
-	 * @param productType
-	 * @param price
-	 * @param productImageId
-	 * @param materialListString
-	 * @return
+	 * @param productName String 商品名称
+	 * @param productType String 商品种类
+	 * @param price Double 商品价格
+	 * @param productImageId String 商品图片地址
+	 * @param materialListString List<String> 商品原料成分
+	 * @return 返回是否添加成功
 	 */
 	boolean addProduct(String productName, String productType, Double price, String productImageId, String[] materialListString);
 
@@ -77,7 +77,7 @@ public interface ProductService {
 	 * 更新商品信息，两个信息分离同步，确保商品信息不丢失
 	 *
 	 * @param productId 旧的商品id
-	 * @param product   改动的商品信息
+	 * @param product   改动的商品信息，可传入部分参数的对象，方法保证如果原本有信息不会丢失
 	 * @return 返回是否成功
 	 */
 	boolean updateProduct(Integer productId, Product product);
