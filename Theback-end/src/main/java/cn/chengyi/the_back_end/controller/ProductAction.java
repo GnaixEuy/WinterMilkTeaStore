@@ -121,7 +121,7 @@ public class ProductAction {
 	 * @return 对象状态包装的文件存储uuid路径
 	 */
 	@RequestMapping(value = {"/ajaxProductImage.do"},method = RequestMethod.POST)
-	@ApiOperation(value = "ajax图片上传接口", notes = "上传图片,form表单请求方式限定POST，enctype必须是multipart/form-data")
+	@ApiOperation(value = "ajax图片上传接口", notes = "上传图片,form表单请求方式限定POST，enctype必须是multipart/form-data",httpMethod = "POST")
 	public ObjectModel ajaxProductImage(MultipartFile productImage, HttpServletRequest request){
 		//提取UUID + 上传图片的后缀.jpeg
 		/*
