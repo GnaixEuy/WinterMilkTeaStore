@@ -64,7 +64,7 @@
         where product_id = #{productId}
     </delete>
 
-    <update id="updateProduct">
+    <update id="updateProduct" parameterType="product">
         update wintermilktea.Product
         set product_name=#{productName},
             product_type=#{productType},

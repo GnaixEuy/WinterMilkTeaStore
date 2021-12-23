@@ -30,7 +30,7 @@ public class ListToVarcharTypeHandler  implements TypeHandler<List<String>> {
 	@Override
 	public void setParameter(PreparedStatement preparedStatement, int i, List<String> strings, JdbcType jdbcType) throws SQLException {
 		// 遍历List类型的入参，拼装为String类型，使用Statement对象插入数据库
-		StringBuilder sb = new StringBuilder();
+		StringBuffer sb = new StringBuffer();
 		for (int j = 0; j < strings.size(); j++) {
 			if (j == strings.size() - 1) {
 				sb.append(strings.get(j));

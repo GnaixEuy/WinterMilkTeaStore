@@ -7,9 +7,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @SpringBootTest
 public class ProductDaoTest {
+
+	private final int I = new Random().nextInt();
 
 	@Autowired
 	private ProductDao productDao;
@@ -71,7 +74,8 @@ public class ProductDaoTest {
 
 	@Test
 	void addProduct() {
-		String name = "冬乳奶茶";
+
+		String name = "冬乳奶茶"+ I;
 		String type = "奶茶";
 		Double price = 18.0;
 		final ArrayList<String> strings = new ArrayList<>();
@@ -89,10 +93,13 @@ public class ProductDaoTest {
 
 	@Test
 	void updateProduct() {
-		String name = "冬乳奶茶";
+		String name = "冬乳奶茶"+ I;
 		Product product = this.productDao.selectProductByName(name);
 		System.out.println("product.getProductPrice() = " + product.getProductPrice());
 		product.setProductPrice(11.0);
+		final ArrayList<String> strings = new ArrayList<>();
+		strings.add("几把");
+		product.setProductMaterialList(strings);
 		final int integer = this.productDao.updateProduct(product);
 		if (integer == 1) {
 			product = this.productDao.selectProductByName(name);
@@ -104,8 +111,9 @@ public class ProductDaoTest {
 
 	@Test
 	void deleteProduct() {
-		String name = "冬乳奶茶";
-		final int integer = this.productDao.deleteProduct(Integer.valueOf(name));
+		String name = "冬乳奶茶"+I;
+		final Product product = this.productDao.selectProductByName(name);
+		final int integer = this.productDao.deleteProduct(product.getProductId());
 		if (integer == 1) {
 			System.out.println("成功");
 		} else {
