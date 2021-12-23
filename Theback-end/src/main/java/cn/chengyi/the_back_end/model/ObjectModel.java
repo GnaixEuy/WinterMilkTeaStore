@@ -24,7 +24,6 @@ import java.util.List;
 public class ObjectModel {
 
 	private Object object;
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date dateTime;
 	private String requestServiceStatus;
 
