@@ -12,9 +12,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.oas.annotations.EnableOpenApi;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <img src="http://blog.GnaixEuy.cn/wp-content/uploads/2021/08/bug.jpeg"/>
@@ -40,15 +44,19 @@ public class AdminAction {
 
 	@ApiOperation(value = "登入方法",notes = "文档等会写")
 	@RequestMapping(value = {"/login.do",})
-	public AdminLoginModel adminLogin(Integer id, String password) {
+	public AdminLoginModel adminLogin(@RequestParam("id") Integer id, @RequestParam("password") String password, HttpServletResponse res) {
+		res.setHeader("Access-Control-Allow-Origin","*");
 		if (id == null || password == null) {
 			return new AdminLoginModel("failed");
 		}else {
+			System.out.println(id);
+			System.out.println(password);
 			String encryptionPassword = MD5Util.getMD5(password);
 			final Admin admin = this.adminService.findAdminById(id);
 			if (admin == null){
 				return new AdminLoginModel("id error",DateTimeUtil.getDateTime());
 			}else if (admin.getAdminPassword().equals(encryptionPassword)){
+				System.out.println("cao");
 				return new AdminLoginModel(admin,"success", DateTimeUtil.getDateTime());
 			}else {
 				return new AdminLoginModel("password error",DateTimeUtil.getDateTime());
