@@ -31,10 +31,10 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-    
+
 mybatis:
-  type-aliases-package: cn.chengyi.the_back_end.entity
-  mapper-locations: classpath:cn/chengyi/the_back_end/dao/impl/*.xml
+  type-aliases-package: cn.limitless.the_back_end.entity
+  mapper-locations: classpath:cn/limitless/the_back_end/dao/impl/*.xml
   configuration:
     map-underscore-to-camel-case: true
 

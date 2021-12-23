@@ -8,7 +8,7 @@
         <version>2.6.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>cn.chengyi</groupId>
+    <groupId>cn.limitless</groupId>
     <artifactId>Theback-end</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Theback-end</name>
@@ -104,7 +104,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.chengyi.the_back_end.ThebackEndApplication</mainClass>
+                    <mainClass>cn.limitless.the_back_end.ThebackEndApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
