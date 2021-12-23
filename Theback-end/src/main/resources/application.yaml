@@ -28,9 +28,13 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 100MB
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
 mybatis:
-  type-aliases-package: cn.chengyi.the_back_end.entity
-  mapper-locations: classpath:cn/chengyi/the_back_end/dao/impl/*.xml
+  type-aliases-package: cn.limitless.the_back_end.entity
+  mapper-locations: classpath:cn/limitless/the_back_end/dao/impl/*.xml
   configuration:
     map-underscore-to-camel-case: true
 
@@ -57,9 +61,3 @@ swagger:
   application-version: 1.0
   application-description: springfox swagger 3.0整合
   try-host: http://localhost:${server.port}
-
-
-
-
-
-

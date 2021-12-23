@@ -11,7 +11,7 @@
  Target Server Version : 50731
  File Encoding         : 65001
 
- Date: 23/12/2021 08:52:12
+ Date: 23/12/2021 21:42:12
 */
 
 SET NAMES utf8mb4;
@@ -45,23 +45,39 @@ CREATE TABLE `Product` (
   `product_type` varchar(255) DEFAULT NULL,
   `product_price` decimal(10,2) DEFAULT NULL,
   `product_image_id` varchar(255) DEFAULT NULL,
-  `product_material_list` varchar(255) NOT NULL DEFAULT '',
+  `product_material_list` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`product_id`,`product_name`) USING BTREE,
   KEY `product_name` (`product_name`),
   KEY `产品原料关联` (`product_material_list`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of Product
 -- ----------------------------
 BEGIN;
-INSERT INTO `Product` VALUES (1, '水', '饮品', 13.00, 'iii', '水@纯净水');
+INSERT INTO `Product` VALUES (1, 'ji', 'ji', 3.00, 'iii', 'ji@ji@Ji');
 INSERT INTO `Product` VALUES (2, '可乐', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
 INSERT INTO `Product` VALUES (3, '果粒橙', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
 INSERT INTO `Product` VALUES (4, '橙汁', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
 INSERT INTO `Product` VALUES (5, '青瓜汁', '饮品', 13.00, 'iii', '纯净水@果葡萄浆');
 INSERT INTO `Product` VALUES (6, '苹果汁', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
 INSERT INTO `Product` VALUES (7, '草莓汁', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
+INSERT INTO `Product` VALUES (9, '冬乳奶茶1', '奶茶', 11.00, 'iiiiii', '几把');
+INSERT INTO `Product` VALUES (10, '冬乳奶茶-1483632412', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
+INSERT INTO `Product` VALUES (11, '冬乳奶茶-595611310', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
+INSERT INTO `Product` VALUES (12, '冬乳奶茶-1160470624', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
+INSERT INTO `Product` VALUES (13, '草草草?productMaterialList=null', NULL, NULL, NULL, '');
+INSERT INTO `Product` VALUES (14, '草草草', NULL, NULL, NULL, '');
+INSERT INTO `Product` VALUES (15, '草草草', NULL, NULL, NULL, 'null');
+INSERT INTO `Product` VALUES (16, '草草草', NULL, NULL, NULL, 'null');
+INSERT INTO `Product` VALUES (17, '草ds草草', NULL, NULL, NULL, 'null');
+INSERT INTO `Product` VALUES (18, '草ds草dddd草', NULL, NULL, NULL, 'null');
+INSERT INTO `Product` VALUES (19, '草ds草dddd草', NULL, NULL, NULL, 'null@cao@aa@www');
+INSERT INTO `Product` VALUES (21, '冬乳奶茶-2081995926', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
+INSERT INTO `Product` VALUES (22, '冬乳奶茶-1358763659', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
+INSERT INTO `Product` VALUES (23, '冬乳奶茶661572984', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
+INSERT INTO `Product` VALUES (24, '冬乳奶茶', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
+INSERT INTO `Product` VALUES (25, '草ds草dddd草', NULL, NULL, NULL, 'null@cao@aa@www');
 COMMIT;
 
 -- ----------------------------
@@ -103,6 +119,7 @@ CREATE TABLE `material` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `material` VALUES ('test1', 13, 111.00);
+INSERT INTO `material` VALUES ('test2', 14, 697.30);
 COMMIT;
 
 -- ----------------------------
@@ -150,6 +167,8 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 BEGIN;
+INSERT INTO `user` VALUES ('id1', 'test1', 'test', 663, '2021-12-23', 'test', 'test');
+INSERT INTO `user` VALUES ('id2', 'test2', 'test', 663, '2021-12-23', 'test', 'test');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

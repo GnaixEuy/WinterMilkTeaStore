@@ -381,6 +381,7 @@ nav a#pull {
   position: relative;
   float: left;
   width: 100%;
+  /* background-color: seagreen; */
 }
 .callbacks {
   position: relative;
@@ -444,6 +445,7 @@ nav a#pull {
 }
 #slider3-pager span{
   float: left;
+  /* background-color: seagreen; */
 }
 #slider3-pager span{
 	width:100px;
@@ -523,6 +525,7 @@ nav a#pull {
   -moz-border-radius: 30px;
   -o-border-radius: 30px;
   -ms-border-radius: 30px;
+  /* background-color: seagreen; */
 }
 .callbacks_here a:after{
 	border:2px solid #F4BB36;
@@ -585,8 +588,10 @@ nav a#pull {
 /*----content----*/
 .top-row{
 	margin-top: -140px;
+	background-color: seagreen;
 }
 .top-row-col1{
+	/* background-color: seagreen; */
 	background: #FFF;
 	padding: 2em 1em;
 	z-index: 2;
@@ -633,6 +638,7 @@ img.r-img{
 }
 .s-products-head-left{
 	float:left;
+	/* background-color: seagreen; */
 }
 .s-products-head-left h3{
 	margin: 0;
@@ -1748,7 +1754,7 @@ span.mail a:hover{
 		margin-top: 0.1em;
 	}
 	.top-row div.col-xs-4{
-		padding:0;
+		padding:10;
 	}
 	.col_1_of_bottom{
 		width:100%;
@@ -2112,4 +2118,7 @@ span.mail a:hover{
 	.product-details-row1-head p {
 		font-size: 1.1em;
 	}
+	/* .bg{
+		color: seagreen;
+	} */
 }

@@ -50,3 +50,12 @@
 >* [**Ju1cT**](https://github.com/Ju1cT)：会议讨论、原型采集、前端页面修改、编写实体类
 >
 >
+
+>*  ***2021年12月23日*** 
+>*  [**GnaixEuy**](https://github.com/GnaixEuy)：会议讨论、完善后端框架结构、部署swagger等文档插件
+>*  [**OkeyTurkey**](https://github.com/OkeyTurkey)：会议讨论、原型修改
+>*  [**Utah-syp**](https://github.com/Utah-syp)：会议讨论、编写单元测试、学习相关技术
+>*  [**LSyv-ing**](https://github.com/LSyv-ing)：会议讨论、编写单元测试、学习相关技术
+>*  [**Ju1cT**](https://github.com/Ju1cT)：会议讨论、原型修改
+>
+>

@@ -18,11 +18,22 @@
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 				});
 			});
+			// vari=0;
+			// $(function(){
+			// 	varinum = 0;
+			// 	if(localStorage.getItem("inum")!==null){
+			// 		inum = localStorage.getItem("inum");
+			// 	}
+			// 	$(.)
+				
+			// })
+				
+			
 		</script>
 		 <!---- start-smoth-scrolling---->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-		</script>
+		<!-- </script> -->
 		<!----webfonts--->
 		<link href='http://fonts.useso.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 		<!---//webfonts--->
@@ -46,6 +57,11 @@
 		</script>
 		<!----//End-top-nav-script---->
 	</head>
+	<style>
+	body{
+			background-color: seagreen;
+	}
+	</style>
 	<body>
 		<!----container---->
 		<div class="container">
@@ -66,9 +82,9 @@
 						<div class="add-to-cart">
 							<ul class="unstyled-list list-inline">
 								<li><span class="cart"> </span>
-									<!-- <ul class="cart-sub">
-										<li><p>0 杯奶茶</p></li> 
-									</ul> -->
+									<ul class="cart-sub">
+										<li><p></p></li>
+									</ul>
 								</li>
 							</ul>
 						</div>
@@ -97,7 +113,7 @@
 						<li><a href="aboutUs.html">关于我们</a></li>
 						<div class="clearfix"> </div>
 					</ul>
-					<a href="#" id="pull"><img src="images/nav-icon.png" title="menu" /></a>
+					<a href="#" id="pull"><img src="images/nav-icon.png" title="菜单" /></a>
 			  </nav>
 			  <!----End-top-nav---->
 			  <!---top-header-search-box--->
@@ -123,12 +139,12 @@
 							<div class="col-md-3 product-filter-grid1-brands">
 								<h3>奶茶分类</h3>
 								<ul class="col-md-6 unstyled-list b-list1">
-									<li><a href="#">奶茶系列</a></li>
-									<li><a href="#">雪泡系列</a></li>
-									<li><a href="#">刨冰系列</a></li>
-									<li><a href="#">果茶系列</a></li>
-									<li><a href="#">奶昔系列</a></li>
-									<li><a href="#">沙冰系列</a></li>
+									<li><a href="#One">奶茶系列</a></li>
+									<li><a href="#Two">雪泡系列</a></li>
+									<li><a href="#Three">刨冰系列</a></li>
+									<li><a href="#Four">果茶系列</a></li>
+									<li><a href="#Five">奶昔系列</a></li>
+									<li><a href="#Six">沙冰系列</a></li>
 									<div class="clearfix"> </div>
 								</ul>
 								<!-- <ul class="col-md-6 unstyled-list b-list2">
@@ -141,7 +157,6 @@
 								</ul> -->
 								<div class="clearfix"> </div>
 							</div>
-							<!---->
 							<div class="col-md-6 product-filter-grid1-brands-col2">
 									<div class="producst-cate-grids">
 										<div class="col-md-4 producst-cate-grid text-center">
@@ -207,7 +222,7 @@
 				<div class="special-products all-poroducts">
 					<div class="s-products-head">
 						<div class="s-products-head-left">
-							<h3>奶茶系列</h3>
+							<a name="One"><h3>奶茶系列</h3></a>
 						</div>
 						<div class="s-products-head-right">
 							<a href="#"><span> </span>回到顶部</a>
@@ -220,56 +235,56 @@
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">A奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b2.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/8.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">B奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>20</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">20</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b3.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">C奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b4.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">D奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>15</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">15</span><small>下单</small><label> </label></a>
 							<a  ><small>加入购物车</small><label> </label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b5.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">E奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b6.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">F奶茶</h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>18</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">18</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b7.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">G奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">H奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="clearfix"> </div>
@@ -280,7 +295,7 @@
 				<div class="special-products all-poroducts latest-products">
 					<div class="s-products-head">
 						<div class="s-products-head-left">
-							<h3>雪泡系列</h3>
+							<a name="Two"><h3>雪泡系列</h3></a>
 						</div>
 						<div class="s-products-head-right">
 							<a href="#"><span> </span>回到顶部</a>
@@ -293,56 +308,56 @@
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">A奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b2.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">B奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>20</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">20</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b3.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">C奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b4.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">D奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>15</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">15</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b5.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">E奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b6.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">F奶茶a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>18</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">18</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b7.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">G奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">H奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="clearfix"> </div>
@@ -354,7 +369,7 @@
 				<div class="special-products all-poroducts latest-products">
 					<div class="s-products-head">
 						<div class="s-products-head-left">
-							<h3>刨冰系列</h3>
+							<a name="Three"><h3>刨冰系列</h3></a>
 						</div>
 						<div class="s-products-head-right">
 							<a href="#"><span> </span>回到顶部</a>
@@ -365,58 +380,58 @@
 					<div class="special-products-grids">
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
-							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
+							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">A奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b2.jpg" title="name" /></a> -->
-							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/8.png" height="180px" title="product-name" /></a>
+							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">B奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>20</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">20</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b3.jpg" title="name" /></a> -->
-							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
+							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">C奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b4.jpg" title="name" /></a> -->
-							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
+							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">D奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>15</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">15</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b5.jpg" title="name" /></a> -->
-							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
+							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">E奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b6.jpg" title="name" /></a> -->
-							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
+							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">F奶茶a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>18</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">18</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b7.jpg" title="name" /></a> -->
-							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/10.png" height="180px" title="product-name" /></a>
+							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">G奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
-							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/4.png" height="180px" title="product-name" /></a>
+							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">H奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="clearfix"> </div>
@@ -426,7 +441,7 @@
 				<div class="special-products all-poroducts">
 					<div class="s-products-head">
 						<div class="s-products-head-left">
-							<h3>果茶系列</h3>
+							<a name="Four"><h3>果茶系列</h3></a>
 						</div>
 						<div class="s-products-head-right">
 							<a href="#"><span> </span>回到顶部</a>
@@ -439,56 +454,56 @@
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">A奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b2.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/8.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">B奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>20</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">20</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b3.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">C奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b4.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">D奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>15</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">15</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b5.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">E奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b6.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">F奶茶a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>18</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">18</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b7.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">G奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">H奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="clearfix"> </div>
@@ -499,7 +514,7 @@
 				<div class="special-products all-poroducts latest-products">
 					<div class="s-products-head">
 						<div class="s-products-head-left">
-							<h3>奶昔系列</h3>
+							<a name="Five"><h3>奶昔系列</h3></a>
 						</div>
 						<div class="s-products-head-right">
 							<a href="#"><span> </span>回到顶部</a>
@@ -512,56 +527,56 @@
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">A奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b2.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">B奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>20</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">20</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b3.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">C奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b4.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">D奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>15</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">15</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b5.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">E奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price"16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b6.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">F奶茶a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>18</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">18</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b7.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">G奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price"19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/7.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">H奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="clearfix"> </div>
@@ -573,7 +588,7 @@
 				<div class="special-products all-poroducts latest-products">
 					<div class="s-products-head">
 						<div class="s-products-head-left">
-							<h3>冰沙系列</h3>
+							<a name="Six"><h3>冰沙系列</h3></a>
 						</div>
 						<div class="s-products-head-right">
 							<a href="#"><span> </span>回到顶部</a>
@@ -586,56 +601,56 @@
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">A奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b2.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/8.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">B奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>20</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span  class="price">20</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b3.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">C奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b4.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">D奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>15</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">15</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b5.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">E奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b6.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/6.png" height="180px" title="product-name" /></a>
-							<h4><a href="shoppingCar/checkOut.html">F奶茶a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>18</span><small>下单</small><label> </label></a>
+							<h4><a href="shoppingCar/checkOut.html">F奶茶</h4>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price"18</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b7.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/10.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">G奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>19</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">19</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="shoppingCar/checkOut.html"><img src="images/b1.jpg" title="name" /></a> -->
 							<a class="product-here" href="shoppingCar/checkOut.html"><img src="image/4.png" height="180px" title="product-name" /></a>
 							<h4><a href="shoppingCar/checkOut.html">H奶茶</a></h4>
-							<a class="product-btn" href="shoppingCar/checkOut.html"><span>16</span><small>下单</small><label> </label></a>
+							<a class="product-btn" href="shoppingCar/checkOut.html"><span class="price">16</span><small>下单</small><label> </label></a>
 							<a><label>加入购物车</label></a>
 						</div>
 						<div class="clearfix"> </div>
@@ -674,11 +689,11 @@
 			<div class="clearfix"> </div>
 			<!---//footer--->
 			<!---copy-right--->
-					// <!-- <div class="copy-right">
+					 <!-- <div class="copy-right">
 					// 	<div class="container">
 					// 		<p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
 					// 		<script type="text/javascript"> -->
-					// 				<!-- $(document).ready(function() {
+					 				<!-- $(document).ready(function() {
 										/*
 										var defaults = {
 								  			containerID: 'toTop', // fading element id
@@ -693,8 +708,18 @@
 									});
 								</script> -->
 							<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-					<!-- 	</div>
-					</div> -->
+							 <a style="position:fixed; bottom:0; right:0;" href="shoppingCar/cart.html"><div class="cart-details">
+								<div class="add-to-cart">
+									<ul class="unstyled-list list-inline">
+										<li><span class="cart"> </span>
+											<ul class="cart-sub">
+												<li><p>3杯奶茶</p></li> 
+											</ul>
+										 </li>
+									</ul>
+								</div> 
+					 	</div></a>
+					<!-- </div> --> 
 			<!--//copy-right--->
 		</div>
 		<!----container---->
