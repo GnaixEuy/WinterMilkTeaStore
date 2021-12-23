@@ -11,7 +11,7 @@
  Target Server Version : 50731
  File Encoding         : 65001
 
- Date: 22/12/2021 11:13:24
+ Date: 23/12/2021 08:52:12
 */
 
 SET NAMES utf8mb4;
@@ -48,14 +48,20 @@ CREATE TABLE `Product` (
   `product_material_list` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`product_id`,`product_name`) USING BTREE,
   KEY `product_name` (`product_name`),
-  KEY `产品原料关联` (`product_material_list`),
-  CONSTRAINT `产品原料关联` FOREIGN KEY (`product_material_list`) REFERENCES `material` (`material_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  KEY `产品原料关联` (`product_material_list`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of Product
 -- ----------------------------
 BEGIN;
+INSERT INTO `Product` VALUES (1, '水', '饮品', 13.00, 'iii', '水@纯净水');
+INSERT INTO `Product` VALUES (2, '可乐', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
+INSERT INTO `Product` VALUES (3, '果粒橙', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
+INSERT INTO `Product` VALUES (4, '橙汁', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
+INSERT INTO `Product` VALUES (5, '青瓜汁', '饮品', 13.00, 'iii', '纯净水@果葡萄浆');
+INSERT INTO `Product` VALUES (6, '苹果汁', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
+INSERT INTO `Product` VALUES (7, '草莓汁', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
 COMMIT;
 
 -- ----------------------------
