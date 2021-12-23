@@ -16,8 +16,9 @@
 
   <link rel="stylesheet" href="static/css/style.css">
 </head>
-<style>body{background-image: url(./image/2.jpg);background-repeat: inherit;}</style>
-<body>
+<style>body{background-image: url(./image/1.png);background-repeat: inherit;}</style>
+<body >
+  <!--================ Start Header Menu Area =================-->
 	<header class="header_area">‘
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -34,36 +35,18 @@
 			  <li class="nav-item"><a class="nav-link" href="../index.html">奶茶一览</a></li>
 			  <!-- <li class="nav-item"><a class="nav-link" href="../index.html">售后服务</a></li> -->
 			  <li class="nav-item"><a class="nav-link" href="../index.html">关于我们</a></li>
-
-
-            <ul class="nav-shop">
-              <!-- <li class="nav-item"><button><i class="ti-search"></i></button></li> -->
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-              <li class="nav-item"><a class="button button-header" href="">立即购买</a></li>
-            </ul>
+              
           </div>
         </div>
       </nav>
     </div>
+	<style>
+	#btn{
+		border-radius: 20px;
+		color: white;
+		background-color: seagreen;
+	}</style>
   </header>
-	<!--================ End Header Menu Area =================-->
-
-	<!-- ================ start banner area ================= -->	
-	<section class="blog-banner-area" id="category">
-		<div class="container h-100">
-			<div class="blog-banner">
-				<div class="text-center">
-					<h1>购物支付处</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">WinterMilkTeaStore</a></li>
-              <li class="breadcrumb-item active" aria-current="page">希望您购物愉快</li>
-            </ol>
-          </nav>
-				</div>
-			</div>
-    </div>
-	</section>
 	
 				<div align="center">
 					<div class="col-lg-4"  >
@@ -78,44 +61,30 @@
                         </ul>
                         <ul class="list list_2">
                             <li><a href="#">小计 <span>100.00</span></a></li>
-                            <!-- <li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li> -->
-                            <!-- <li><a href="#">Total <span>$2210.00</span></a></li> -->
-                        </ul>
-                        <div class="payment_item">
-                            <div class="radion_btn">
-                                <INPUT type="radio" id="f-option5" name="selector">
-                                <label for="f-option5">微信支付</label>
-                                <div class="check"></div>
-                            </div>
 							<hr>
-                           <!-- <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
-                                Store Postcode.</p> -->
-                        </div>
-                        <div class="payment_item active">
-                            <div class="radion_btn">
-                                <INPUT type="radio" id="f-option6" name="selector">
-                                <label for="f-option6">支付宝支付</label>
-                                <!-- <img src="static/picture/card.jpg" alt=""> -->
-                                <div class="check"></div>
-                            </div>
 							<hr>
-                           
-                        </div>
-                    
-						<hr>
-						<div class="text-center">
-						  <a class="button button-paypal" href="../index.html">取消支付</a>
-						</div>
-						<div>
-							or
-						</div>
-                        <div class="text-center">
-                          <a class="button button-paypal" href="checkSuccess.html">支付</a>
+							<hr>
+							<p><li><input type="radio" name="value" id="value">好评&ensp;<input type="radio" name="value" id="value">中评&ensp;<input type="radio" name="value" id="value">差评</li></p>
+							
+                   <div id="div1">       
+					<p><span>昵称：<input type="text" id="user" name="user"></p>
 						
-                        </div>
+						<div>
+						评价：<textarea id="lang" rows="6" cols="40" placeholder="请写下您的评价！"></textarea>
+						</div>
+						<input type="button" value="提交评价" id="btn" href="#">
+						</div> 
+                        <!-- </div> -->
                     </div>
                 </div>
-		</div>
+		</div> 
+		<div class="clearfix"> </div>
+		<div class="clearfix"> </div>
+		<div class="clearfix"> </div>
+		<div class="clearfix"> </div>
+<hr />
+<hr />
+<hr />
   <script src="static/js/jquery-3.2.1.min.js"></script>
   <script src="static/js/bootstrap.bundle.min.js"></script>
   <script src="static/js/skrollr.min.js"></script>
@@ -125,4 +94,20 @@
   <script src="static/js/mail-script.js"></script>
   <script src="static/js/main.js"></script>
 </body>
+<!-- <script type="text/javascript">
+    //通过id属性查找标签节点
+    var user=document.getElementById('user');
+    var lang=document.getElementById('lang');
+    //通过id属性查找提交评价按钮并绑定点击事件
+    document.getElementById('btn').onclick=function(){
+        //在html代码中创建一个div盒子
+        var cont=document.createElement('div');
+        //将获取到的数据，放到一创建好的盒子中
+        cont.innerHTML='<p>'+user.value+':'+lang.value+'</p><hr>';
+        //将创建好的div盒子及及内容显示在页面中
+        document.getElementById('div1').appendChild(cont);
+        user.value='';
+        lang.value='';
+    } -->
+</script>
 </html>
