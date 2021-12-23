@@ -21,20 +21,23 @@ spring:
       max-open-prepared-statements: 20
   mvc:
     pathmatch:
-      matching-strategy: ant_path_matcher
-#   修正swagger不匹配springboot2.6.*   Springfox使用的路径匹配是基于AntPathMatcher的，而Spring Boot 2.6.X使用的是PathPatternMatcher。 解决： 修改application.yaml spring: mvc: pathmatch: matching-strategy: ANT_PATH_MATCHER
+      matching-strategy: ant_path_matcher #修正swagger不匹配springboot2.6.*   Springfox使用的路径匹配是基于AntPathMatcher的，而Spring Boot 2.6.X使用的是PathPatternMatcher。 解决： 修改application.yaml spring: mvc: pathmatch: matching-strategy: ANT_PATH_MATCHER
   application:
     name: springfox-swagger
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
 mybatis:
   type-aliases-package: cn.chengyi.the_back_end.entity
   mapper-locations: classpath:cn/chengyi/the_back_end/dao/impl/*.xml
   configuration:
     map-underscore-to-camel-case: true
 
-
 server:
   port: 8888
-
+  tomcat:
+    uri-encoding: utf-8
 #debug日志开关
 debug: false
 
@@ -54,7 +57,6 @@ swagger:
   application-version: 1.0
   application-description: springfox swagger 3.0整合
   try-host: http://localhost:${server.port}
-
 
 
 
