@@ -29,4 +29,11 @@ public class Product {
 	private String productImageId;
 	private List<String> productMaterialList;
 
+	public Product(String productName, String productType, Double productPrice, String productImageId, List<String> productMaterialList) {
+		this.productName = productName;
+		this.productType = productType;
+		this.productPrice = productPrice;
+		this.productImageId = productImageId;
+		this.productMaterialList = productMaterialList;
+	}
 }

@@ -1,6 +1,7 @@
 package cn.chengyi.the_back_end;
 
 import cn.chengyi.the_back_end.config.SwaggerProperties;
+import cn.chengyi.the_back_end.typehandler.ListToVarcharTypeHandler;
 import com.github.pagehelper.PageInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

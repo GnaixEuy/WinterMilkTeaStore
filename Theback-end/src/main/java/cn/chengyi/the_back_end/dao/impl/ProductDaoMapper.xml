@@ -54,7 +54,7 @@
 
     <insert id="addProduct" parameterType="cn.chengyi.the_back_end.entity.Product">
         insert into wintermilktea.Product (product_name, product_type, product_price, product_image_id,
-                                           product_materia_list)
+                                           product_material_list)
         values (#{productName}, #{productType}, #{productPrice}, #{productImageId}, #{productMaterialList})
     </insert>
 
@@ -70,7 +70,7 @@
             product_type=#{productType},
             product_price=#{productPrice},
             product_image_id=#{productImageId},
-            product_materia_list=#{productMateriaList}
+            product_material_list=#{productMaterialList}
         where product_id = #{productId}
     </update>
 
