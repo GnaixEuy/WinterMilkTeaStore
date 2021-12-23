@@ -12,8 +12,6 @@ import java.util.Random;
 @SpringBootTest
 public class ProductDaoTest {
 
-	private final int I = new Random().nextInt();
-
 	@Autowired
 	private ProductDao productDao;
 
@@ -32,7 +30,7 @@ public class ProductDaoTest {
 
 	@Test
 	void selectProductByName() {
-		String name = "冬至奶茶";
+		String name = "橙汁";
 		final Product product = this.productDao.selectProductByName(name);
 		System.out.println("product.getProductId() = " + product.getProductId());
 		System.out.println("product.getProductName() = " + product.getProductName());
@@ -62,7 +60,7 @@ public class ProductDaoTest {
 
 	@Test
 	void selectProductByType() {
-		String type = "String";
+		String type = "奶茶";
 		final Product product = (Product) this.productDao.selectProductByType(type);
 		System.out.println("product.getProductId() = " + product.getProductId());
 		System.out.println("product.getProductName() = " + product.getProductName());
@@ -74,8 +72,7 @@ public class ProductDaoTest {
 
 	@Test
 	void addProduct() {
-
-		String name = "冬乳奶茶"+ I;
+		String name = "冬乳奶茶";
 		String type = "奶茶";
 		Double price = 18.0;
 		final ArrayList<String> strings = new ArrayList<>();
@@ -93,7 +90,7 @@ public class ProductDaoTest {
 
 	@Test
 	void updateProduct() {
-		String name = "冬乳奶茶"+ I;
+		String name = "冬乳奶茶";
 		Product product = this.productDao.selectProductByName(name);
 		System.out.println("product.getProductPrice() = " + product.getProductPrice());
 		product.setProductPrice(11.0);
@@ -111,7 +108,7 @@ public class ProductDaoTest {
 
 	@Test
 	void deleteProduct() {
-		String name = "冬乳奶茶"+I;
+		String name = "冬乳奶茶";
 		final Product product = this.productDao.selectProductByName(name);
 		final int integer = this.productDao.deleteProduct(product.getProductId());
 		if (integer == 1) {

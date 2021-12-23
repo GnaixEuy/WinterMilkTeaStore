@@ -47,21 +47,25 @@ public class ProductAction {
 
 	/**
 	 * 添加商品
-	 * 未完成，留有原料未正常构建
+	 * 完成,待测试
+	 * 我艹springmvc太屌了，list直接封装进去了
 	 *
-	 * @param product
-	 * @return
+	 * @param product 商品对象
+	 * @return 返回添加的商品对象服务状态
 	 */
 	@RequestMapping(value = {"/addProduct.do"})
 	@Deprecated
-	public Product addProduct(@NotNull Product product, @RequestParam(value = "productMaterialList") String[] productMaterialList) {
+	public ObjectModel addProduct(@NotNull Product product) {
 		System.out.println(product.getProductName());
-		try {
-			this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(), productMaterialList);
-		} catch (Exception e) {
-			e.printStackTrace();
+		final ObjectModel objectModel = new ObjectModel();
+		final boolean addProductBoolean = this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(), product.getProductMaterialList().toArray(new String[0]));
+		if (addProductBoolean) {
+			final Product productByName = this.productService.findProductByName(product.getProductName());
+			objectModel.setObject(productByName);
+		} else {
+			objectModel.setRequestServiceStatus("failed");
 		}
-		return null;
+		return objectModel;
 	}
 
 	/**
@@ -87,6 +91,35 @@ public class ProductAction {
 		objectModel.setRequestServiceStatus("failed");
 		return objectModel;
 	}
+
+	/**
+	 * 更新product接口
+	 * @param product mvc自动封装product，前端保证name正确即可
+	 * @return 返回包装好的更新信息后的对象
+	 */
+	@RequestMapping(value = {"/updateProduct.do",})
+	public ObjectModel updateProduct(Product product) {
+			final ObjectModel objectModel = new ObjectModel();
+		if (product.getProductId() == null) {
+			final String productName = product.getProductName();
+			if (productName != null && !"".equals(productName)){
+				final Product oldProduct = this.productService.findProductByName(productName);
+				final boolean b = this.productService.updateProduct(oldProduct.getProductId(), product);
+				if (b){
+					objectModel.setRequestServiceStatus("success");
+					objectModel.setObject(this.productService.findProductById(oldProduct.getProductId()));
+				}
+			}
+		}else {
+			final boolean b = this.productService.updateProduct(product.getProductId(), product);
+			if (b){
+				objectModel.setRequestServiceStatus("success");
+				objectModel.setObject(this.productService.findProductById(product.getProductId()));
+			}
+		}
+		return objectModel;
+	}
+
 
 	@RequestMapping(value = {"/getProductById.do"})
 	public ObjectModel getProductById(@NotNull Integer id) {
@@ -116,13 +149,14 @@ public class ProductAction {
 
 	/**
 	 * 商品上传图片请求
+	 *
 	 * @param productImage 图片binary流
-	 * @param request httpServletRequest
+	 * @param request      httpServletRequest
 	 * @return 对象状态包装的文件存储uuid路径
 	 */
-	@RequestMapping(value = {"/ajaxProductImage.do"},method = RequestMethod.POST)
-	@ApiOperation(value = "ajax图片上传接口", notes = "上传图片,form表单请求方式限定POST，enctype必须是multipart/form-data",httpMethod = "POST")
-	public ObjectModel ajaxProductImage(MultipartFile productImage, HttpServletRequest request){
+	@RequestMapping(value = {"/ajaxProductImage.do"}, method = RequestMethod.POST)
+	@ApiOperation(value = "ajax图片上传接口", notes = "上传图片,form表单请求方式限定POST，enctype必须是multipart/form-data", httpMethod = "POST")
+	public ObjectModel ajaxProductImage(MultipartFile productImage, HttpServletRequest request) {
 		//提取UUID + 上传图片的后缀.jpeg
 		/*
 		  返回的图片url路径
