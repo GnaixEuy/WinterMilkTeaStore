@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>主页</title>
+		<title>会员主页</title>
 		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="js/jquery.min.js"></script>
@@ -67,20 +67,20 @@
 							<div class="clearfix"> </div>
 						</ul>
 					</div>
-					<div class="cart-details">
-						<div class="add-to-cart">
-							<ul class="unstyled-list list-inline">
-								<li><span class="cart"> </span>
-									<ul class="cart-sub">
-										<li><p></p></li>
-									</ul>
-								</li>
-							</ul>
-						</div>
+					<div >
+						<!-- <div class="add-to-cart"> -->
+							<!-- <ul class="unstyled-list list-inline"> -->
+								<!-- <li><span class="cart"> </span> -->
+									<!-- <ul class="cart-sub"> -->
+										<!-- <li><p></p></li> -->
+									<!-- </ul> -->
+								<!-- </li> -->
+							<!-- </ul> -->
+						<!-- </div> -->
 						<div class="login-rigister">
 							<ul class="unstyled-list list-inline">
-								<li><a class="login" href="loginANDregister/login.html">登录</a></li>
-								<li><a class="rigister" href="loginANDregister/register.html">注册 <span> </span></a></li>
+								<!-- <li><a class="login" href="loginANDregister/login.html">登录</a></li> -->
+								<!-- <li><a class="rigister" href="loginANDregister/register.html">注册 <span> </span></a></li> -->
 								<div class="clearfix"> </div>
 							</ul>
 						</div>
@@ -95,11 +95,11 @@
 			<!----start-top-nav---->
 			 <nav class="top-nav main-menu">
 					<ul class="top-nav">
-						<li><a href="products.html">奶茶一览</a><span> </span></li>
-						<!-- <li><a href="shoppingCar/cart.html">购物车</a><span> </span></li> -->
+						<li><a href="alreadyLoginProduces.html">奶茶一览</a><span> </span></li>
+						<li><a href="shoppingCar/cart.html">购物车</a><span> </span></li>
 						<!-- <li><a href="theCustomerWords.html">顾客有言</a><span> </span></li> -->
-						<li><a href="newArrival.html">新品上市</a><span> </span></li>
-						<li><a href="aboutUs.html">关于我们</a></li>
+						<li><a href="alreadyLoginNewArrival.html">新品上市</a><span> </span></li>
+						<li><a href="alreadyLoginAboutUs.html">关于我们</a></li>
 						<div class="clearfix"> </div>
 					</ul>
 					<a href="#" id="pull"><img src="images/nav-icon.png" title="菜单" /></a>
@@ -244,12 +244,7 @@
 							<h4><a href="#">青梅绿茶</a></h4>
 							<a class="product-btn" href="shoppingCar/checkOut.html"><span>15</span><small>下单</small><label> </label></a>
 						</div>
-						<!-- <div class="col-md-3 special-products-grid text-center">
-							<a class="brand-name" href="#"><img src="images/b3.jpg" title="name" /></a>
-							<a class="product-here" href="#"><img src="images/p3.jpg" title="product-name" /></a>
-							<h4><a href="#">板栗奶茶</a></h4>
-							<a class="product-btn" href="#"><span>17.00</span><small>下单</small><label> </label></a>
-						</div> -->
+						
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="#"><img src="images/b4.jpg" title="name" /></a> -->
 							<a class="product-here" href="#"><img src="image/7.png" height="160px"  title="product-name" /></a>
@@ -263,6 +258,7 @@
 							<h4><a href="#">海盐芝士</a></h4>
 							<a class="product-btn" href="shoppingCar/checkOut.html"><span>20</span><small>下单</small><label> </label></a>
 						</div>
+						
 						<div class="col-md-3 special-products-grid text-center">
 							<!-- <a class="brand-name" href="#"><img src="images/b7.jpg" title="name" /></a> -->
 							<a class="product-here" href="#"><img src="image/5.png" height="160px"  title="product-name" /></a>
@@ -283,34 +279,5 @@
 				</div>
 			
 	</body>
-	<script type="text/javascript">
-				$(function() {
-					getDate();
-	 
-					function getDate() {
-						var temp = '';
-
-						$.ajax({
-							type: "POST",
-							url: ,
-							// dataType: "json",
-							success: function(res) {
-								var list = res.tab//(后端返回的表格名字)
-								for(var $i = 0; $i < list.length; $i++) {
-									temp +=
-										'<tr>' + 
-										
-										'<td>' + list[$i].imgID + '</td>' +
-										'<td>' + list[$i].productName + '</td>' +
-										'<td>' + list[$i].productPrice + '</td>' +
-										'<td>' + list[$i].productType + '</td>' +
-										'<td>' + list[$i].productStatus + '</td>'
-										'</tr>';
-								} 
-								$("#jsonTable").append(temp);
-							}
-						});
-					}
-				});
 </html>
 

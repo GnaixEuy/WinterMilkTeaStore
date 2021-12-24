@@ -40,7 +40,7 @@
 >* [**Utah-syp**](https://github.com/Utah-syp)：会议讨论、文档撰写
 >* [**LSyv-ing**](https://github.com/LSyv-ing)：会议讨论、数据库设计
 >* [**Ju1cT**](https://github.com/Ju1cT)：会议讨论、原型采集
->* 
+>* [**simleradio**](https://github.com/simleradio)：会议讨论、原型采集
 
 >*  ***2021年12月22日*** 
 >* [**GnaixEuy**](https://github.com/GnaixEuy)：会议讨论、数据库设计、构建后端框架结构、编写工具类
@@ -48,7 +48,7 @@
 >* [**Utah-syp**](https://github.com/Utah-syp)：会议讨论、文档撰写、构建后端框架结构、编写实体类
 >* [**LSyv-ing**](https://github.com/LSyv-ing)：会议讨论、构建后端框架结构
 >* [**Ju1cT**](https://github.com/Ju1cT)：会议讨论、原型采集、前端页面修改、编写实体类
->
+>* [**simleradio**](https://github.com/simleradio)：会议讨论、原型采集、前端页面修改
 >
 
 >*  ***2021年12月23日*** 
@@ -57,5 +57,5 @@
 >*  [**Utah-syp**](https://github.com/Utah-syp)：会议讨论、编写单元测试、学习相关技术
 >*  [**LSyv-ing**](https://github.com/LSyv-ing)：会议讨论、编写单元测试、学习相关技术
 >*  [**Ju1cT**](https://github.com/Ju1cT)：会议讨论、原型修改
->
+>*  [**simleradio**](https://github.com/simleradio)：会议讨论、原型修改
 >

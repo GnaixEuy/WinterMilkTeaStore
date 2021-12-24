@@ -35,7 +35,7 @@
    <body class="main-layout">
       <!-- loader  -->
       <div class="loader_bg">
-         <div class="loader"><img src="image/logo.jpg" alt="#" /></div>
+         <div class="loader"><img src="image/logo1.png" alt="#" /></div>
       </div>
       <!-- end loader -->
       <!-- header -->
@@ -90,11 +90,12 @@
                <form id="request" class="main_form">
                   <div class="row">
                      <div class="col-md-12">
-                        <p>手机号码：</p><input class="contactus" placeholder="请输入手机号码" type="text" name="Phone Number"  id="phone">                          
+                        <p>手机号码：</p><input  class="contactus" placeholder="请输入手机号码" type="text" name="Phone Number"  id="phone">                          
                      </div>
                      <div class="col-md-12">
                         <p>密码：</p><input class="contactus" placeholder="请输入密码" type="password" id="password">
                      </div>
+					<p id="info" style="color: red;"></p><br />
                      <div class="col-sm-12">
                         <button class="send_btn" href="../index.html" id="login">登录</button>
                      </div>
@@ -182,7 +183,42 @@
       <script src="js/jquery.fancybox.min.js"></script>
    </body>
    <script>
-	$(')
+	$("#login").click(function(){
+		var phone = $("#phone").val();
+		var password = $("#password").val();
+		if(phone.trim().length==0){
+			$("#info").text("请输入手机号");
+		}else if(phone.trim().length<phone.length || phone.length != 11){
+					$("#info").text("手机号格式错误");
+				}else if(password.length == 0){
+					$("#info").text("请输入密码");
+				}else{
+					$.ajax({
+						type:"post",
+						url:"http://192.168.2.1:8888/user/login.do",
+						data:{
+							"userPhone":phone,
+							"userPassword":password,
+						},
+						//dataType='json',
+						success:function(res){
+							if("success" == res.requestServiceStatus){
+								// console.log(1111)
+								window.location.href = "../alreadyLoginIndex.html"
+							}else if("failed" == res.requestServiceStatus){
+								// console.log(2221)
+								alert("用户不存在！")
+							}
+						},
+						async:true,
+						error:function(){
+							alert('gg')
+							window.location.href = "login.html";
+						}
+					})
+					}
+
+	})
    </script>
 </html>
 

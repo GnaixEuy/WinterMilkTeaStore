@@ -35,7 +35,7 @@
    <body class="main-layout">
       <!-- loader  -->
       <div class="loader_bg">
-         <div class="loader"><img src="image/logo.jpg" alt="#" /></div>
+         <div class="loader"><img src="image/logo1.png" alt="#" /></div>
       </div>
       <!-- end loader -->
       <!-- header -->
@@ -98,16 +98,20 @@
                         <input class="contactus" placeholder="手机号码" type="type" name="Name"> 
                      </div>-->
                      <div class="col-md-12">
-                        <input class="contactus" placeholder="邮箱" type="type" name="Email"> 
+                         邮箱：<input class="contactus" placeholder="请输入您的邮箱" type="email" name="Email" id="email">
                      </div> 
+					 <div class="col-md-12">
+					    昵称：<input class="contactus" placeholder="请输入您的昵称" type="text"  id="newName">                          
+					 </div>
                      <div class="col-md-12">
-                        <input class="contactus" placeholder="手机号码" type="type" name="Phone Number">                          
+                        手机号码：<input class="contactus" placeholder="请输入您的手机号码" type="text" name="Phone Number" id="newPhone">                          
                      </div>
                      <div class="col-md-12">
-                        <textarea class="contactus" placeholder="密码" type="type" Message="Name"></textarea>
+                        密码：<textarea class="contactus" placeholder="请输入您的密码" type="type" Message="Name" id="newPassword"></textarea>
                      </div>
+					 <p id="newInfo" style="color: red;"></p><br />
                      <div class="col-sm-12">
-                        <button class="send_btn" href="../index.html">注册</button>
+                        <button class="send_btn" href="../index.html" id="register">注册</button>
                      </div>
                   </div>
                </form>
@@ -151,8 +155,6 @@
             </div>
          </div>
       </div>
-      <!-- end food -->
-      <!-- works -->
       <div class="works">
          <div class="container">
             <div class="row">
@@ -185,124 +187,7 @@
             </div>
          </div>
       </div>
-      <!-- end works -->
-      <!-- clients -->
-    <!--  <div class="clients">
-         <div class="container-fluid">
-            <div class="row d_flex">
-               <div class="col-md-7">
-                  <div class="padding_lert">
-                     <div class="titlepage">
-                        <h2> <strong class="yellow">Clients  </strong>says</h2>
-                     </div>
-                     <div id="myCarousel" class="carousel slide clients_Carousel " data-ride="carousel">
-                        <ol class="carousel-indicators">
-                           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                           <li data-target="#myCarousel" data-slide-to="1"></li>
-                           <li data-target="#myCarousel" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                           <div class="carousel-item active">
-                              <div class="container">
-                                 <div class="carousel-caption ">
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <div class="imga">
-                                             <figure><img src="images/client.png" alt="#"/></figure>
-                                          </div>
-                                          <div class="test_box">
-                                             <h4>mark du</h4>
-                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</p>
-                                             <i><img src="images/toy_img.png" alt="#"/></i>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="carousel-item">
-                              <div class="container">
-                                 <div class="carousel-caption">
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <div class="imga">
-                                             <figure><img src="images/client.png" alt="#"/></figure>
-                                          </div>
-                                          <div class="test_box">
-                                             <h4>mark du</h4>
-                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</p>
-                                             <i><img src="images/toy_img.png" alt="#"/></i>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="carousel-item">
-                              <div class="container">
-                                 <div class="carousel-caption">
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <div class="imga">
-                                             <figure><img src="images/client.png" alt="#"/></figure>
-                                          </div>
-                                          <div class="test_box">
-                                             <h4>mark du</h4>
-                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</p>
-                                             <i><img src="images/toy_img.png" alt="#"/></i>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-5">
-                  <div class="clients_imgfood">
-                     <figure><img src="images/food4.png" alt="#"/></figure>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div> -->
-      <!-- end clients -->
-      <!--  footer -->
-     <!-- <footer>
-         <div class="footer">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-8 offset-md-2">
-                     <div class="cont">
-                        <h3> Free Multipurpose  <br> Responsive Landing Page 2019</h3>
-                        <p>Modern lighting fast & easily Customizable</p>
-                     </div>
-                     <button class="sub_btn" href="#">Get A Quote</button>
-                  </div>
-               </div>
-            </div>
-            <!-- <div class="copyright">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <p>Copyright &copy; 2020.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-                     </div>
-                  </div>
-               </div>
-            </div> -->
-         </div>
-      </footer> -->
-      <!-- end footer -->
+
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
@@ -313,5 +198,46 @@
       <script src="js/custom.js"></script>
       <script src="js/jquery.fancybox.min.js"></script>
    </body>
+   <script>
+   	$("#login").click(function(){
+		var email = $("#email").val();
+		var newName = $("#newName").val();
+   		var newPhone = $("#newPhone").val();
+   		var newPassword = $("#newPassword").val();
+   		if(newPhone.trim().length==0){
+   			$("#newInfo").text("请输入手机号");
+   		}else if(newPhone.trim().length<newPhone.length || newPhone.length != 11){
+   					$("#newInfo").text("手机号格式错误");
+   				}else if(newPassword.length == 0){
+   					$("#newInfo").text("请输入密码");
+   				}else{
+   					$.ajax({
+   						type:"post",
+   						url:"http://192.168.2.1:8888/user/add.do",
+   						data:{
+							"email":email;
+							"userName":newName,
+   							"userPhone":newPhone,
+   							"userPassword":newPassword,
+   						},
+   						//dataType='json',
+   						success:function(res){
+   							console.log(res)
+   							if("success" == res.requestServiceStatus){
+								alert("恭喜注册成功！！！")
+   								window.location.href = "../alreadyLoginIndex.html"
+   							}else if("failed" == res.requestServiceStatus){
+   								alert("注册失败，请您刷新页面重新尝试！！！")
+   							}
+   						},
+   						async:true,
+   						error:function(){
+   							window.location.href = "register.html";
+   						}
+   					})
+   					}
+   
+   	})
+   </script>
 </html>
 
