@@ -42,6 +42,12 @@
         where user_id = #{userId}
     </select>
 
+    <select id="selectUserByPhone" resultType="user">
+        select *
+        from wintermilktea.user
+        where user_phone = #{userPhone};
+    </select>
+
     <select id="selectUserByName" resultType="user">
         select *
         from wintermilktea.user

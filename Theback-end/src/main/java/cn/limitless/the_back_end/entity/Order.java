@@ -25,6 +25,9 @@ public class Order {
 	private String orderId;
 	private String orderCustomerId;
 	private Double orderPrice;
+	/**
+	 * 存itemId
+	 */
 	private List<String> orderProductList;
 	private Boolean orderIsPay;
 	private Double orderRealPay;

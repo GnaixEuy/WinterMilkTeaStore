@@ -6,6 +6,7 @@ import cn.limitless.the_back_end.service.UserService;
 import cn.limitless.the_back_end.utils.MD5Util;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -101,10 +102,22 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	@Deprecated
-	public User userLogin(String userId, String password) {
-		final String encryptionPassword = MD5Util.getMD5(password);
-		final User user = this.userDao.selectUserById(userId);
-		if (user.getUserPassword().equals(encryptionPassword)) {
+	public User userLogin(String userId, String userPhone, String password) {
+		User user = null;
+		if (userId == null && userPhone == null || "".equals(userId) && "".equals(userPhone)) {
+			return null;
+		} else {
+			if (userId != null){
+				user = this.userDao.selectUserById(userId);
+			} else {
+				user = this.userDao.selectUserByPhone(userPhone);
+			}
+		}
+		if (password == null || "".equals(password)) {
+			return null;
+		}
+		String encryptionPassword = MD5Util.getMD5(password);
+		if (user != null && user.getUserPassword().equals(encryptionPassword)) {
 			return user;
 		} else {
 			return null;

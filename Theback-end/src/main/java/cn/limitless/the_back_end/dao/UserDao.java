@@ -44,6 +44,13 @@ public interface UserDao {
 	User selectUserById(String userId);
 
 	/**
+	 * 通过用户手机号查询用户信息
+	 * @param userPhone 手机号码
+	 * @return 返回用户实体对象
+	 */
+	User selectUserByPhone(String userPhone);
+
+	/**
 	 * 通过用户名字查找用户对象
 	 * @param userName  用户名字
 	 * @return 返回一个名字为参数的用户对象集合
