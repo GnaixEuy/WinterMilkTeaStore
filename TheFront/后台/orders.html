@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>冬日奶茶店--订单列表</title>
+		<title>冬至奶茶店--订单列表</title>
 		<!-- Favicon icon -->
 		<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
 		<link rel="stylesheet" href="./vendor/chartist/css/chartist.min.css">
@@ -20,34 +20,8 @@
 
 	</head>
 	<body>
-<!-- 弹窗1 -->
-			<div  class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true"  id="mymodal-link">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">修改订单状态</h5>
-						</div>
-						<div class="modal-body">
-								<!-- 	<div class="modal-body">
-							&emsp;<button type="button" class="btn btn-primary">已下单</button>&emsp;&emsp;&emsp;
-										<button type="button" class="btn btn-primary">订单完成</button>
-									</div> -->
-									<!-- <input type="text"  id="edit_order_id" style="display: none;" />
-			<input type="text" name="" id="edit_order_status" placeholder="订单状态" value="" />	 -->							<select name="">
-										<option value="">已下单</option>
-										<option value ="">订单完成</option>
-									</select> 
-									</div>
-										<div class="modal-footer">
-			<button type="button" class="btn btn-danger light " data-dismiss="modal">确认</button>
-			<button type="button" class="btn btn-danger light " data-dismiss="modal">取消</button>
-		
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			<!-- 	弹窗1end -->
+			
+
 		<!--*******************
         Preloader start
     ********************-->
@@ -382,6 +356,8 @@
 								<i class="las la-angle-down ml-3"></i>
 							</a>
 							<div class="dropdown-menu dropdown-menu-center">
+								<a class="dropdown-item" href="javascript:void(0);"><span class="text-primary">On
+										配送中</span></a>
 								<a class="dropdown-item" href="javascript:void(0);"><span class="text-primary">New
 										已下单</span></a>
 								<a class="dropdown-item" href="javascript:void(0);"><span
@@ -401,20 +377,25 @@
 											<th>订单号</th>
 											<th>订单日期</th>
 											<th>顾客姓名</th>
+											<th>地址</th>
 											<th>消费金额</th>
 											<th>订单状态</th>
-											<th>订单操作</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr class="alert alert-dismissible border-0">
-											<td>{}</td>
+											<td>#5552375</td>
 											<td>2020年3月26日 02:12 AM</td>
 											<td>孙贤佑</td>
-											<!-- <td>福建厦门</td> -->
+											<td>福建厦门</td>
 											<td>￥251.16</td>
 											<td>
-												<span class="text-primary">订单完成</span>
+												<span class="text-primary">
+													<svg class="mr-2" width="12" height="12" viewBox="0 0 12 12"
+														fill="none" xmlns="http://www.w3.org/2000/svg">
+														<circle cx="6" cy="6" r="6" fill="#EA7A9A" />
+													</svg>配送中</span>
 											</td>
 											<td>
 												<div class="dropdown">
@@ -437,17 +418,16 @@
 														</svg>
 													</a>
 													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#mymodal-link" data-toggle="modal" >
-																												<i
-																													class="las la-check-circle text-success mr-3 scale5" onclick="showDialog(this)"></i>修改订单状态</a>
+														<a class="dropdown-item" href="javascript:void(0);"><i
+																class="las la-check-circle text-success mr-3 scale5"></i>订单确认</a>
 														<a href="javascript:void(0);" data-dismiss="alert"
 															aria-label="Close" class="dropdown-item"><i
 																class="las la-times-circle text-danger mr-3 scale5"></i>删除订单</a>
 													</div>
 												</div>
 											</td>
-										</tr> 
-										<!-- <tr class="alert alert-dismissible border-0">
+										</tr>
+										<tr class="alert alert-dismissible border-0">
 											<td>#5552356</td>
 											<td>2021年11月15日, 12:42 AM</td>
 											<td>李四</td>
@@ -532,7 +512,11 @@
 											<td>福建厦门</td>
 											<td>￥23.16</td>
 											<td>
-												<span class="text-primary">已下单</span>
+												<span class="text-primary">
+													<svg class="mr-2" width="12" height="12" viewBox="0 0 12 12"
+														fill="none" xmlns="http://www.w3.org/2000/svg">
+														<circle cx="6" cy="6" r="6" fill="#EA7A9A" />
+													</svg>配送中</span>
 											</td>
 											<td>
 												<div class="dropdown">
@@ -610,7 +594,11 @@
 											<td>福建厦门</td>
 											<td>￥22.16</td>
 											<td>
-												<span class="text-primary">订单完成</span>
+												<span class="text-primary">
+													<svg class="mr-2" width="12" height="12" viewBox="0 0 12 12"
+														fill="none" xmlns="http://www.w3.org/2000/svg">
+														<circle cx="6" cy="6" r="6" fill="#EA7A9A" />
+													</svg>配送中</span>
 											</td>
 											<td>
 												<div class="dropdown">
@@ -649,7 +637,11 @@
 											<td>福建莆田</td>
 											<td>￥44.16</td>
 											<td>
-												<span class="text-primary">已下单</span>
+												<span class="text-primary">
+													<svg class="mr-2" width="12" height="12" viewBox="0 0 12 12"
+														fill="none" xmlns="http://www.w3.org/2000/svg">
+														<circle cx="6" cy="6" r="6" fill="#EA7A9A" />
+													</svg>配送中</span>
 											</td>
 											<td>
 												<div class="dropdown">
@@ -797,7 +789,7 @@
 													</div>
 												</div>
 											</td>
-										</tr> -->
+										</tr>
 
 									</tbody>
 								</table>
