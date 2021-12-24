@@ -11,6 +11,7 @@
    		 <!---- start-smoth-scrolling---->
 		<script type="text/javascript" src="js/move-top.js"></script>
 		<script type="text/javascript" src="js/easing.js"></script>
+		<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){		
@@ -49,11 +50,11 @@
 		</script>
 		<!----//End-top-nav-script---->
 	</head>
-	<style>
+	<!-- <style>
 	body{
 			background-color: seagreen;
 	}
-	</style>
+	</style> -->
 	<body>
 		<!----container---->
 		<div class="container">
@@ -130,23 +131,17 @@
 						<div class="product-filter-grids"> 
 							<div class="col-md-3 product-filter-grid1-brands">
 								<h3>奶茶分类</h3>
-								<ul class="col-md-6 unstyled-list b-list1">
-									<li><a href="#One">奶茶系列</a></li>
+								<ul class="col-md-6 unstyled-list b-list1"id="test">
+									<!-- <li><a href="#One">奶茶系列</a></li>
 									<li><a href="#Two">雪泡系列</a></li>
 									<li><a href="#Three">刨冰系列</a></li>
 									<li><a href="#Four">果茶系列</a></li>
 									<li><a href="#Five">奶昔系列</a></li>
 									<li><a href="#Six">沙冰系列</a></li>
+									<li id="#li"> -->
+									</li>
 									<div class="clearfix"> </div>
 								</ul>
-								<!-- <ul class="col-md-6 unstyled-list b-list2">
-									<li><a href="#">tiger</a></li>
-									<li><a href="#">lacoste</a></li>
-									<li><a href="#">eebok</a></li>
-									<li><a href="#">cat</a></li>
-									<li><a href="#">dockers</a></li>
-									<div class="clearfix"> </div>
-								</ul> -->
 								<div class="clearfix"> </div>
 							</div>
 							<div class="col-md-6 product-filter-grid1-brands-col2">
@@ -647,27 +642,30 @@
 						</div>
 						<div class="clearfix"> </div>
 					</div>
-					<!---//special-products-grids---->
 				</div>
-
-			<!-- <div class="clearfix"> </div> -->
-		
 							<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 							 <a style="position:fixed; bottom:0; right:0;" href="shoppingCar/cart.html"><div class="cart-details">
-								<!-- <div class="add-to-cart"> -->
-									<!-- <ul class="unstyled-list list-inline"> -->
 										<span class="cart"> </span>
 											<ul class="cart-sub">
-												<!-- <li><p>3杯奶茶</p></li> -->
 											</ul>
 										 </li>
 									</ul>
 								</div> 
-					 	<!-- </div></a> -->
-					<!-- </div> --> 
-			<!--//copy-right--->
 		</div>
-		<!----container---->
 	</body>
+	<script type="text/javascript">
+	        var getting = {
+	        url:'http://192.168.2.1:8888/product/type.do',
+	        dataType:'json',
+	        success:function(res) {
+	         var t = $('test')
+			 t.remove
+			 res.object.forEach((element) => {
+				 t.append('<li><a href="#" + element +>')
+			 })
+	}
+	};
+	window.setInterval(function(){$.ajax(getting)},3000);
+	</script>
 </html>
 
