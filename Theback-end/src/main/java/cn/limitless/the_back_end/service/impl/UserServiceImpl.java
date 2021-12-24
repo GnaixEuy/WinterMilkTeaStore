@@ -38,12 +38,13 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public boolean addUser(User user) {
-		if (user.getUserId() == null || "".equals(user.getUserId())) {
+		if (user.getUserPhone() == null || "".equals(user.getUserPhone())) {
 			return false;
 		} else {
 			if (user.getUserPassword() == null || "".equals(user.getUserPassword())) {
 				return false;
 			}
+			user.setUserId(MD5Util.getMD5(user.getUserPhone()));
 			final String unencryptedUserPassword = user.getUserPassword();
 			final String md5Password = MD5Util.getMD5(unencryptedUserPassword);
 			user.setUserPassword(md5Password);
@@ -101,10 +102,22 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	@Deprecated
-	public User userLogin(String userId, String password) {
-		final String encryptionPassword = MD5Util.getMD5(password);
-		final User user = this.userDao.selectUserById(userId);
-		if (user.getUserPassword().equals(encryptionPassword)) {
+	public User userLogin(String userId, String userPhone, String password) {
+		User user;
+		if (userId == null && userPhone == null || "".equals(userId) && "".equals(userPhone)) {
+			return null;
+		} else {
+			if (userId != null) {
+				user = this.userDao.selectUserById(userId);
+			} else {
+				user = this.userDao.selectUserByPhone(userPhone);
+			}
+		}
+		if (password == null || "".equals(password)) {
+			return null;
+		}
+		String encryptionPassword = MD5Util.getMD5(password);
+		if (user != null && user.getUserPassword().equals(encryptionPassword)) {
 			return user;
 		} else {
 			return null;

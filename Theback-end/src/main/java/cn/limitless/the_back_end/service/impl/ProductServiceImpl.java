@@ -49,9 +49,30 @@ public class ProductServiceImpl implements ProductService {
 		return this.productDao.selectProductByName(productName);
 	}
 
+	/**
+	 * 商品名字的模糊查询
+	 *
+	 * @param likeName 模糊名
+	 * @return 返回商品对象集合
+	 */
+	@Override
+	public List<Product> fuzzyQueryProduct(String likeName) {
+		return this.productDao.vagueSelectProductByName(likeName);
+	}
+
 	@Override
 	public List<Product> findProductByType(String productType) {
 		return this.productDao.selectProductByType(productType);
+	}
+
+	/**
+	 * 获取所有商品种类
+	 *
+	 * @return 返回商品种类list
+	 */
+	@Override
+	public List<String> getAllProductType() {
+		return this.productDao.selectProductType();
 	}
 
 	@Override

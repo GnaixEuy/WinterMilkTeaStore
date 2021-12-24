@@ -39,10 +39,11 @@ public interface UserService {
 	/**
 	 * 验证用户登入，成功则返回用户对象
 	 * @param userId 用户id
+	 * @param userPhone 用户手机号
 	 * @param password 用户密码
 	 * @return 成功则返回用户对象，失败返回nil
 	 */
-	User userLogin(String userId, String password);
+	User userLogin(String userId,String userPhone, String password);
 
 	/**
 	 * 获取所有用户信息

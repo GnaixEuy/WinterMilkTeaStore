@@ -74,4 +74,7 @@
         where product_id = #{productId}
     </update>
 
+    <select id="selectProductType" resultType="String">
+        SELECT DISTINCT product_type FROM wintermilktea.Product
+    </select>
 </mapper>

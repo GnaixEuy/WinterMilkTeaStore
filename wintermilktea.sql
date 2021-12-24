@@ -11,7 +11,7 @@
  Target Server Version : 50731
  File Encoding         : 65001
 
- Date: 23/12/2021 21:42:12
+ Date: 24/12/2021 09:24:16
 */
 
 SET NAMES utf8mb4;
@@ -49,7 +49,7 @@ CREATE TABLE `Product` (
   PRIMARY KEY (`product_id`,`product_name`) USING BTREE,
   KEY `product_name` (`product_name`),
   KEY `产品原料关联` (`product_material_list`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of Product
@@ -76,8 +76,8 @@ INSERT INTO `Product` VALUES (19, '草ds草dddd草', NULL, NULL, NULL, 'null@cao
 INSERT INTO `Product` VALUES (21, '冬乳奶茶-2081995926', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
 INSERT INTO `Product` VALUES (22, '冬乳奶茶-1358763659', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
 INSERT INTO `Product` VALUES (23, '冬乳奶茶661572984', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
-INSERT INTO `Product` VALUES (24, '冬乳奶茶', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
 INSERT INTO `Product` VALUES (25, '草ds草dddd草', NULL, NULL, NULL, 'null@cao@aa@www');
+INSERT INTO `Product` VALUES (27, '冬乳奶茶', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
 COMMIT;
 
 -- ----------------------------
@@ -167,8 +167,9 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 BEGIN;
-INSERT INTO `user` VALUES ('id1', 'test1', 'test', 663, '2021-12-23', 'test', 'test');
+INSERT INTO `user` VALUES ('1', '123', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', NULL, NULL, '44444', NULL);
 INSERT INTO `user` VALUES ('id2', 'test2', 'test', 663, '2021-12-23', 'test', 'test');
+INSERT INTO `user` VALUES ('id3', 'test3', 'test', 663, '2021-12-24', 'test', 'test');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

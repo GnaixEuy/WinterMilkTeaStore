@@ -14,9 +14,9 @@ public class MD5UtilTest {
 
 	@Test
 	public void testGetMD5(){
-		String testStr = "test";
+		String testStr = "123";
 		System.out.println(testStr);
-		System.out.println(MD5Util.getMD5("test"));
+		System.out.println(MD5Util.getMD5("123"));
 		System.out.println(MD5Util.getMD5("test"));
 	}
 
