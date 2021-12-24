@@ -79,7 +79,7 @@
         FROM wintermilktea.Product
     </select>
 
-    <select id="selectProductNum">
+    <select id="selectProductNum" resultType="Integer">
         select count(product_id)
         from wintermilktea.Product
     </select>
