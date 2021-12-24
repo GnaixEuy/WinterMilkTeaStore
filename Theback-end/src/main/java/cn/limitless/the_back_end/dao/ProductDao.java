@@ -87,4 +87,11 @@ public interface ProductDao {
 	 */
 	List<String> selectProductType();
 
+
+	/**
+	 * 返回商品总数量
+	 *
+	 * @return int 返回商品总数量
+	 */
+	int selectProductNum();
 }

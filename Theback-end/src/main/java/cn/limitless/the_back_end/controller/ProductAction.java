@@ -6,6 +6,7 @@ import cn.limitless.the_back_end.service.ProductService;
 import cn.limitless.the_back_end.utils.FileNameUtil;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ import java.util.Objects;
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
 @RestController
-@RequestMapping(value = {"/product"}, method = {RequestMethod.POST, RequestMethod.GET})
+@RequestMapping(value = {"/product"})
 @CrossOrigin(value = {"*"})
 public class ProductAction {
 
@@ -50,10 +51,9 @@ public class ProductAction {
 	 * @param product 商品对象
 	 * @return 返回添加的商品对象服务状态
 	 */
-	@RequestMapping(value = {"/addProduct.do"}, method = {RequestMethod.POST, RequestMethod.GET})
-	@Deprecated
-	public ObjectModel addProduct(@NotNull Product product) {
-		System.out.println(product.getProductName());
+	@RequestMapping(value = {"/addProduct.do"}, method = {RequestMethod.POST})
+	@ApiOperation(value = "增加商品")
+	public ObjectModel addProduct(@NotNull @RequestBody Product product) {
 		final ObjectModel objectModel = new ObjectModel();
 		final boolean addProductBoolean = this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(), product.getProductMaterialList().toArray(new String[0]));
 		if (addProductBoolean) {
@@ -73,9 +73,9 @@ public class ProductAction {
 	 * @return 返回服务处理状态
 	 */
 	@ApiOperation(value = "商品删除", notes = "传入productId或productName都可以，当二者都不存在或参数信息错误时返回状态failed，业务成功则返回success状态码")
-	@RequestMapping(value = {"/deleteProduct.do"})
-	public ObjectModel deleteProduct(@RequestParam(name = "id", required = false) Integer productId,
-	                                 @RequestParam(name = "name", required = false) String productName) {
+	@RequestMapping(value = {"/deleteProduct.do"}, method = RequestMethod.GET)
+	public ObjectModel deleteProduct(@ApiParam(value = "商品id") @RequestParam(name = "id", required = false) Integer productId,
+	                                 @ApiParam(value = "商品name") @RequestParam(name = "name", required = false) String productName) {
 		final ObjectModel objectModel = new ObjectModel();
 		if (productId != null) {
 			final boolean deleteSuccess = this.productService.deleteProduct(productId);
@@ -97,8 +97,9 @@ public class ProductAction {
 	 * @param product mvc自动封装product，前端保证name正确即可
 	 * @return 返回包装好的更新信息后的对象
 	 */
-	@RequestMapping(value = {"/updateProduct.do",})
-	public ObjectModel updateProduct(Product product) {
+	@RequestMapping(value = {"/updateProduct.do",}, method = {RequestMethod.POST})
+	@ApiOperation(value = "更新商品接口", notes = "商品名称为空时错误")
+	public ObjectModel updateProduct(@RequestParam Product product) {
 		final ObjectModel objectModel = new ObjectModel();
 		if (product.getProductId() == null) {
 			final String productName = product.getProductName();
@@ -120,12 +121,14 @@ public class ProductAction {
 		return objectModel;
 	}
 
-	@RequestMapping(value = {"/getProductById.do"})
-	public ObjectModel getProductById(@RequestParam(name = "id", required = false) Integer id) {
+	@RequestMapping(value = {"/getProductById.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "通过id获取商品信息")
+	public ObjectModel getProductById(@ApiParam(value = "商品id") @RequestParam(name = "id", required = false) Integer id) {
 		return new ObjectModel(this.productService.findProductById(id));
 	}
 
-	@RequestMapping(value = {"/getAllProduct.do"})
+	@RequestMapping(value = {"/getAllProduct.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "获取所有商品信息", notes = "不需要参数")
 	public ObjectModel getAllProduct() {
 		List<Product> allProducts = this.productService.findAllProducts();
 		if (allProducts != null) {
@@ -137,8 +140,9 @@ public class ProductAction {
 		}
 	}
 
-	@RequestMapping(value = {"/ajaxPage.do"})
-	public ObjectModel ajaxProductPagination(@RequestParam(name = "page", defaultValue = "1") Integer pageNum) {
+	@RequestMapping(value = {"/ajaxPage.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "ajax分页请求数据", notes = "不传页数page默认为1")
+	public ObjectModel ajaxProductPagination(@ApiParam(value = "请求的页面数据") @RequestParam(name = "page", defaultValue = "1") Integer pageNum) {
 		final PageInfo<Product> productPageInfo = this.productService.splitPage(pageNum, PAGE_SHOW_SIZE);
 		return new ObjectModel(productPageInfo);
 	}
@@ -174,14 +178,14 @@ public class ProductAction {
 	}
 
 	@ApiOperation(value = "获取所有商品的种类列表")
-	@RequestMapping(value = {"/type.do"}, method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = {"/type.do"}, method = {RequestMethod.GET})
 	public ObjectModel getProductTypeList() {
 		final List<String> allProductType = this.productService.getAllProductType();
 		return new ObjectModel(allProductType);
 	}
 
 	@ApiOperation(value = "通过类型获取商品信息", notes = "如果什么都不传默认获取到全部商品")
-	@RequestMapping(value = {"/productByType.do"}, method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = {"/productByType.do"}, method = {RequestMethod.GET})
 	public ObjectModel getProductByType(@RequestParam(name = "type", defaultValue = "") String type) {
 		List<Product> products;
 		if ("".equals(type)) {
@@ -198,7 +202,8 @@ public class ProductAction {
 		return objectModel;
 	}
 
-	@RequestMapping(value = {"/ajaxNamePrompt.do"}, method = {RequestMethod.GET, RequestMethod.POST})
+	@ApiOperation(value = "模糊查询接口", notes = "搜索框提示可以用")
+	@RequestMapping(value = {"/ajaxNamePrompt.do"}, method = {RequestMethod.GET})
 	public ObjectModel fastFindProduct(String likeName) {
 		final List<Product> products = this.productService.fuzzyQueryProduct(likeName);
 		final ObjectModel objectModel = new ObjectModel();
@@ -208,6 +213,12 @@ public class ProductAction {
 			objectModel.setObject(products);
 		}
 		return objectModel;
+	}
+
+	@RequestMapping(value = "/productNum.do", method = {RequestMethod.GET})
+	@ApiOperation(value = "获取商品总数接口")
+	public int getProductNum() {
+		return this.productService.getAllProductNum();
 	}
 
 

@@ -75,6 +75,12 @@
     </update>
 
     <select id="selectProductType" resultType="String">
-        SELECT DISTINCT product_type FROM wintermilktea.Product
+        SELECT DISTINCT product_type
+        FROM wintermilktea.Product
+    </select>
+
+    <select id="selectProductNum">
+        select count(product_id)
+        from wintermilktea.Product
     </select>
 </mapper>
