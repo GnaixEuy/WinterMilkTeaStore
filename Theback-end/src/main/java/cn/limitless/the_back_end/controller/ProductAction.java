@@ -8,9 +8,7 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +26,8 @@ import java.util.Objects;
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
 @RestController
-@RequestMapping(value = {"/product"})
+@RequestMapping(value = {"/product"}, method = {RequestMethod.POST, RequestMethod.GET})
+@CrossOrigin(value = {"*"})
 public class ProductAction {
 
 	/**
@@ -51,7 +50,7 @@ public class ProductAction {
 	 * @param product 商品对象
 	 * @return 返回添加的商品对象服务状态
 	 */
-	@RequestMapping(value = {"/addProduct.do"})
+	@RequestMapping(value = {"/addProduct.do"}, method = {RequestMethod.POST, RequestMethod.GET})
 	@Deprecated
 	public ObjectModel addProduct(@NotNull Product product) {
 		System.out.println(product.getProductName());
@@ -75,7 +74,8 @@ public class ProductAction {
 	 */
 	@ApiOperation(value = "商品删除", notes = "传入productId或productName都可以，当二者都不存在或参数信息错误时返回状态failed，业务成功则返回success状态码")
 	@RequestMapping(value = {"/deleteProduct.do"})
-	public ObjectModel deleteProduct(Integer productId, String productName) {
+	public ObjectModel deleteProduct(@RequestParam(name = "id", required = false) Integer productId,
+	                                 @RequestParam(name = "name", required = false) String productName) {
 		final ObjectModel objectModel = new ObjectModel();
 		if (productId != null) {
 			final boolean deleteSuccess = this.productService.deleteProduct(productId);
@@ -84,7 +84,7 @@ public class ProductAction {
 			}
 		} else if (productName != null && !"".equals(productName)) {
 			final boolean deleteProductByName = this.productService.deleteProductByName(productName);
-			if (!deleteProductByName){
+			if (!deleteProductByName) {
 				objectModel.setRequestServiceStatus("failed");
 			}
 		}
@@ -93,25 +93,26 @@ public class ProductAction {
 
 	/**
 	 * 更新product接口
+	 *
 	 * @param product mvc自动封装product，前端保证name正确即可
 	 * @return 返回包装好的更新信息后的对象
 	 */
 	@RequestMapping(value = {"/updateProduct.do",})
 	public ObjectModel updateProduct(Product product) {
-			final ObjectModel objectModel = new ObjectModel();
+		final ObjectModel objectModel = new ObjectModel();
 		if (product.getProductId() == null) {
 			final String productName = product.getProductName();
-			if (productName != null && !"".equals(productName)){
+			if (productName != null && !"".equals(productName)) {
 				final Product oldProduct = this.productService.findProductByName(productName);
 				final boolean b = this.productService.updateProduct(oldProduct.getProductId(), product);
-				if (b){
+				if (b) {
 					objectModel.setRequestServiceStatus("success");
 					objectModel.setObject(this.productService.findProductById(oldProduct.getProductId()));
 				}
 			}
-		}else {
+		} else {
 			final boolean b = this.productService.updateProduct(product.getProductId(), product);
-			if (b){
+			if (b) {
 				objectModel.setRequestServiceStatus("success");
 				objectModel.setObject(this.productService.findProductById(product.getProductId()));
 			}
@@ -119,9 +120,8 @@ public class ProductAction {
 		return objectModel;
 	}
 
-
 	@RequestMapping(value = {"/getProductById.do"})
-	public ObjectModel getProductById(@NotNull Integer id) {
+	public ObjectModel getProductById(@RequestParam(name = "id", required = false) Integer id) {
 		return new ObjectModel(this.productService.findProductById(id));
 	}
 
@@ -138,10 +138,7 @@ public class ProductAction {
 	}
 
 	@RequestMapping(value = {"/ajaxPage.do"})
-	public ObjectModel ajaxProductPagination(Integer pageNum) {
-		if (pageNum == null || pageNum == 0) {
-			pageNum = 1;
-		}
+	public ObjectModel ajaxProductPagination(@RequestParam(name = "page", defaultValue = "1") Integer pageNum) {
 		final PageInfo<Product> productPageInfo = this.productService.splitPage(pageNum, PAGE_SHOW_SIZE);
 		return new ObjectModel(productPageInfo);
 	}
@@ -155,25 +152,61 @@ public class ProductAction {
 	 */
 	@RequestMapping(value = {"/ajaxProductImage.do"}, method = RequestMethod.POST)
 	@ApiOperation(value = "ajax图片上传接口", notes = "上传图片,form表单请求方式限定POST，enctype必须是multipart/form-data", httpMethod = "POST")
-	public ObjectModel ajaxProductImage(MultipartFile productImage, HttpServletRequest request) {
+	public ObjectModel ajaxProductImage(MultipartFile productImage,
+	                                    HttpServletRequest request) {
+		ObjectModel objectModel = new ObjectModel();
 		//提取UUID + 上传图片的后缀.jpeg
-		/*
-		  返回的图片url路径
-		 */
+		/* 返回的图片url路径 */
 		String saveFileName = FileNameUtil.getUUIDFileName() + FileNameUtil.getFileType(Objects.requireNonNull(productImage.getOriginalFilename()));
 		//得到项目中图片存储对路径
 		final String outPath = System.getProperty("user.dir") + "/Theback-end/target/classes/static/productImg";
 		//转存
 		final String imageOutPath = outPath + File.separator + saveFileName;
-
 		try {
 			productImage.transferTo(new File(imageOutPath));
-			return new ObjectModel(saveFileName);
+			objectModel.setObject(saveFileName);
+			return objectModel;
 		} catch (IOException e) {
 			e.printStackTrace();
+			objectModel.setRequestServiceStatus("failed");
+			return objectModel;
+		}
+	}
+
+	@ApiOperation(value = "获取所有商品的种类列表")
+	@RequestMapping(value = {"/type.do"}, method = {RequestMethod.GET, RequestMethod.POST})
+	public ObjectModel getProductTypeList() {
+		final List<String> allProductType = this.productService.getAllProductType();
+		return new ObjectModel(allProductType);
+	}
+
+	@ApiOperation(value = "通过类型获取商品信息", notes = "如果什么都不传默认获取到全部商品")
+	@RequestMapping(value = {"/productByType.do"}, method = {RequestMethod.GET, RequestMethod.POST})
+	public ObjectModel getProductByType(@RequestParam(name = "type", defaultValue = "") String type) {
+		List<Product> products;
+		if ("".equals(type)) {
+			products = this.productService.findAllProducts();
+		} else {
+			products = this.productService.findProductByType(type);
 		}
 		final ObjectModel objectModel = new ObjectModel();
-		objectModel.setRequestServiceStatus("failed");
+		if (products.size() == 0) {
+			objectModel.setRequestServiceStatus("failed");
+		} else {
+			objectModel.setObject(products);
+		}
+		return objectModel;
+	}
+
+	@RequestMapping(value = {"/ajaxNamePrompt.do"}, method = {RequestMethod.GET, RequestMethod.POST})
+	public ObjectModel fastFindProduct(String likeName) {
+		final List<Product> products = this.productService.fuzzyQueryProduct(likeName);
+		final ObjectModel objectModel = new ObjectModel();
+		if (products.size() == 0) {
+			objectModel.setRequestServiceStatus("failed");
+		} else {
+			objectModel.setObject(products);
+		}
 		return objectModel;
 	}
 

@@ -9,6 +9,9 @@ package cn.limitless.the_back_end.entity;
  */
 public class OrderItem {
 
-
+	private String itemId;
+	private String orderId;
+	private String productId;
+//private
 
 }

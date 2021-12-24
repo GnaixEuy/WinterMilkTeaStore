@@ -39,6 +39,14 @@ public interface ProductService {
 	Product findProductByName(String productName);
 
 	/**
+	 * 商品名字的模糊查询
+	 *
+	 * @param likeName 模糊名
+	 * @return 返回商品对象
+	 */
+	List<Product> fuzzyQueryProduct(String likeName);
+
+	/**
 	 * 通过种类查找商品
 	 *
 	 * @param productType 商品种类
@@ -47,12 +55,19 @@ public interface ProductService {
 	List<Product> findProductByType(String productType);
 
 	/**
+	 * 获取所有商品种类
+	 *
+	 * @return 返回商品种类list
+	 */
+	List<String> getAllProductType();
+
+	/**
 	 * 添加商品
 	 *
-	 * @param productName String 商品名称
-	 * @param productType String 商品种类
-	 * @param price Double 商品价格
-	 * @param productImageId String 商品图片地址
+	 * @param productName        String 商品名称
+	 * @param productType        String 商品种类
+	 * @param price              Double 商品价格
+	 * @param productImageId     String 商品图片地址
 	 * @param materialListString List<String> 商品原料成分
 	 * @return 返回是否添加成功
 	 */
@@ -68,6 +83,7 @@ public interface ProductService {
 
 	/**
 	 * 通过商品名字删除商品
+	 *
 	 * @param productName 要删除的商品名称
 	 * @return 返回是否删除成功
 	 */

@@ -117,5 +117,11 @@
 //		}
 //	}
 //
-//
+//	@Test
+//	public void selectProductType(){
+//		final List<String> strings = this.productDao.selectProductType();
+//		for (String string : strings) {
+//			System.out.println(string);
+//		}
+//	}
 //}

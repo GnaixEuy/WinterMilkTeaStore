@@ -38,14 +38,7 @@ public interface ProductDao {
 	 * @param likeName 模糊查询的字符串
 	 * @return product 模糊查询
 	 */
-	Product vagueSelectProductByName(String likeName);
-
-	/**
-	 * 查询所有产品
-	 * @param sorted 字段+排列方式 为空默认按照商品id降序
-	 * @return list<product>返回所有的产品集合
-	 */
-	List<Product> findAllProduct(String sorted);
+	List<Product> vagueSelectProductByName(String likeName);
 
 	/**
 	 * 通过产品类型查找产品
@@ -54,6 +47,14 @@ public interface ProductDao {
 	 * @return 同类型产品集合
 	 */
 	List<Product> selectProductByType(String productType);
+
+	/**
+	 * 查询所有产品
+	 *
+	 * @param sorted 字段+排列方式 为空默认按照商品id降序
+	 * @return list<product>返回所有的产品集合
+	 */
+	List<Product> findAllProduct(String sorted);
 
 	/**
 	 * 添加产品
@@ -78,5 +79,12 @@ public interface ProductDao {
 	 * @return 返回修改的行数
 	 */
 	int updateProduct(Product product);
+
+	/**
+	 * 获取商品种类
+	 *
+	 * @return 返回描述商品种类的list
+	 */
+	List<String> selectProductType();
 
 }
