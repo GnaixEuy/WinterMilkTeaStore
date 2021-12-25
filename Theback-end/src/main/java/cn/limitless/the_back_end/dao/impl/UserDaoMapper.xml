@@ -60,4 +60,8 @@
         from wintermilktea.user
     </select>
 
+    <select id="selectUserNum" resultType="Integer">
+        select count(user_id)
+        from wintermilktea.user
+    </select>
 </mapper>

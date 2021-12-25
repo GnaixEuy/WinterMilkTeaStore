@@ -5,14 +5,13 @@ import cn.limitless.the_back_end.model.ObjectModel;
 import cn.limitless.the_back_end.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.Date;
 
 /**
@@ -25,21 +24,20 @@ import java.util.Date;
 @EnableOpenApi
 @Api(value = "用户登入接口，token未完成")
 @RestController
-@RequestMapping(value = {"/user"}, method = {RequestMethod.POST,RequestMethod.GET})
+@RequestMapping(value = {"/user"})
 @CrossOrigin(value = {"*"})
 public class UserAction {
 
 	private final UserService userService;
+
 	@Autowired
 	public UserAction(UserService userService) {
 		this.userService = userService;
 	}
 
 	@ApiOperation(value = "登入方法", notes = "传入参数为id、phone、name")
-	@RequestMapping("/login.do")
-	public ObjectModel userLogin(@RequestParam(name = "id", required = false) String id,
-	                             @RequestParam(name = "phone") String phone,
-	                             @RequestParam(name = "password") String password) {
+	@RequestMapping(value = "/login.do", method = {RequestMethod.POST})
+	public ObjectModel userLogin(@RequestParam(name = "id", required = false) String id, @RequestParam(name = "phone") String phone, @RequestParam(name = "password") String password) {
 		System.out.println(phone);
 		System.out.println(password);
 		final ObjectModel objectModel = new ObjectModel();
@@ -52,10 +50,15 @@ public class UserAction {
 		return objectModel;
 	}
 
-	@RequestMapping(value = {"/add.do"})
-	public ObjectModel userRegistration(@RequestParam(name = "phone") String userPhone, @RequestParam(name = "password") String userPassword, String userName, String userBirthday, String userImageId) {
+	@ApiOperation(value = "注册用户")
+	@RequestMapping(value = {"/add.do"}, method = {RequestMethod.POST})
+	public ObjectModel userRegistration(@ApiParam(value = "用户手机号", required = true) @RequestParam(name = "phone") String userPhone,
+	                                    @ApiParam(value = "用户密码", required = true) @RequestParam(name = "password") String userPassword,
+	                                    @ApiParam(value = "用户姓名", required = true) @RequestParam(name = "name") String userName,
+	                                    @ApiParam(value = "用户生日，input type 为date", required = true) String userBirthday,
+	                                    @ApiParam(value = "用户头像地址，结合ajax图片上传接口的返回值使用") String userImageId) {
 		final User user = new User();
-		if (!"".equals(userBirthday)) {
+		if (userBirthday != null && !"".equals(userBirthday)) {
 			Date date;
 			try {
 				date = new SimpleDateFormat("yyyy-MM-dd").parse(userBirthday);
@@ -88,5 +91,10 @@ public class UserAction {
 		return objectModel;
 	}
 
+	@RequestMapping(value = {"/userNum.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "获取用户数量接口")
+	public int getUserNum() {
+		return this.userService.getAllUserNum();
+	}
 
 }

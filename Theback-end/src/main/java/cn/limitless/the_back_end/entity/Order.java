@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <img src="http://blog.GnaixEuy.cn/wp-content/uploads/2021/08/bug.jpeg"/>
@@ -28,5 +29,8 @@ public class Order {
 	private Double orderRealPay;
 	private Date orderPayDateTime;
 	private Boolean orderIsFinish;
+	private Date orderCreateDateTime;
+
+	private List<OrderItem> orderItemArrayList;
 
 }

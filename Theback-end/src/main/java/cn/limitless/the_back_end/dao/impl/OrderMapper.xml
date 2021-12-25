@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.limitless.the_back_end.dao.OrderDao">
+    <resultMap id="order" type="cn.limitless.the_back_end.entity.Order">
+        <id column="order_id" property="orderId"/>
+        <result column="order_customer_id" property="orderCustomerId"/>
+        <result column="order_price" property="orderPrice"/>
+        <result column="order_is_pay" property="orderIsPay"/>
+        <result column="order_real_pay" property="orderRealPay"/>
+        <result column="order_pay_date_time" property="orderPayDateTime" jdbcType="TIMESTAMP"/>
+        <result column="order_create_date_time" property="orderCreateDateTime" jdbcType="TIMESTAMP"/>
+        <result column="order_is_finish" property="orderIsFinish"/>
+    </resultMap>
+
+    <insert id="insertOrder" parameterType="cn.limitless.the_back_end.entity.Order">
+        insert into wintermilktea.`order` (order_id, order_customer_id, order_price, order_is_pay, order_real_pay,
+                                           order_pay_date_time, order_is_finish, order_create_date_time)
+        VALUES (#{orderId}, #{orderCustomerId}, #{orderPrice}, #{orderIsPay}, #{orderRealPay}, #{orderPayDateTime},
+                #{orderIsFinish}, #{orderCreateDateTime})
+    </insert>
+
+    <delete id="deleteOrder">
+        delete
+        from wintermilktea.`order`
+        where order_id = #{orderId}
+    </delete>
+
+    <update id="updateOrder" parameterType="cn.limitless.the_back_end.entity.Order">
+        update wintermilktea.`order`
+        set order_is_finish=#{orderIsFinish},
+            order_is_pay=#{orderIsPay},
+            order_price=#{orderPrice},
+            order_pay_date_time=#{orderPayDateTime},
+            order_create_date_time=#{orderPayDateTime},
+            order_real_pay=#{orderRealPay}
+        where order_id = #{orderId}
+    </update>
+
+    <select id="selectOrderById" resultType="order">
+        select *
+        from wintermilktea.`order`
+        where order_id = #{id}
+    </select>
+
+    <select id="selectOrderByCustomerId" resultType="order">
+        select *
+        from wintermilktea.`order`
+        where order_customer_id = #{id}
+    </select>
+
+    <select id="selectOrders" resultType="order">
+        select *
+        from wintermilktea.`order`
+    </select>
+</mapper>

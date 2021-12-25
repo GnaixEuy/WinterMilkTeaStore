@@ -149,6 +149,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/**
+	 * 获取用户总数
+	 *
+	 * @return int 返回用户总数量
+	 */
+	@Override
+	public Integer getAllUserNum() {
+		return this.userDao.selectUserNum();
+	}
+
+	/**
 	 * 提取出来的重复代码快，用于保证更新用户数据时，竟可能地保存非空数据
 	 *
 	 * @param user    新数据

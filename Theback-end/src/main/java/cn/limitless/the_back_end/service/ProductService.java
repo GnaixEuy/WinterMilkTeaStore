@@ -107,4 +107,10 @@ public interface ProductService {
 	 */
 	PageInfo<Product> splitPage(Integer pageNum, Integer pageSize);
 
+	/**
+	 * 获取所有商品的总数量
+	 *
+	 * @return int 所有商品数量
+	 */
+	Integer getAllProductNum();
 }

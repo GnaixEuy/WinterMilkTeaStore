@@ -147,4 +147,14 @@ public class ProductServiceImpl implements ProductService {
 		final List<Product> productByIdAsc = this.productDao.findAllProduct("product_id ASC");
 		return new PageInfo<>(productByIdAsc);
 	}
+
+	/**
+	 * 获取所有商品的总数量
+	 *
+	 * @return int 所有商品数量
+	 */
+	@Override
+	public Integer getAllProductNum() {
+		return this.productDao.selectProductNum();
+	}
 }
