@@ -38,8 +38,6 @@ public class UserAction {
 	@ApiOperation(value = "登入方法", notes = "传入参数为id、phone、name")
 	@RequestMapping(value = "/login.do", method = {RequestMethod.POST})
 	public ObjectModel userLogin(@RequestParam(name = "id", required = false) String id, @RequestParam(name = "phone") String phone, @RequestParam(name = "password") String password) {
-		System.out.println(phone);
-		System.out.println(password);
 		final ObjectModel objectModel = new ObjectModel();
 		final User user = this.userService.userLogin(id, phone, password);
 		if (user == null) {

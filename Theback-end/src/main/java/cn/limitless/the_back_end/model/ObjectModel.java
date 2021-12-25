@@ -31,4 +31,8 @@ public class ObjectModel {
 		this();
 		this.object = object;
 	}
+
+	public ObjectModel(String requestServiceStatus) {
+		this.requestServiceStatus = requestServiceStatus;
+	}
 }

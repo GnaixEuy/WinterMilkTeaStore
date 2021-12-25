@@ -113,4 +113,12 @@ public interface ProductService {
 	 * @return int 所有商品数量
 	 */
 	Integer getAllProductNum();
+
+	/**
+	 * 判断产品剩余原料是否充足
+	 *
+	 * @param productId 产品id
+	 * @return 返回是否充足
+	 */
+	boolean isProductAdequate(Integer productId);
 }

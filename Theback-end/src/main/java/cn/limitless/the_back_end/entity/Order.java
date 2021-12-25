@@ -31,6 +31,6 @@ public class Order {
 	private Boolean orderIsFinish;
 	private Date orderCreateDateTime;
 
-	private List<OrderItem> orderItemArrayList;
+	private List<OrderItem> orderItemList;
 
 }
