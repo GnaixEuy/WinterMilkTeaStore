@@ -49,7 +49,10 @@ public class OrderServiceImpl implements OrderService {
 				.format(orderCreateDateTime) +
 				customerId;
 		Double orderPrice = 0.0;
+		int itemFlag = 0;
 		for (OrderItem orderItem : orderItems) {
+			orderItem.setItemId(orderId + itemFlag);
+			orderItem.setOrderId(orderId);
 			final int i = this.orderItemDao.insertOrderItem(orderItem);
 			if (i == 0) {
 				try {

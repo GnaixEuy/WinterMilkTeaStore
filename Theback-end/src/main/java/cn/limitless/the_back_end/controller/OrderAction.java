@@ -76,16 +76,20 @@ public class OrderAction {
 
 
 	@RequestMapping(value = {"/addProductToOrder.do"}, method = {RequestMethod.GET})
-	public ObjectModel addOrderItemToOrder(OrderItem orderItem, User user, HttpServletRequest httpServletRequest) {
+	public ObjectModel addOrderItemToOrder(String cupType, Integer itemNum, Integer productId, User user, HttpServletRequest httpServletRequest) {
 		final HttpSession session = httpServletRequest.getSession();
 		final String userId = user.getUserId();
-		final boolean productAdequate = this.productService.isProductAdequate(orderItem.getProductId());
+		final boolean productAdequate = this.productService.isProductAdequate(productId);
 		final ObjectModel objectModel = new ObjectModel();
 		if (productAdequate) {
 			List attribute = (List) session.getAttribute(userId);
 			if (attribute == null) {
 				attribute = new ArrayList<OrderItem>();
 			}
+			final OrderItem orderItem = new OrderItem();
+			orderItem.setCupType(cupType);
+			orderItem.setItemNum(itemNum);
+			orderItem.setProductId(productId);
 			attribute.add(orderItem);
 			session.setAttribute(userId, attribute);
 		} else {
