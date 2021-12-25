@@ -1,5 +1,6 @@
 package cn.limitless.the_back_end.controller;
 
+import cn.limitless.the_back_end.entity.Order;
 import cn.limitless.the_back_end.entity.OrderItem;
 import cn.limitless.the_back_end.entity.User;
 import cn.limitless.the_back_end.model.ObjectModel;
@@ -47,6 +48,28 @@ public class OrderAction {
 			if (!b) {
 				objectModel.setRequestServiceStatus("failed");
 			}
+		}
+		return objectModel;
+	}
+
+	@RequestMapping(value = {"/orders.do"}, method = {RequestMethod.GET})
+	public ObjectModel queryAllOrders() {
+		final List<Order> orders = this.orderService.queryOrders();
+		return new ObjectModel(orders);
+	}
+
+	@RequestMapping(value = {"/orderByUser.do"}, method = {RequestMethod.GET})
+	public ObjectModel userOrders(User user) {
+		final List<Order> orders = this.orderService.queryOrderByCustomerId(user.getUserId());
+		return new ObjectModel(orders);
+	}
+
+	@RequestMapping(value = {"/delete.do"}, method = {RequestMethod.DELETE})
+	public ObjectModel deleteOrder(User user, String id) {
+		final boolean b = this.orderService.deleteOrderByOrderId(id);
+		final ObjectModel objectModel = new ObjectModel();
+		if (!b) {
+			objectModel.setRequestServiceStatus("failed");
 		}
 		return objectModel;
 	}
