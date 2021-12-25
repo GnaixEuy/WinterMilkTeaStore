@@ -53,14 +53,6 @@ public class OrderServiceImpl implements OrderService {
 		for (OrderItem orderItem : orderItems) {
 			orderItem.setItemId(orderId + itemFlag);
 			orderItem.setOrderId(orderId);
-			final int i = this.orderItemDao.insertOrderItem(orderItem);
-			if (i == 0) {
-				try {
-					throw new Exception("植入详情信息错误");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
 			orderPrice += this.productDao.selectProductById(orderItem.getProductId()).getProductPrice();
 			switch (orderItem.getCupType()) {
 				case "超大杯":
@@ -73,7 +65,19 @@ public class OrderServiceImpl implements OrderService {
 			}
 		}
 		final Order order = new Order(orderId, customerId, orderPrice, false, -1.0, null, false, orderCreateDateTime, orderItems);
-		return this.orderDao.insertOrder(order) == 1;
+		final int ret = this.orderDao.insertOrder(order);
+		for (OrderItem orderItem : orderItems) {
+			final int i = this.orderItemDao.insertOrderItem(orderItem);
+			if (i == 0) {
+				try {
+					throw new Exception("植入详情信息错误");
+				} catch (Exception e) {
+					e.printStackTrace();
+					return false;
+				}
+			}
+		}
+		return ret == 1;
 	}
 
 	/**

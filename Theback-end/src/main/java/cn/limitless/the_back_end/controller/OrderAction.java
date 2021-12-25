@@ -7,6 +7,7 @@ import cn.limitless.the_back_end.model.ObjectModel;
 import cn.limitless.the_back_end.service.OrderService;
 import cn.limitless.the_back_end.service.ProductService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <img src="http://blog.GnaixEuy.cn/wp-content/uploads/2021/08/bug.jpeg"/>
@@ -38,14 +40,18 @@ public class OrderAction {
 	}
 
 	@RequestMapping(value = {"/makeOrder.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "生成订单", notes = "先使用订单项接口来添加项目，传入当前用户的信息即可，后期若加入token验证，则同时需要传回token")
 	public ObjectModel makeOrder(User user, HttpServletRequest httpServletRequest) {
-		final List orderItems = (List) httpServletRequest.getSession().getAttribute(user.getUserId());
+		final HttpSession session = httpServletRequest.getSession();
+		final List orderItems = (List) session.getAttribute(user.getUserId());
 		final ObjectModel objectModel = new ObjectModel();
 		if (orderItems == null || orderItems.size() == 0) {
 			objectModel.setRequestServiceStatus("failed");
 		} else {
 			final boolean b = this.orderService.makeOrder(user.getUserId(), orderItems);
-			if (!b) {
+			if (b) {
+				session.setAttribute(user.getUserId(), null);
+			} else {
 				objectModel.setRequestServiceStatus("failed");
 			}
 		}
@@ -53,18 +59,21 @@ public class OrderAction {
 	}
 
 	@RequestMapping(value = {"/orders.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "查询所有订单信息", notes = "无需任何参数")
 	public ObjectModel queryAllOrders() {
 		final List<Order> orders = this.orderService.queryOrders();
 		return new ObjectModel(orders);
 	}
 
 	@RequestMapping(value = {"/orderByUser.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "用户订单接口", notes = "传入用户对象，返回对象所有订单信息")
 	public ObjectModel userOrders(User user) {
 		final List<Order> orders = this.orderService.queryOrderByCustomerId(user.getUserId());
 		return new ObjectModel(orders);
 	}
 
 	@RequestMapping(value = {"/delete.do"}, method = {RequestMethod.DELETE})
+	@ApiOperation(value = "删除订单", notes = "传入用户对象和要删除的id，后期需要token")
 	public ObjectModel deleteOrder(User user, String id) {
 		final boolean b = this.orderService.deleteOrderByOrderId(id);
 		final ObjectModel objectModel = new ObjectModel();
@@ -76,6 +85,7 @@ public class OrderAction {
 
 
 	@RequestMapping(value = {"/addProductToOrder.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "增加订单项接口", notes = "增加订单项后调用生成订单接口")
 	public ObjectModel addOrderItemToOrder(String cupType, Integer itemNum, Integer productId, User user, HttpServletRequest httpServletRequest) {
 		final HttpSession session = httpServletRequest.getSession();
 		final String userId = user.getUserId();
@@ -96,6 +106,37 @@ public class OrderAction {
 			objectModel.setRequestServiceStatus("failed");
 		}
 		return objectModel;
+	}
+
+	@RequestMapping(value = {"/dropItem.do"}, method = {RequestMethod.DELETE})
+	public ObjectModel dropOrderItemFromOrder(String cupType, Integer itemNum, Integer productId, User user, HttpServletRequest httpServletRequest) {
+		final ObjectModel objectModel = new ObjectModel();
+		final List<OrderItem> orderItems = (List) httpServletRequest.getSession().getAttribute(user.getUserId());
+		objectModel.setRequestServiceStatus("failed");
+		for (OrderItem orderItem : orderItems) {
+			if (Objects.equals(productId, orderItem.getProductId()) && cupType.equals(orderItem.getCupType()) && Objects.equals(orderItem.getItemNum(), itemNum)) {
+				final boolean remove = orderItems.remove(orderItem);
+				if (!remove) {
+					objectModel.setRequestServiceStatus("failed");
+				} else {
+					objectModel.setRequestServiceStatus("success");
+					break;
+				}
+			}
+		}
+		return objectModel;
+	}
+
+
+	@RequestMapping(value = {"/orderConfirmation.do"}, method = {RequestMethod.GET})
+	public ObjectModel orderConfirmation(User user, HttpServletRequest httpServletRequest) {
+		final List orderItems = (List) httpServletRequest.getSession().getAttribute(user.getUserId());
+		return new ObjectModel(orderItems);
+	}
+
+	public ObjectModel updateOrderItemToOrder(String cupType, Integer itemNum, Integer productId, User user, HttpServletRequest httpServletRequest) {
+		final List orderItems = (List) httpServletRequest.getSession().getAttribute(user.getUserId());
+		return null;
 	}
 
 }
