@@ -19,34 +19,31 @@
 <style>body{background-image: url(./image/1.png);background-repeat: inherit;}</style>
 <body >
   <!--================ Start Header Menu Area =================-->
-	<header class="header_area">‘
-    <div class="main_menu">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand logo_h"><img src="image/logo1.png" alt=""></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link" href="../alreadyLoginIndex.html">主页</a></li>
-			  <li class="nav-item"><a class="nav-link" href="../alreadyLoginProduces.html">奶茶一览</a></li>
-			  <!-- <li class="nav-item"><a class="nav-link" href="../index.html">售后服务</a></li> -->
-			  <li class="nav-item"><a class="nav-link" href="../alreadyLoginAboutUs.html">关于我们</a></li>
-              
-          </div>
-        </div>
-      </nav>
-    </div>
-	<style>
-	#btn{
-		border-radius: 20px;
-		color: white;
-		background-color: seagreen;
-	}</style>
-  </header>
+	<header class="header_area">
+	  <div class="main_menu" >
+	    <nav class="navbar navbar-expand-lg navbar-light">
+	      <div class="container">
+	        <a class="navbar-brand logo_h" href=""><img src="image/logo1.png" alt=""></a>
+	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	        </button>
+	        <div style="position:absolute; right:160px"  class="collapse navbar-collapse offset" id="navbarSupportedContent">
+	          <ul class="nav navbar-nav menu_nav ml-auto mr-auto" >
+	            <li class="nav-item submenu dropdown">
+	              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><h4>WINTER</h4></a>
+	              <ul class="dropdown-menu">
+	                <li class="nav-item"><a class="nav-link" href="../products.html">奶茶一览</a></li>
+	                <li class="nav-item"><a class="nav-link" href="../aboutUs.html">关于我们</a></li>
+	              </ul>
+					</li>
+	          </ul>
+	        </div>
+	      </div>
+	    </nav>
+	  </div>
+	</header>
 	
 				<div align="center">
 					<div class="col-lg-4"  >
@@ -72,7 +69,7 @@
 						<div>
 						评价：<textarea id="lang" rows="6" cols="40" placeholder="请写下您的评价！"></textarea>
 						</div>
-						<input type="button" onclick="f()" value="提交评价" id="btn"  >
+						<input type="button" onclick="f()" value="提交评价" class="button"  >
 						</div> 
                         <!-- </div> -->
                     </div>
