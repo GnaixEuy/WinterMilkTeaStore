@@ -71,27 +71,21 @@
 
 	<!-- ================ category section start ================= -->		  
   <section class="section-margin--small mb-5">
-    <div class="container">
-      <div class="row">
+    <div class="container" >
+      <div class="row" >
         <div class="col-xl-3 col-lg-4 col-md-5">
-          <div class="sidebar-categories">
-            <div class="head">分类搜索</div>
+          <div class="sidebar-categories" >
+            <div class="head" id="totalNumber"></div>
             <ul class="main-categories">
-              <li class="common-filter">
+              <li class="common-filter" id="type">
                 <form action="#">
                   <ul>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men">(种类)<span>(数量)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men">(种类)<span>(数量)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men">(种类)<span>(数量)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men">(种类)<span>(数量)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men">(种类)<span>(数量)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men">(种类)<span>(数量)</span></label></li>                   
+                    <!-- <li class="filter-list"><input class="pixel-radio"><a href="#种类B">商品总数</a></li>            -->
                   </ul>
                 </form>
               </li>
             </ul>
           </div>
-		 
         </div>
         <div class="col-xl-9 col-lg-8 col-md-7">
           <!-- Start Filter Bar -->
@@ -114,50 +108,35 @@
           <!-- End Filter Bar -->
           <!-- Start Best Seller -->
           <section class="lattest-product-area pb-40 category-list">
-			<div><h4>种类A</h4>
-            <div class="row">
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <img class="card-img" src="image/1.png" alt="">
-                    <ul class="card-product__imgOverlay">
-                      <!-- <li><button><i class="ti-search"></i></button></li> -->
-                     <!-- <li><a href="checkOut.html"><input type="button"  class="button" value="去下单"></a></li> -->
-					 <!-- <li><input type="button"  class="button" value="加入购物车"></a></li> -->
-					 <li><h6>已售完</h6></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>种类</p>
-                    <h4 class="card-product__title"><a href="#">名字</a></h4>
-                    <p class="card-product__price">价格</p>
-                  </div>
-                </div>
-              </div>
+		 <div id="type1">
+			  <div class="row" id="p">
+				  
+			   <!-- <div class="col-md-6 col-lg-4"  >
+			      <div class="card text-center card-product">
+			        <div class="card-product__img" >
+			          <img class="card-img" src="image/1.png" alt="">
+			          <ul class="card-product__imgOverlay" >
+			  		 <li><h6></h6></li>
+			          </ul>
+			        </div>
+			        <div class="card-body">
+			          <p><h4 class="card-product__title" ><a href="#">名字</a></h4></p>
+			          <p class="card-product__price" id="pp">价格</p>
+					  <input class="button" type="button" value="加入购物车" onclick="a()">
+					  
+			        </div>
+			      </div>
+			    </div> -->
+				
+				
+				
+				
+				
+			    </div>
+			    </div>
+				
+				
 			  </div>
-			  
-			  <div><h4>种类B</h4>
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <img class="card-img" src="image/1.png" alt="">
-                    <ul class="card-product__imgOverlay">
-                      <!-- <li><button><i class="ti-search"></i></button></li> -->
-                     <!-- <li><a href="checkOut.html"><input type="button"  class="button" value="去下单"></a></li> -->
-                  					 <!-- <li><input type="button"  class="button" value="加入购物车"></a></li> -->
-                  					 <li><h6>已售完</h6></li>
-                    </ul>
-                  </div>
-                  </div>
-                  <div class="card-body">
-                    <p>种类</p>
-                    <h4 class="card-product__title"><a href="#">名字</a></h4>
-                    <p class="card-product__price">价格</p>
-                  </div>
-                </div>
-              </div>
-			  </div>
-            </div>
           </section>
           <!-- End Best Seller -->
         </div>
@@ -272,4 +251,87 @@
   <script src="static/js/mail-script.js"></script>
   <script src="static/js/main.js"></script>
 </body>
+
+<script>
+		$(document).ready(() =>{
+			$.get({
+				// type:"get",
+				url: "http://localhost:8888/product/productNum.do",
+				data: '',
+				success:function(response){
+							var t2 = $("#totalNumber")
+							console.log(response)
+							t2.remove
+							t2.append('分类搜索 (' + response + ')');
+						},	
+			}
+			)
+			// window.onload = function (){
+			// 	setInterval(get,3000);
+			// }
+		})
+</script>
+<script>
+	$(document).ready(() =>{
+		$.ajax({
+			type:"get",
+			url: "http://localhost:8888/product/type.do",
+			data: '',
+			success:function(response){
+				var t = $("#type")
+				console.log(response)
+				t.remove
+				response.object.forEach((element) => {
+				t.append('<li class="filter-list"><a href="#' + element + '"> ' +element+ '</a></li>');
+			})
+		}
+		})
+	})
+</script>
+
+<script>
+	$(document).ready(() =>{
+		$.ajax({
+			type:"get",
+			url: "http://localhost:8888/product/type.do",
+			data: '',
+			success:function(response){
+				var t1 = $("#type1")
+				console.log(response)
+				t1.remove
+				response.object.forEach((element) => {
+					t1.append('<div><h4>' +element+ '</h4></div>');
+			})
+		}
+		})
+	})
+</script>
+<script>
+$(document).ready(
+        getProduct()
+    )
+    function getProduct() {
+        var pa = $('#p')
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8888/product/getAllProduct.do",
+            data: "",
+            dataType: "json",
+            success: function (response) {
+                if (response.requestServiceStatus == 'success') {
+					console.log(response)
+					pa.remove
+                    response.object.forEach(element => {
+                        pa.append(' <div class="col-md-6 col-lg-4"  ><div class="card text-center card-product"><div class="card-product__img"><img class="card-img" src="image/1.png" alt=""><ul class="card-product__imgOverlay"><li><h6></h6></li></ul></div><div class="card-body" ><p><h4 class="card-product__title" ><a href="#">' + element.productName+ '</a></h4></p><p class="card-product__price" id="pp">'+ element.productPrice + '</p><input class="button" type="button" value="加入购物车" onclick="a()"></div></div></div>')
+                    });
+                }
+            }
+        });
+    }
+</script>
+<script>
+	function a(){
+		alert("添加成功！")
+	}
+</script>
 </html>
