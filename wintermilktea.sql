@@ -11,7 +11,7 @@
  Target Server Version : 50731
  File Encoding         : 65001
 
- Date: 25/12/2021 18:44:59
+ Date: 26/12/2021 17:13:59
 */
 
 SET NAMES utf8mb4;
@@ -60,7 +60,7 @@ INSERT INTO `Product` VALUES (2, '可乐', '饮品', 13.00, 'iii', '可乐@纯�
 INSERT INTO `Product` VALUES (3, '果粒橙', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
 INSERT INTO `Product` VALUES (4, '橙汁', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
 INSERT INTO `Product` VALUES (5, '青瓜汁', '饮品', 13.00, 'iii', '纯净水@果葡萄浆');
-INSERT INTO `Product` VALUES (6, '苹果汁', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
+INSERT INTO `Product` VALUES (6, '苹果汁', '饮品', 13.00, 'iii', '纯净水@果葡萄浆');
 INSERT INTO `Product` VALUES (7, '草莓汁', '饮品', 13.00, 'iii', '可乐@纯净水@果葡萄浆');
 INSERT INTO `Product` VALUES (9, '冬乳奶茶1', '奶茶', 11.00, 'iiiiii', '几把');
 INSERT INTO `Product` VALUES (10, '冬乳奶茶-1483632412', '奶茶', 18.00, 'iiiiii', '水@糖@奶茶粉');
@@ -120,6 +120,9 @@ CREATE TABLE `material` (
 BEGIN;
 INSERT INTO `material` VALUES ('test1', 13, 111.00);
 INSERT INTO `material` VALUES ('test2', 14, 697.30);
+INSERT INTO `material` VALUES ('奶茶粉', 50, 3.00);
+INSERT INTO `material` VALUES ('果葡萄浆', 230, 2.00);
+INSERT INTO `material` VALUES ('纯净水', 100, 1.00);
 COMMIT;
 
 -- ----------------------------
@@ -144,6 +147,7 @@ CREATE TABLE `order` (
 -- Records of order
 -- ----------------------------
 BEGIN;
+INSERT INTO `order` VALUES ('202112252103051', '1', 15.00, 0, -1, NULL, 0, '2021-12-25 21:03:05.082000');
 INSERT INTO `order` VALUES ('3', '1', 1.00, 1, NULL, '2021-03-22 00:00:00.000000', 1, NULL);
 INSERT INTO `order` VALUES ('4', '1', 1.00, 1, NULL, '2021-03-22 00:00:00.000000', 1, NULL);
 INSERT INTO `order` VALUES ('test', 'test', 13.20, 1, 6667, '2021-12-24 21:19:24.770000', 1, '2021-12-24 21:19:24.770000');
@@ -170,6 +174,7 @@ CREATE TABLE `order_item` (
 -- Records of order_item
 -- ----------------------------
 BEGIN;
+INSERT INTO `order_item` VALUES ('2021122521030510', '202112252103051', 6, 3, '大杯');
 COMMIT;
 
 -- ----------------------------

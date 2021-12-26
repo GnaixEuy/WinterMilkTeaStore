@@ -8,6 +8,7 @@ import cn.limitless.the_back_end.service.OrderService;
 import cn.limitless.the_back_end.service.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -74,6 +75,7 @@ public class OrderAction {
 
 	@RequestMapping(value = {"/delete.do"}, method = {RequestMethod.DELETE})
 	@ApiOperation(value = "删除订单", notes = "传入用户对象和要删除的id，后期需要token")
+	@Deprecated
 	public ObjectModel deleteOrder(User user, String id) {
 		final boolean b = this.orderService.deleteOrderByOrderId(id);
 		final ObjectModel objectModel = new ObjectModel();
@@ -109,6 +111,7 @@ public class OrderAction {
 	}
 
 	@RequestMapping(value = {"/dropItem.do"}, method = {RequestMethod.DELETE})
+	@ApiOperation(value = "移除当前订单项目内容", notes = "从当前订单列表中移除某一个条目")
 	public ObjectModel dropOrderItemFromOrder(String cupType, Integer itemNum, Integer productId, User user, HttpServletRequest httpServletRequest) {
 		final ObjectModel objectModel = new ObjectModel();
 		final List<OrderItem> orderItems = (List) httpServletRequest.getSession().getAttribute(user.getUserId());
@@ -129,13 +132,17 @@ public class OrderAction {
 
 
 	@RequestMapping(value = {"/orderConfirmation.do"}, method = {RequestMethod.GET})
-	public ObjectModel orderConfirmation(User user, HttpServletRequest httpServletRequest) {
+	@ApiOperation(value = "查询当前缓存在服务器的订单条目", notes = "已经加入订单的信息")
+	public ObjectModel orderConfirmation(@ApiParam(value = "用户信息，后期改为token如果来得及的话") User user, HttpServletRequest httpServletRequest) {
 		final List orderItems = (List) httpServletRequest.getSession().getAttribute(user.getUserId());
 		return new ObjectModel(orderItems);
 	}
 
 	public ObjectModel updateOrderItemToOrder(String cupType, Integer itemNum, Integer productId, User user, HttpServletRequest httpServletRequest) {
-		final List orderItems = (List) httpServletRequest.getSession().getAttribute(user.getUserId());
+//		final List<OrderItem> orderItems = (List<OrderItem>) httpServletRequest.getSession().getAttribute(user.getUserId());
+//		for (OrderItem orderItem : orderItems) {
+//			if (orderItem.getCupType().equals(cupType))
+//		}
 		return null;
 	}
 
