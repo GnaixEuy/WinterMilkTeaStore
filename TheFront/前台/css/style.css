@@ -588,7 +588,7 @@ nav a#pull {
 /*----content----*/
 .top-row{
 	margin-top: -140px;
-	background-color: seagreen;
+	/* background-color: seagreen; */
 }
 .top-row-col1{
 	/* background-color: seagreen; */

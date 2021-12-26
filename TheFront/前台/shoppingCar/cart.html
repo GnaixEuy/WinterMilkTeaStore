@@ -17,40 +17,46 @@
   <link rel="stylesheet" href="static/css/style.css">
 </head>
 <!-- <style>body{background-image: url(./image/2.png);background-repeat: inherit;}</style> -->
-<style>
+<!-- <style>
 	body{
 		/* background-color: seagreen; */
 	}
-</style>
+</style> -->
 <body>
   <!--================ Start Header Menu Area =================-->
 	<header class="header_area">
-    <div class="main_menu">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand logo_h"><img src="image/logo1.png" alt=""></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link" href="../alreadyLoginIndex.html">主页</a></li>
-			  <li class="nav-item"><a class="nav-link" href="../alreadyLoginProduces.html">奶茶一览</a></li>
-			  <!-- <li class="nav-item"><a class="nav-link" href="theCustomerWords.html">顾客有言</a></li> -->
-			  <li class="nav-item"><a class="nav-link" href="../alreadyLoginAboutUs.html">关于我们</a></li>
-
-            <ul class="nav-shop">
-              <!-- <li class="nav-item"><button><i class="ti-search"></i></button></li> -->
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-              <li class="nav-item"><a class="button button-header" href="#">立即购买</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
+	  <div class="main_menu" >
+	    <nav class="navbar navbar-expand-lg navbar-light">
+	      <div class="container">
+	        <a class="navbar-brand logo_h" href=""><img src="image/logo1.png" alt=""></a>
+	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	        </button>
+	        <div style="position:absolute; right:160px"  class="collapse navbar-collapse offset" id="navbarSupportedContent">
+	          <ul class="nav navbar-nav menu_nav ml-auto mr-auto" >
+	            <li class="nav-item submenu dropdown">
+	              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><h4>WINTER</h4></a>
+	              <ul class="dropdown-menu">
+					  <li class="nav-item"><a class="nav-link" href="alreadyLoginIndex.html">主页</a></li>
+	                <li class="nav-item"><a class="nav-link" href="alreadyLoginProduct.html">奶茶一览</a></li>
+					<li class="nav-item"><a class="nav-link" href="alreadyNewArrival.html">新品上市</a></li>
+					<li class="nav-item"><a class="nav-link" href="alreadyLoginAboutUs.html">关于我们</a></li>
+	              </ul>
+					</li>
+					<li class="nav-item submenu dropdown">
+	              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><h4>购物详情</h4></a>
+	              <ul class="dropdown-menu">
+	                <li class="nav-item"><a class="nav-link" href="cart.html">购物车</a></li>
+	              </ul>
+	            </li>
+	          </ul>
+	        </div>
+	      </div>
+	    </nav>
+	  </div>
+	</header>
 	<!--================ End Header Menu Area =================-->
 
 	<!-- ================ start banner area ================= -->	
@@ -58,16 +64,15 @@
 		<div class="container h-100">
 			<div class="blog-banner">
 				<div class="text-center">
-					<h1>购物车</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">WinterMilkTeaStore</a></li>
-              <li class="breadcrumb-item active" aria-current="page">希望您购物愉快</li>
-            </ol>
-          </nav>
+					<h1 align="center">购物车</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb"></nav>
+				</div>
+				<div class="text-center">
+					<h2 align="center">WINTER</h2>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb"></nav>
 				</div>
 			</div>
-    </div>
+	</div>
 	</section>
 
   <section class="cart_area" >
