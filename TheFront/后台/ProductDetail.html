@@ -203,6 +203,7 @@
         				</a>
         				<ul aria-expanded="false">
         				    <li><a href="Products.html" >商品列表</a></li>
+							<li><a href="Material.html" >原料管理</a></li>
         				</ul>
                     </li>
         			<li><a href="orders.html" aria-expanded="false">
@@ -245,36 +246,7 @@
         <div class="content-body">
             <div class="container-fluid">
 				<!-- Add Order -->
-				<div class="modal fade" id="addOrderModalside">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Add Menus</h5>
-								<button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<form>
-									<div class="form-group">
-										<label class="text-black font-w500">Food Name</label>
-										<input type="text" class="form-control">
-									</div>
-									<div class="form-group">
-										<label class="text-black font-w500">Order Date</label>
-										<input type="date" class="form-control">
-									</div>
-									<div class="form-group">
-										<label class="text-black font-w500">Food Price</label>
-										<input type="text" class="form-control">
-									</div>
-									<div class="form-group">
-										<button type="button" class="btn btn-primary">Submit</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
+				
                 <div class="page-titles">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">当前商品</a></li>
@@ -320,11 +292,17 @@
 													<p class="price float-left d-block">￥18  <input type="button" class="btn btn-primary light fs-16 ml-3"  aria-expanded="false"  value="修改" onclick="window.location.href('AddProduct.html')"/></p>
                                                 </div>
                                                 <p>商品编号: <span class="item">0405689</span> </p>
-                                                <p>商品分类:&nbsp;&nbsp;
-                                                    <span class="badge badge-success light">普通  </span><input type="button" class="btn btn-primary light fs-16 ml-3"  aria-expanded="false"  value="修改" onclick="window.location.href('AddProduct.html')"/>
-                                                </p>
-                                                <!-- <p class="text-content">这里是商品介绍。  <input type="button" class="btn btn-primary light fs-16 ml-3"  aria-expanded="false"  value="修改" onclick="window.location.href('AddProduct.html')"/></p> -->
-                                                <div class="filtaring-area my-3">
+                                                <p>商品分类:
+                                                 
+												 
+												<label class="mb-4 select2-label " for="id_label_single">
+												    <select class=" " >
+												        <option value="NC">奶茶</option>
+												        <option value="GC">果茶</option>
+												    </select>
+												</label>
+												</p>
+                                                <!-- <div class="filtaring-area my-3">
                                                     <div class="size-filter">
                                                         <h4 class="m-b-15">大小选择</h4>
                                                         
@@ -334,8 +312,9 @@
 															<label class="btn btn-outline-primary light btn-sm"><input type="radio" class="position-absolute invisible" name="options" id="option2"> 大</label>
 														</div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <!--Quantity start-->
+												添加库存数量：
 												<div class="col-2 px-0">
 													<input type="number" name="num" class="form-control input-btn input-number" value="1">
 													
