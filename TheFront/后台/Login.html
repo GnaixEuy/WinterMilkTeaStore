@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>冬至奶茶店--系统管理员登录</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
     <link href="./css/style.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?
 	family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:
@@ -75,21 +75,22 @@
 					$("#info").text("请输入账号");
 				}else if(password.length == 0){
 							$("#info").text("请输入密码");
-						}else{
+						}
+						else{
 							$.ajax({
 												type:"post",
-												url:"http://localhost:8888/admin/login/",
+												url:"http://localhost:8888/admin/login.do",
 												data:{
 													"id":id,
 													"password":password,
 												},
-												//dataType='json',
 												success:function(res){
 													if("success" == res.loginStatus){
-														console.log(1111)
 														window.location.href = "index.html"
-													}else if("failed" == res.loginStatus){
-														// console.log(2221)
+													}else if("id error" == res.loginStatus || "password error" == res.loginStatus){
+														alert("账号或密码错误！")
+													}
+													else if("failed" == res.loginStatus){
 														alert("用户不存在！")
 													}
 												},
