@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,7 @@ import java.util.Objects;
  */
 @RestController
 @RequestMapping(value = {"/order"})
+@CrossOrigin(value = "*")
 @Api(value = "订单相关接口，尚未完成")
 public class OrderAction {
 	private final ProductService productService;

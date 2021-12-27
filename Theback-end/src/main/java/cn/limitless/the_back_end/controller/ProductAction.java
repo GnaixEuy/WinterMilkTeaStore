@@ -222,4 +222,11 @@ public class ProductAction {
 	}
 
 
+	@RequestMapping(value = {"/available.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "判断商品是否可以购买", notes = "传入商品id，返回一个包装好的boolean")
+	public ObjectModel productAvailability(Integer id) {
+		return new ObjectModel(this.productService.isProductAdequate(id));
+	}
+
+
 }

@@ -173,7 +173,7 @@ public class ProductServiceImpl implements ProductService {
 		final Product productById = this.findProductById(productId);
 		for (String materialName : productById.getProductMaterialList()) {
 			final Material material = this.materialDao.selectMaterial(materialName);
-			if (material.getMaterialStock() < 1) {
+			if (material.getMaterialStock() == null || material.getMaterialStock() < 1) {
 				return false;
 			}
 		}

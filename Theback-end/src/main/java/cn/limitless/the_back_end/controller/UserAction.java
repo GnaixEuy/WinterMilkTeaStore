@@ -10,10 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * <img src="http://blog.GnaixEuy.cn/wp-content/uploads/2021/08/bug.jpeg"/>
  *
@@ -53,19 +49,19 @@ public class UserAction {
 	public ObjectModel userRegistration(@ApiParam(value = "用户手机号", required = true) @RequestParam(name = "phone") String userPhone,
 	                                    @ApiParam(value = "用户密码", required = true) @RequestParam(name = "password") String userPassword,
 	                                    @ApiParam(value = "用户姓名", required = true) @RequestParam(name = "name") String userName,
-	                                    @ApiParam(value = "用户生日，input type 为date", required = true) String userBirthday,
-	                                    @ApiParam(value = "用户头像地址，结合ajax图片上传接口的返回值使用") String userImageId) {
+//	                                    @ApiParam(value = "用户生日，input type 为date", required = false) @RequestParam(name = "birthday") String userBirthday,
+                                        @ApiParam(value = "用户头像地址，结合ajax图片上传接口的返回值使用") String userImageId) {
 		final User user = new User();
-		if (userBirthday != null && !"".equals(userBirthday)) {
-			Date date;
-			try {
-				date = new SimpleDateFormat("yyyy-MM-dd").parse(userBirthday);
-				user.setUserBirthday(date);
-				System.out.println(user.getUserBirthday());
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
+//		if (userBirthday != null && !"".equals(userBirthday)) {
+//			Date date;
+//			try {
+//				date = new SimpleDateFormat("yyyy-MM-dd").parse(userBirthday);
+//				user.setUserBirthday(date);
+//				System.out.println(user.getUserBirthday());
+//			} catch (ParseException e) {
+//				e.printStackTrace();
+//			}
+//		}
 		if (!"".equals(userPassword)) {
 			user.setUserPassword(userPassword);
 		}
