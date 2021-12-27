@@ -1,6 +1,7 @@
 package cn.limitless.the_back_end.dao;
 
 import cn.limitless.the_back_end.entity.Comment;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @date 2021/12/27
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
+@Mapper
 public interface CommentDao {
 
 	/**
