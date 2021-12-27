@@ -61,7 +61,7 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item">
-                                  <a class="nav-link" href="../shoppingCar/index2.html">主页</a> 
+                                  <a class="nav-link" href="login.html">主页</a> 
                              </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="../shoppingCar/product.html">奶茶一览</a>
@@ -97,21 +97,24 @@
                      <!-- <div class="col-md-12 ">
                         <input class="contactus" placeholder="手机号码" type="type" name="Name"> 
                      </div>-->
-                     <div class="col-md-12">
+                     <!-- <div class="col-md-12">
                          邮箱：<input class="contactus" placeholder="请输入您的邮箱" type="email" name="Email" id="email">
-                     </div> 
+                     </div> -->
 					 <div class="col-md-12">
 					    昵称：<input class="contactus" placeholder="请输入您的昵称" type="text"  id="newName">                          
 					 </div>
                      <div class="col-md-12">
                         手机号码：<input class="contactus" placeholder="请输入您的手机号码" type="text" name="Phone Number" id="newPhone">                          
                      </div>
+					 <!-- <div class="col-md-12">
+					   生日：<input class="calendar" placeholder="请输入您的生日" type="date"  id="newDate"  >                          
+					 </div> -->
                      <div class="col-md-12">
                         密码：<textarea class="contactus" placeholder="请输入您的密码" type="type" Message="Name" id="newPassword"></textarea>
                      </div>
 					 <p id="newInfo" style="color: red;"></p><br />
                      <div class="col-sm-12">
-                        <button class="send_btn" href="../shoppingCar/alreadyLoginIndex.html" id="register">注册</button>
+                        <button class="send_btn" href="login.html"  id="register">注册</button>
                      </div>
                   </div>
                </form>
@@ -188,19 +191,19 @@
          </div>
       </div>
 
-      <!-- Javascript files-->
+
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
       <script src="js/jquery-3.0.0.min.js"></script>
-      <!-- sidebar -->
+
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
       <script src="js/jquery.fancybox.min.js"></script>
    </body>
    <script>
-   	$("#login").click(function(){
-		var email = $("#email").val();
+   	$("#request").submit(()=>{
+		// var email = $("#email").val();
 		var newName = $("#newName").val();
    		var newPhone = $("#newPhone").val();
    		var newPassword = $("#newPassword").val();
@@ -215,28 +218,30 @@
    						type:"post",
    						url:"http://192.168.2.1:8888/user/add.do",
    						data:{
-							"email":email;
-							"userName":newName,
-   							"userPhone":newPhone,
-   							"userPassword":newPassword
+							// "birthday":newDate,
+							"name":newName,
+   							"phone":newPhone,
+   							"password":newPassword
    						},
-   						//dataType='json',
+   						// dataType='json',
    						success:function(res){
-   							console.log(res)
+   							// alert('test')
    							if("success" == res.requestServiceStatus){
-								alert("恭喜注册成功！！！")
-   								window.location.href = "../shoppingCar/alreadyLoginIndex.html"
+								alert("恭喜注册成功！！！马上去登录吧！")
+								// console.log(ffff);
+								window.location.href = "./login.html"
    							}else if("failed" == res.requestServiceStatus){
    								alert("注册失败，请您刷新页面重新尝试！！！")
    							}
    						},
-   						async:true,
+   						async:false,
    						error:function(){
-   							window.location.href = "register.html";
+							alert('testerr')
+   							window.location.href = "./register.html";
    						}
    					})
    					}
-   
+					return false;
    	})
    </script>
 </html>
