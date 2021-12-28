@@ -104,7 +104,7 @@
        							</div>
        					        <a class="all-notification" href="javascript:void(0)">See all notifications <i class="ti-arrow-right"></i></a>
        					    </div>
-       					</li>
+       					</li>`
                            <li class="nav-item dropdown header-profile">
                                <a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
                                    <img src="images/profile/17.jpg" width="20" alt=""/>
@@ -211,6 +211,7 @@
 											        <!-- 自定义按钮效果 -->
 											        <div style="text-align: top">
 											            <span style="font-size: 20px;">上传文件：</span>点击图片更改
+														<input type="hidden" id="uploadImage" name="img" value="" onchange="postData()"/>
 											            <img id="upload" src="./images/product/11.png" style="width: 350px; height: 380px; vertical-align: middle;" />
 											        </div>
 													<script type="text/javascript">
@@ -224,9 +225,38 @@
 													        reader.readAsDataURL(file)
 													    }
 													</script>
+													 <script type="text/javascript">
+													        function postData() {
+													            var formData = new FormData();
+													            formData.append("img", $("#uploadImage")[0].files[0]);
+													            $.ajax({
+													                url: "http://localhost:8888/product/ajaxProductImage.do",
+													                type: "post",
+													                data: formData,
+													                processData: false, // 告诉jQuery不要去处理发送的数据
+													                contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+													                dataType: 'text',
+													                success: function(data) {
+													                    var params = JSON.parse(data)
+													                    $("#upload").attr("src", params);
+													                },
+													                error: function(data) {
+													                    
+													                }
+													            });
+													        }
+													        //赋值变量
+													        var basePath = getContextPath();
+													        // 获取项目路径
+													        function getContextPath() {
+													            var pathName = window.document.location.pathname;
+													            var projectName = pathName.substring(0, pathName.substr(1).indexOf(
+													                '/') + 1);
+													            return projectName;
+													        }
+													    </script>
 											    </div>
-												
-											
+										
                                         <div class="tab-slide-content new-arrival-product mb-4 mb-xl-0">
                                             <!-- Nav tabs -->
                                             <ul class="nav slide-item-list mt-3" role="tablist">
@@ -234,51 +264,50 @@
                                         </div>
                                     </div>
                                     <!--Tab slider End-->
-                                    <div class="col-xl-9 col-lg-6  col-md-6 col-xxl-7 col-sm-12">
-                                        <div class="product-detail-content">
-                                            <!--Product details-->
-                                            <div class="new-arrival-content pr">
-                                                <h3>商品名称：<input type="text" class="btn btn-primary light fs-16 ml-3"  aria-expanded="false" placeholder="大叔奶茶"/></h3>
-												<h3>商品价格：<input type="text" class="btn btn-primary light fs-16 ml-3"  aria-expanded="false" placeholder="20"/></h3>
-												<h3>商品描述：</h3>
-												     <div class="basic-form">
-												         <form>
-												             <div class="form-group">
-												                 <textarea class="form-control" rows="3" id="comment" placeholder="精选武夷山名从玉麒麟奶茶底，咸甜芝士甜而不腻的口感将香醇无限延伸，香气悠远绵长。"></textarea>
-												             </div>
-												         </form>
-												     </div>
-												    </div>
-                                                <h3>商品分类：
-												<div class="form-group">
-													 <select class="form-control form-control-lg default-select ">
-													    <option>奶茶</option>
-													    <option>果茶</option>
-													</select>
-												</div>
-												</h3>
-                                                <div class="filtaring-area my-3">
-                                                    <div class="size-filter">
-                                                        <h3 class="m-b-15">规格选择</h3>
-                                                        
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-outline-primary light btn-sm"><input type="radio" class="position-absolute invisible" name="options" id="option5"> 小</label>
-															<label class="btn btn-outline-primary light btn-sm"><input type="radio" class="position-absolute invisible" name="options" id="option1" checked>中</label>
-															<label class="btn btn-outline-primary light btn-sm"><input type="radio" class="position-absolute invisible" name="options" id="option2"> 大</label>
-														</div>
-                                                    </div>
-                                                </div>
-                                                <!--Quantity start-->
-												<h3 class="m-b-15">数量：</h3>
-												<div class="col-2 px-0">
-													<input type="number" name="num" class="form-control input-btn input-number" value="1">
-												</div>
-                                                <!--Quanatity End-->
-                                                <div class="shopping-cart mt-3">
-                                                    <a class="btn btn-primary btn-lg" href="javascript:void(0)"><i  class="fa fa-shopping-basket mr-2"></i>上架</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col-xl-9 col-lg-6  col-md-6 col-xxl-7 col-sm-12" >
+                                                                        <div class="product-detail-content">
+                                                                            <!--Product details-->
+                                                                            <div class="new-arrival-content pr" >
+                                                                                <h3>商品名称：<input type="text" class="btn btn-primary light fs-16 ml-3"  aria-expanded="false" placeholder="大叔奶茶" id=”name"/></h3>
+                                    											<h3>商品价格：<input type="text" class="btn btn-primary light fs-16 ml-3"  aria-expanded="false" placeholder="20" id="price"/></h3>
+                                    											<!-- <h3>商品描述：</h3>
+                                    											     <div class="basic-form">
+                                    											         <form>
+                                    											             <div class="form-group">
+                                    											                 <textarea class="form-control" rows="3" id="comment" placeholder="精选武夷山名从玉麒麟奶茶底，咸甜芝士甜而不腻的口感将香醇无限延伸，香气悠远绵长。"></textarea>
+                                    											             </div>
+                                    											         </form>
+                                    											     </div> -->
+                                    											    </div>
+                                                                                <h3>商品种类：<input type="text" class="btn btn-primary light fs-16 ml-3" aria-expanded="false" placeholder="奶茶" id="type"/></h3>
+                                    											<!-- <div class="form-group"> -->
+                                    												<!-- <select class="form-control form-control-lg default-select ">
+                                    												    <option>奶茶</option>
+                                    												    <option>果茶</option>
+                                    												</select> -->
+                                    									<!-- 		</div> -->
+                                    											</h3>
+																				<h3>商品原料：
+																					<input type="text" class="btn btn-primary light fs-16 ml-3"  aria-expanded="false" placeholder="20" id="material[0]"/>
+																					<input type="text" class="btn btn-primary light fs-16 ml-3"  aria-expanded="false" placeholder="20" id="material[1]"/>
+																				</h3>
+                                                                              <!--  <div class="filtaring-area my-3">
+                                                                                    
+                                                                                </div>
+                                                                                <--Quantity start-->
+                                    											<!-- <h3 class="m-b-15">数量：</h3>
+                                    											<div class="col-2 px-0">
+                                    												<input type="number" name="num" class="form-control input-btn input-number" value="1">
+                                    											</div> -->
+                                                                                <!--Quanatity End-->
+                                                                                <div class="shopping-cart mt-3">
+                                                                                    <a class="btn btn-primary btn-lg" id="add"><i  class="fa fa-shopping-basket mr-2"></i>上架</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+										
+										
+										
                                     </div>
                                 </div>
                             </div>
@@ -382,5 +411,36 @@
 	<script src="./vendor/star-rating/jquery.star-rating-svg.js"></script>
 
 </body>
+<script>
+			$("#add").click(function(){
+				var material []= $("#material").val();
+				var name = $("#name").val();
+				var price = $("#price").val();
+				var type=$("#type").val();
+			     $.ajax({
+							type:"post",
+							url:"http://localhost:8888/product/addProduct.do",
+							data:{
+								"productMaterialList":material,
+								"prodcuctNsme":name,
+								"productPrice":price,
+								"produceType":type,
+							},
+							success:function(res){
+								if("success" == res.requestServiceStatus){
+									alert("添加成功！")
+										window.location.href = "Products.html"
+								}else{
+									alert("账号或密码错误！")
+								}
+							},
+							// async:true,
+							error:function(){
+								alert('添加失败！')
+								window.location.href = "AddProduct.html"
+							}
+						})
+				})
+		</script>
 
 </html>
