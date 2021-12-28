@@ -48,6 +48,9 @@ public class UserServiceImpl implements UserService {
 			final String unencryptedUserPassword = user.getUserPassword();
 			final String md5Password = MD5Util.getMD5(unencryptedUserPassword);
 			user.setUserPassword(md5Password);
+			if (user.getUserBirthday() == null) {
+				user.setUserBirthday(new Date());
+			}
 			final int addUser = this.userDao.addUser(user);
 			return addUser == 1;
 		}

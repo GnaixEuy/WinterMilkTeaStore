@@ -221,5 +221,10 @@ public class ProductAction {
 		return this.productService.getAllProductNum();
 	}
 
+	@RequestMapping(value = {"/availability.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "商品是否可用")
+	public ObjectModel productAvailability(@ApiParam(value = "商品id") @RequestParam(name = "id") Integer id) {
+		return new ObjectModel(this.productService.isProductAdequate(id));
+	}
 
 }
