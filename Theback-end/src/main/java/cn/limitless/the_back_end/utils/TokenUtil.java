@@ -20,8 +20,8 @@ import java.util.Date;
  */
 public class TokenUtil {
 
-	//token到期时间10小时
-	private static final long EXPIRE_TIME = 10 * 60 * 60 * 1000;
+	//token到期时间30分钟
+	private static final long EXPIRE_TIME = 30 * 60 * 1000;
 	//密钥盐
 	private static final String TOKEN_SECRET = "ljdyaishijin**3nkjnj??";
 
@@ -39,7 +39,8 @@ public class TokenUtil {
 					//发行人
 					.withIssuer("auth0")
 					//存放数据
-					.withClaim("username", user.getUserName())
+					.withClaim("username", user.getUserId())
+					.withClaim("admin", false)
 					//过期时间
 					.withExpiresAt(expireAt)
 					.sign(Algorithm.HMAC256(TOKEN_SECRET));
@@ -57,7 +58,8 @@ public class TokenUtil {
 					//发行人
 					.withIssuer("auth0")
 					//存放数据
-					.withClaim("username", user.getAdminName())
+					.withClaim("adminName", user.getAdminName())
+					.withClaim("admin", true)
 					//过期时间
 					.withExpiresAt(expireAt)
 					.sign(Algorithm.HMAC256(TOKEN_SECRET));
@@ -80,9 +82,15 @@ public class TokenUtil {
 			//创建token验证器
 			JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(TOKEN_SECRET)).withIssuer("auth0").build();
 			DecodedJWT decodedJWT = jwtVerifier.verify(token);
-			System.out.println("认证通过：");
-			System.out.println("username: " + decodedJWT.getClaim("username").asString());
-			System.out.println("过期时间：      " + decodedJWT.getExpiresAt());
+			if (decodedJWT.getClaim("admin").asBoolean()) {
+				System.out.println("认证通过：");
+				System.out.println("adminName: " + decodedJWT.getClaim("adminName").asString());
+				System.out.println("过期时间：      " + decodedJWT.getExpiresAt());
+			} else {
+				System.out.println("认证通过：");
+				System.out.println("username: " + decodedJWT.getClaim("username").asString());
+				System.out.println("过期时间：      " + decodedJWT.getExpiresAt());
+			}
 		} catch (IllegalArgumentException | JWTVerificationException e) {
 			//抛出错误即为验证不通过
 			return false;

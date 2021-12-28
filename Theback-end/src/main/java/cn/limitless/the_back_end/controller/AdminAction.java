@@ -5,6 +5,7 @@ import cn.limitless.the_back_end.model.AdminLoginModel;
 import cn.limitless.the_back_end.service.AdminService;
 import cn.limitless.the_back_end.utils.DateTimeUtil;
 import cn.limitless.the_back_end.utils.MD5Util;
+import cn.limitless.the_back_end.utils.TokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -43,7 +44,8 @@ public class AdminAction {
 			if (admin == null) {
 				return new AdminLoginModel("id error", DateTimeUtil.getDateTime());
 			} else if (admin.getAdminPassword().equals(encryptionPassword)) {
-				return new AdminLoginModel(admin, "success", DateTimeUtil.getDateTime());
+				final String sign = TokenUtil.sign(admin);
+				return new AdminLoginModel(admin, "success", DateTimeUtil.getDateTime(), sign);
 			} else {
 				return new AdminLoginModel("password error", DateTimeUtil.getDateTime());
 			}
