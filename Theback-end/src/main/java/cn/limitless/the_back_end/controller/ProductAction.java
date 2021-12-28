@@ -73,7 +73,7 @@ public class ProductAction {
 	 * @return 返回服务处理状态
 	 */
 	@ApiOperation(value = "商品删除", notes = "传入productId或productName都可以，当二者都不存在或参数信息错误时返回状态failed，业务成功则返回success状态码")
-	@RequestMapping(value = {"/deleteProduct.do"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/deleteProduct.do"}, method = {RequestMethod.DELETE})
 	public ObjectModel deleteProduct(@ApiParam(value = "商品id") @RequestParam(name = "id", required = false) Integer productId,
 	                                 @ApiParam(value = "商品name") @RequestParam(name = "name", required = false) String productName) {
 		final ObjectModel objectModel = new ObjectModel();

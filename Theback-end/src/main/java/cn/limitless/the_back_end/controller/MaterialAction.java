@@ -60,7 +60,7 @@ public class MaterialAction {
 		return objectModel;
 	}
 
-	@RequestMapping(value = "/delete.do", method = {RequestMethod.GET})
+	@RequestMapping(value = "/delete.do", method = {RequestMethod.DELETE})
 	@ApiOperation(value = "原料删除接口")
 	public ObjectModel deleteMaterial(@ApiParam(value = "要删除的原料名字") String name) {
 		final boolean b = this.materialService.deleteMaterial(name);

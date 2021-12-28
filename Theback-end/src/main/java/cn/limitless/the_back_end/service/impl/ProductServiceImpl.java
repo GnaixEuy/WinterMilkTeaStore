@@ -1,6 +1,8 @@
 package cn.limitless.the_back_end.service.impl;
 
+import cn.limitless.the_back_end.dao.MaterialDao;
 import cn.limitless.the_back_end.dao.ProductDao;
+import cn.limitless.the_back_end.entity.Material;
 import cn.limitless.the_back_end.entity.Product;
 import cn.limitless.the_back_end.service.ProductService;
 import com.github.pagehelper.PageHelper;
@@ -23,10 +25,12 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
 	private final ProductDao productDao;
+	private final MaterialDao materialDao;
 
 	@Autowired
-	public ProductServiceImpl(ProductDao productDao) {
+	public ProductServiceImpl(ProductDao productDao, MaterialDao materialDao) {
 		this.productDao = productDao;
+		this.materialDao = materialDao;
 	}
 
 	@Override
@@ -156,5 +160,23 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Integer getAllProductNum() {
 		return this.productDao.selectProductNum();
+	}
+
+	/**
+	 * 判断产品剩余原料是否充足
+	 *
+	 * @param productId 产品id
+	 * @return 返回是否充足
+	 */
+	@Override
+	public boolean isProductAdequate(Integer productId) {
+		final Product productById = this.findProductById(productId);
+		for (String materialName : productById.getProductMaterialList()) {
+			final Material material = this.materialDao.selectMaterial(materialName);
+			if (material.getMaterialStock() < 1) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
