@@ -22,6 +22,5 @@ public class Comment {
 	private String commentOrderId;
 	private String commentUserId;
 	private String commentContent;
-	private Boolean commentFinish;
-
+	private Boolean isFinish;
 }

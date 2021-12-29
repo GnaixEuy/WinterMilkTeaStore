@@ -9,7 +9,7 @@
         <result column="comment_order_id" property="commentOrderId"/>
         <result column="comment_user_id" property="commentUserId"/>
         <result column="comment_content" property="commentContent"/>
-        <result column="comment_finish" property="commentFinish"/>
+        <result column="comment_finish" property="isFinish"/>
     </resultMap>
 
     <select id="selectCommentById" resultMap="comment">
@@ -38,20 +38,20 @@
     <insert id="insertComment">
         insert into wintermilktea.comment (comment_id, comment_order_id, comment_user_id, comment_content,
                                            comment_finish)
-        values (#{commentId}, #{commentOrderId}, #{commentUserId}, #{commentContent}, #{commentFinish]})
+        values (#{commentId}, #{commentOrderId}, #{commentUserId}, #{commentContent}, #{isFinish})
     </insert>
 
     <delete id="deleteCommentById">
         delete
         from wintermilktea.comment
-        where comment_id#{id}
+        where comment_id = #{id}
     </delete>
 
     <update id="updateComment">
         update wintermilktea.comment
         set comment_content =#{commentContent},
-            comment_finish=#{commentFinish}
-        where comment_id#{commentId}
+            comment_finish=#{isFinish}
+        where comment_id = #{commentId}
     </update>
 
 </mapper>
