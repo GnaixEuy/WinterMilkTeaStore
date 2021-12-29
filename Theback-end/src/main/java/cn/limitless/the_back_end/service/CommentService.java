@@ -47,13 +47,13 @@ public interface CommentService {
 	Comment queryCommentByOrderId(String id);
 
 	/**
-	 * 添加评论实体内容
+	 * 添加评论实体
 	 *
 	 * @param orderId 订单id
 	 * @param userId  用户id
 	 * @return 返回是否成功
 	 */
-	boolean addComment(String orderId, String userId);
+	boolean addComment(String orderId, String userId, String content);
 
 	/**
 	 * 删除评论,不推荐使用，拓展功能待认定

@@ -81,12 +81,13 @@ public class CommentServiceImpl implements CommentService {
 	 * @return 返回是否成功
 	 */
 	@Override
-	public boolean addComment(String orderId, String userId) {
+	public boolean addComment(String orderId, String userId, String content) {
 		final Comment comment = new Comment();
 		comment.setCommentOrderId(orderId);
 		comment.setCommentUserId(userId);
-		comment.setCommentFinish(Boolean.FALSE);
+		comment.setCommentFinish(Boolean.TRUE);
 		comment.setCommentId(userId + orderId);
+		comment.setCommentContent(content);
 		return this.commentDao.insertComment(comment) == 1;
 	}
 
