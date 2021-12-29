@@ -4,6 +4,7 @@ import cn.limitless.the_back_end.entity.Comment;
 import cn.limitless.the_back_end.model.ObjectModel;
 import cn.limitless.the_back_end.service.CommentService;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = {"/comment"})
+@Api(value = "评论模块接口")
 @CrossOrigin(value = "*")
 public class CommentAction {
 
@@ -93,6 +95,21 @@ public class CommentAction {
 			objectModel.error();
 		} else {
 			final boolean b = this.commentService.addComment(orderId, userId, content);
+			if (!b) {
+				objectModel.error();
+			}
+		}
+		return objectModel;
+	}
+
+	@RequestMapping(value = {"/delete.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "删除评论接口", notes = "传入评论id删除该评论")
+	public ObjectModel deleteComment(@ApiParam(value = "评论的id", required = true) @RequestParam(name = "id") String commentId) {
+		final ObjectModel objectModel = new ObjectModel();
+		if (commentId == null || "".equals(commentId)) {
+			objectModel.error();
+		} else {
+			final boolean b = this.commentService.deleteComment(commentId);
 			if (!b) {
 				objectModel.error();
 			}

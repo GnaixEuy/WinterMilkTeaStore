@@ -85,7 +85,7 @@ public class CommentServiceImpl implements CommentService {
 		final Comment comment = new Comment();
 		comment.setCommentOrderId(orderId);
 		comment.setCommentUserId(userId);
-		comment.setCommentFinish(Boolean.TRUE);
+		comment.setIsFinish(Boolean.TRUE);
 		comment.setCommentId(userId + orderId);
 		comment.setCommentContent(content);
 		return this.commentDao.insertComment(comment) == 1;
@@ -114,7 +114,7 @@ public class CommentServiceImpl implements CommentService {
 	public boolean updateComment(String orderId, String content) {
 		final Comment comment = this.commentDao.selectCommentByOrderId(orderId);
 		comment.setCommentContent(content);
-		comment.setCommentFinish(Boolean.TRUE);
+		comment.setIsFinish(Boolean.TRUE);
 		return this.commentDao.updateComment(comment) == 1;
 	}
 }
