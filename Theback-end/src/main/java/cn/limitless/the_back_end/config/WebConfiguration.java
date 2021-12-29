@@ -1,5 +1,6 @@
-//package cn.chengyi.the_back_end.config;
+//package cn.limitless.the_back_end.config;
 //
+//import cn.limitless.the_back_end.interceptor.TokenInterceptor;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
@@ -27,6 +28,7 @@
 //
 //	/**
 //	 * 解决跨域请求
+//	 *
 //	 * @param registry
 //	 */
 //	@Override
@@ -41,6 +43,7 @@
 //
 //	/**
 //	 * 异步请求配置
+//	 *
 //	 * @param configurer
 //	 */
 //	@Override
@@ -52,6 +55,7 @@
 //	/**
 //	 * 配置拦截器、拦截路径
 //	 * 每次请求到拦截的路径，就会去执行拦截器中的方法
+//	 *
 //	 * @param configurer
 //	 */
 //	@Override

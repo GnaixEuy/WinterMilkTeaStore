@@ -11,7 +11,7 @@
  Target Server Version : 50731
  File Encoding         : 65001
 
- Date: 27/12/2021 14:48:50
+ Date: 29/12/2021 22:32:40
 */
 
 SET NAMES utf8mb4;
@@ -49,7 +49,7 @@ CREATE TABLE `Product` (
   PRIMARY KEY (`product_id`,`product_name`) USING BTREE,
   KEY `product_name` (`product_name`),
   KEY `产品原料关联` (`product_material_list`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of Product
@@ -71,6 +71,7 @@ INSERT INTO `Product` VALUES (22, '冬乳奶茶-1358763659', '奶茶', 18.00, 'I
 INSERT INTO `Product` VALUES (23, '冬乳奶茶661572984', '奶茶', 18.00, 'IMG_4603.JPG', '水@糖@奶茶粉');
 INSERT INTO `Product` VALUES (27, '冬乳奶茶', '奶茶', 18.00, 'IMG_4604.JPG', '水@糖@奶茶粉');
 INSERT INTO `Product` VALUES (28, '椰汁', '饮料', 4.00, 'IMG_4604.JPG', '水@椰汁');
+INSERT INTO `Product` VALUES (29, '测试水', '果汁', 13.00, 'IMG_4602.JPG', '水@果葡萄浆');
 COMMIT;
 
 -- ----------------------------
@@ -79,8 +80,8 @@ COMMIT;
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `comment_id` varchar(255) NOT NULL,
-  `comment_order_id` varchar(255) DEFAULT NULL,
-  `comment_user_id` varchar(255) DEFAULT NULL,
+  `comment_order_id` varchar(255) NOT NULL,
+  `comment_user_id` varchar(255) NOT NULL,
   `comment_content` varchar(255) DEFAULT NULL,
   `comment_finish` tinyint(255) DEFAULT '0' COMMENT '0为false、1为true',
   PRIMARY KEY (`comment_id`),
@@ -94,6 +95,8 @@ CREATE TABLE `comment` (
 -- Records of comment
 -- ----------------------------
 BEGIN;
+INSERT INTO `comment` VALUES ('0001', '202112252103051', '1', '焯', 1);
+INSERT INTO `comment` VALUES ('testtest', 'test', 'test', '测试123222222333333', 1);
 COMMIT;
 
 -- ----------------------------

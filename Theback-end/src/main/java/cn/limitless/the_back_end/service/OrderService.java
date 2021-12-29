@@ -4,6 +4,7 @@ import cn.limitless.the_back_end.entity.Order;
 import cn.limitless.the_back_end.entity.OrderItem;
 import com.github.pagehelper.PageInfo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -73,4 +74,17 @@ public interface OrderService {
 	 */
 	PageInfo<Order> pageOrders(Integer pageNum, Integer pageSize);
 
+	/**
+	 * 查询所有订单数目
+	 *
+	 * @return 返回一个long 描述所有订单量总数
+	 */
+	Integer querOrdersNum();
+
+	/**
+	 * 获取所有收入
+	 *
+	 * @return 返回所有的价格大数据
+	 */
+	BigDecimal getAllPrice();
 }

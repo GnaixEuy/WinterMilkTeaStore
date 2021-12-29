@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -87,7 +88,6 @@ public class OrderAction {
 		return objectModel;
 	}
 
-
 	@RequestMapping(value = {"/addProductToOrder.do"}, method = {RequestMethod.GET})
 	@ApiOperation(value = "增加订单项接口", notes = "增加订单项后调用生成订单接口")
 	public ObjectModel addOrderItemToOrder(String cupType, Integer itemNum, Integer productId, User user, HttpServletRequest httpServletRequest) {
@@ -132,7 +132,6 @@ public class OrderAction {
 		return objectModel;
 	}
 
-
 	@RequestMapping(value = {"/orderConfirmation.do"}, method = {RequestMethod.GET})
 	@ApiOperation(value = "查询当前缓存在服务器的订单条目", notes = "已经加入订单的信息")
 	public ObjectModel orderConfirmation(@ApiParam(value = "用户信息，后期改为token如果来得及的话") User user, HttpServletRequest httpServletRequest) {
@@ -147,5 +146,32 @@ public class OrderAction {
 //		}
 		return null;
 	}
+
+	@RequestMapping(value = {"/nums.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "提供查询当前订单总数目的接口", notes = "无需任何参数")
+	public ObjectModel getOrdersNum() {
+		final ObjectModel objectModel = new ObjectModel();
+		final Integer integer = this.orderService.querOrdersNum();
+		if (integer < 0) {
+			objectModel.error();
+		} else {
+			objectModel.setObject(integer);
+		}
+		return objectModel;
+	}
+
+	@RequestMapping(value = {"/allPrice.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "获取所有价格")
+	public ObjectModel turnover() {
+		final ObjectModel objectModel = new ObjectModel();
+		final BigDecimal allPrice = this.orderService.getAllPrice();
+		if (allPrice == null) {
+			objectModel.error();
+		} else {
+			objectModel.setObject(allPrice.toString());
+		}
+		return objectModel;
+	}
+
 
 }
