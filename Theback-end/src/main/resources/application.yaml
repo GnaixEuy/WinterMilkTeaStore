@@ -19,6 +19,17 @@ spring:
       test-on-return: false
       pool-prepared-statements: true
       max-open-prepared-statements: 20
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 500
+        min-idle: 0
+    lettuce:
+      shutdown-timeout: 0
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher #修正swagger不匹配springboot2.6.*   Springfox使用的路径匹配是基于AntPathMatcher的，而Spring Boot 2.6.X使用的是PathPatternMatcher。 解决： 修改application.yaml spring: mvc: pathmatch: matching-strategy: ANT_PATH_MATCHER
@@ -61,3 +72,7 @@ swagger:
   application-version: 1.0
   application-description: springfox swagger 3.0整合
   try-host: http://localhost:${server.port}
+
+
+
+
