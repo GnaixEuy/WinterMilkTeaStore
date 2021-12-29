@@ -61,4 +61,11 @@ public interface OrderDao {
 	 * @return 订单集合
 	 */
 	List<Order> selectOrders();
+
+	/**
+	 * 查询所有订单数目
+	 *
+	 * @return 返回long 描述所有订单数目
+	 */
+	Integer selectOrdersNum();
 }

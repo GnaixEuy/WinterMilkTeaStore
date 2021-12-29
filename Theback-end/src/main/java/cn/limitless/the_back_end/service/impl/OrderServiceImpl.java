@@ -10,6 +10,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -185,5 +186,32 @@ public class OrderServiceImpl implements OrderService {
 			order.setOrderItemList(this.orderItemDao.selectOrderItemByOrderId(order.getOrderId()));
 		}
 		return new PageInfo<>(orders);
+	}
+
+	/**
+	 * 查询所有订单数目
+	 *
+	 * @return 返回一个long 描述所有订单量总数
+	 */
+	@Override
+	public Integer querOrdersNum() {
+		return this.orderDao.selectOrdersNum();
+	}
+
+	/**
+	 * 获取所有收入
+	 *
+	 * @return 返回所有的价格大数据
+	 */
+	@Override
+	public BigDecimal getAllPrice() {
+		final List<Order> orders = this.orderDao.selectOrders();
+		BigDecimal bigDecimal = new BigDecimal("0.0");
+		for (Order order : orders) {
+			if (order != null) {
+				bigDecimal = bigDecimal.add(BigDecimal.valueOf(order.getOrderPrice()));
+			}
+		}
+		return bigDecimal;
 	}
 }
