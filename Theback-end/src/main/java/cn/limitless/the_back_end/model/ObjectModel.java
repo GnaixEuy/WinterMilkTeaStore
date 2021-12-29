@@ -35,4 +35,8 @@ public class ObjectModel {
 	public ObjectModel(String requestServiceStatus) {
 		this.requestServiceStatus = requestServiceStatus;
 	}
+
+	public void error() {
+		this.requestServiceStatus = "failed";
+	}
 }

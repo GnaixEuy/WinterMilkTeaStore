@@ -40,6 +40,7 @@ public class TokenUtil {
 					.withIssuer("auth0")
 					//存放数据
 					.withClaim("username", user.getUserId())
+					.withClaim("tel", user.getUserPhone())
 					.withClaim("admin", false)
 					//过期时间
 					.withExpiresAt(expireAt)

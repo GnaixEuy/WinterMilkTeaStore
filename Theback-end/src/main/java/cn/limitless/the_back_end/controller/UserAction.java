@@ -6,6 +6,7 @@ import cn.limitless.the_back_end.model.UserLoginModel;
 import cn.limitless.the_back_end.service.UserService;
 import cn.limitless.the_back_end.utils.DateTimeUtil;
 import cn.limitless.the_back_end.utils.FileNameUtil;
+import cn.limitless.the_back_end.utils.RedisTokenManagerUtil;
 import cn.limitless.the_back_end.utils.TokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,10 +39,12 @@ import java.util.Objects;
 public class UserAction {
 
 	private final UserService userService;
+	private final RedisTokenManagerUtil redisTokenManagerUtil;
 
 	@Autowired
-	public UserAction(UserService userService) {
+	public UserAction(UserService userService, RedisTokenManagerUtil redisTokenManagerUtil) {
 		this.userService = userService;
+		this.redisTokenManagerUtil = redisTokenManagerUtil;
 	}
 
 	@ApiOperation(value = "登入方法", notes = "传入参数为id、phone、name")
@@ -54,8 +57,9 @@ public class UserAction {
 		} else {
 			userLoginModel.setUser(user);
 			userLoginModel.setLoginStatus("success");
-			final String sign = TokenUtil.sign(user);
-			userLoginModel.setToken(sign);
+			final String token = TokenUtil.sign(user);
+			userLoginModel.setToken(token);
+//			this.redisTokenManagerUtil.saveToRedis(user.getUserPhone(), token);
 		}
 		return userLoginModel;
 	}
