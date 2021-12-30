@@ -126,7 +126,7 @@
         </div>
         <div class="content-body">
 			<div class="container-fluid">
-				<div class="dropdown custom-dropdown mb-md-4 mb-2">
+			<!-- 	<div class="dropdown custom-dropdown mb-md-4 mb-2">
 					<button type="button" class="btn btn-primary light d-flex align-items-center svg-btn" data-toggle="dropdown" aria-expanded="false">
 						<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M24.5 6.125H12.25C12.25 5.15987 11.4651 4.375 10.5 4.375H8.75C7.78487 4.375 7 5.15987 7 6.125H3.5C3.017 6.125 2.625 6.51612 2.625 7C2.625 7.48388 3.017 7.875 3.5 7.875H7C7 8.84013 7.78487 9.625 8.75 9.625H10.5C11.4651 9.625 12.25 8.84013 12.25 7.875H24.5C24.983 7.875 25.375 7.48388 25.375 7C25.375 6.51612 24.983 6.125 24.5 6.125ZM8.75 7.875V6.125H10.5L10.5009 6.9965C10.5009 6.99825 10.5 6.99913 10.5 7C10.5 7.00087 10.5009 7.00175 10.5009 7.0035V7.875H8.75Z" fill="#00aa7f"/>
@@ -143,7 +143,7 @@
 						<a class="dropdown-item" href="#">2017</a>
 						<a class="dropdown-item" href="#">2016</a>
 					</div>
-				</div>
+				</div> -->
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="table-responsive rounded card-table">
@@ -151,25 +151,19 @@
 								<thead>
 									<tr>
 										<th>顾客ID</th>
-										<th>注册时间</th>
 										<th>顾客姓名</th>
-										<th>地址</th>
-										<th>总消费金额</th>
-										<th>近期消费</th>
+										<th>电话号码</th>
+										<th>生日</th>
 										<th></th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr class="alert alert-dismissible border-0">
-										<td>#C-004562</td>
-										<td>26 March 2020, 12:42 AM</td>
-										<td>张小三</td>
-										<td>厦门环岛路35号</td>
-										<td>￥82.46</td>
-										<td>
-											<a class="btn btn-light btn-sm" href="javascript:void(0)">￥42.85</a>
-										</td>
-										<td>
+								<tbody id="user">
+									<tr class="alert alert-dismissible border-0" v-for="item in dynamic">
+										<td>{{item.userId}}</td>
+										<td>{{item.userName}}</td>
+										<td>{{item.userPhone}}</td>
+										<td>{{item.userBirthday}}</td>
+										<!-- <td>
 											<div class="dropdown">
 												<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
 													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -180,261 +174,12 @@
 												</a>
 												<div class="dropdown-menu dropdown-menu-right">
 													<a class="dropdown-item" href="javascript:void(0);"><i class="las la-check-circle text-success mr-3 scale5"></i>修改用户</a>
-													<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a>
+													<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a> -->
 												</div>
 											</div>
 										</td>
 									</tr>
-									<tr class="alert alert-dismissible border-0">
-										<td>#C-004558</td>
-										<td>2021年12月22日, 12:42 AM</td>
-										<td>李小四</td>
-										<td>厦门胜利路22号</td>
-										<td>￥23.46</td>
-										<td>
-											<a class="btn btn-light btn-sm" href="javascript:void(0)">￥2.85</a>
-										</td>
-										<td>
-											<div class="dropdown">
-												<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-													</svg>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="javascript:void(0);"><i class="las la-check-circle text-success mr-3 scale5"></i>修改用户</a>
-													<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr class="alert alert-dismissible border-0">
-										<td>#C-004563</td>
-										<td>2021年12月22日, 12:42 AM</td>
-										<td>王小五</td>
-										<td>厦门胜利路22号</td>
-										<td>￥88.46</td>
-										<td>
-											<a class="btn btn-light btn-sm" href="javascript:void(0)">￥22.85</a>
-										</td>
-										<td>
-											<div class="dropdown">
-												<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-													</svg>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="javascript:void(0);"><i class="las la-check-circle text-success mr-3 scale5"></i>修改用户</a>
-													<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a>
-												</div>
-											</div>
-										</td>
-									</tr>	
-									<tr class="alert alert-dismissible border-0">
-										<td>#C-004556</td>
-										<td>2021年12月22日, 12:42 AM</td>
-										<td>赵贤</td>
-										<td>厦门胜利路22号</td>
-										<td>￥177.46</td>
-										<td>
-											<a class="btn btn-light btn-sm" href="javascript:void(0)">￥27.85</a>
-										</td>
-										<td>
-											<div class="dropdown">
-												<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-													</svg>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="javascript:void(0);"><i class="las la-check-circle text-success mr-3 scale5"></i>修改用户</a>
-													<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr class="alert alert-dismissible border-0">
-										<td>#C-004557</td>
-										<td>2021年12月22日, 12:42 AM</td>
-										<td>孙小佑</td>
-										<td>厦门环岛路22号</td>
-										<td>￥325.46</td>
-										<td>
-											<a class="btn btn-light btn-sm" href="javascript:void(0)">￥12.85</a>
-										</td>
-										<td>
-											<div class="dropdown">
-												<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-													</svg>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="javascript:void(0);"><i class="las la-check-circle text-success mr-3 scale5"></i>修改用户</a>
-													<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr class="alert alert-dismissible border-0">
-										<td>#C-004532</td>
-										<td>2021年12月22日, 12:42 AM</td>
-										<td>李虎子</td>
-										<td>厦门解放路22号</td>
-										<td>￥347.46</td>
-										<td>
-											<a class="btn btn-light btn-sm" href="javascript:void(0)">￥45.85</a>
-										</td>
-										<td>
-											<div class="dropdown">
-												<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-													</svg>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="javascript:void(0);"><i class="las la-check-circle text-success mr-3 scale5"></i>修改用户</a>
-													<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-		<tr class="alert alert-dismissible border-0">
-		<td>#C-004522</td>
-		<td>2021年12月22日, 12:42 AM</td>
-		<td>任小均</td>
-		<td>厦门胜利路22号</td>
-		<td>￥173.46</td>
-		<td>
-			<a class="btn btn-light btn-sm" href="javascript:void(0)">￥23.85</a>
-		</td>
-		<td>
-			<div class="dropdown">
-				<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-				</a>
-				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="javascript:void(0);"><i class="las la-check-circle text-success mr-3 scale5"></i>修改用户</a>
-					<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a>
-				</div>
-			</div>
-		</td>
-	</tr>
-									<tr class="alert alert-dismissible border-0">
-										<td>#C-004555</td>
-										<td>2021年12月22日, 12:42 AM</td>
-										<td>111</td>
-										<td>厦门胜利路22号</td>
-										<td>￥355.46</td>
-										<td>
-											<a class="btn btn-light btn-sm" href="javascript:void(0)">￥35.85</a>
-										</td>
-										<td>
-											<div class="dropdown">
-												<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-													</svg>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="javascript:void(0);"><i class="las la-check-circle text-success mr-3 scale5"></i>修改用户</a>
-													<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr class="alert alert-dismissible border-0">
-										<td>#C-004556</td>
-										<td>2021年12月22日, 12:42 AM</td>
-										<td>赵贤</td>
-										<td>厦门胜利路22号</td>
-										<td>￥177.46</td>
-										<td>
-											<a class="btn btn-light btn-sm" href="javascript:void(0)">￥27.85</a>
-										</td>
-										<td>
-											<div class="dropdown">
-												<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-													</svg>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="javascript:void(0);"><i class="las la-check-circle text-success mr-3 scale5"></i>修改用户</a>
-													<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr class="alert alert-dismissible border-0">
-										<td>#C-004556</td>
-										<td>2021年12月22日, 12:42 AM</td>
-										<td>天晓娟</td>
-										<td>厦门胜利路22号</td>
-										<td>￥177.46</td>
-										<td>
-											<a class="btn btn-light btn-sm" href="javascript:void(0)">￥27.85</a>
-										</td>
-										<td>
-											<div class="dropdown">
-												<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-													</svg>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="javascript:void(0);"><i class="las la-check-circle text-success mr-3 scale5"></i>修改用户</a>
-													<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr class="alert alert-dismissible border-0">
-										<td>#C-004556</td>
-										<td>2021年12月22日, 12:42 AM</td>
-										<td>赵贤</td>
-										<td>厦门胜利路22号</td>
-										<td>￥177.46</td>
-										<td>
-											<a class="btn btn-light btn-sm" href="javascript:void(0)">￥27.85</a>
-										</td>
-										<td>
-											<div class="dropdown">
-												<a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-													</svg>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="javascript:void(0);"><i class="las la-check-circle text-success mr-3 scale5"></i>修改用户</a>
-													<a href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5"></i>删除用户</a>
-												</div>
-											</div>
-										</td>
-									</tr>
+									
 								</tbody>
 							</table>
 						</div>
@@ -458,6 +203,7 @@
 	<script src="./js/deznav-init.js"></script>
 	
 	<script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+		<script src="https://vuejs.org/js/vue.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 		(function($) {
 		 
@@ -474,5 +220,36 @@
 			});
 		})(jQuery);
 	</script>
+	
+	
+		<script type="text/javascript">
+		
+		   new Vue({
+		        el:"#user",
+		        data:{
+		            dynamic:[]
+		        },
+		        methods:{
+		            show:function () {
+		                let user = this;
+		                $.ajax({
+		                    url:"http://localhost:8888/user/allUser.do",
+		                    type:"get",
+		                    success:function (data) {
+		                        // var list = JSON.parse(data);
+		                        user.dynamic = data.object;
+								// console.log(data.object);
+		                    }
+		                })
+		            },
+		        },
+		        mounted:function() {
+		            this.show();
+					
+		        },
+				
+		    })
+		
+		</script>
 </body>
 </html>
