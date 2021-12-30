@@ -207,8 +207,11 @@
 	   					//dataType='json',
 	   					success:function(res){
 	   						if("success" == res.loginStatus){
-								console.log(res.token);
-								localStorage.setItem("token",res.token);
+								console.log(res.user.userId);
+								//本地存储
+								localStorage.setItem("userId",res.user.userId);
+								//会话存储
+								// session.setItem("token",res.token);
 	   							window.location.href = "../shoppingCar/alreadyLoginIndex.html"
 	   						}else if("failed" == res.loginStatus){
 	   							// console.log(2221)
