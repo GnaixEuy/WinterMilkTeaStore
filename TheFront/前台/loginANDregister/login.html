@@ -183,10 +183,9 @@
       <script src="js/jquery.fancybox.min.js"></script>
    </body>
    <script>
-   $(document).ready(
-	   userLogin()
-   )
-
+   $(document).ready(()=>{
+	    userLogin()
+   })
    function userLogin(){
 	   $("#login").click(function(){
 	   	var phone = $("#phone").val();
@@ -207,9 +206,11 @@
 	   					},
 	   					//dataType='json',
 	   					success:function(res){
-	   						if("success" == res.requestServiceStatus){
+	   						if("success" == res.loginStatus){
+								console.log(res.token);
+								localStorage.setItem("token",res.token);
 	   							window.location.href = "../shoppingCar/alreadyLoginIndex.html"
-	   						}else if("failed" == res.requestServiceStatus){
+	   						}else if("failed" == res.loginStatus){
 	   							// console.log(2221)
 	   							alert("用户不存在！")
 	   						}
@@ -223,7 +224,7 @@
 	   				}
 	   				return false;
 	   })
-		setInterval(login,3000);
+		
 	}
    </script>
 </html>
