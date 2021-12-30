@@ -17,27 +17,28 @@
 
 	<body>
 
-<!-- 弹窗1 -->
-			<div  class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true"  id="mymodal-AddMt">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">修改原料数量</h5>
-						</div>
-						<div class="modal-body col-xl-6 row card-body " style="margin:auto">
-								<input class="form-control" style="text-align: center;" type="text" value="10盒" />
-									
-									</div>
-										<div class="modal-footer">
-			<button type="button" class="btn btn-danger light " data-dismiss="modal">确认</button>
-			<button type="button" class="btn btn-danger light " data-dismiss="modal">取消</button>
-		
-							</div>
-						</div>
+		<!-- 弹窗1 -->
+		<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="mymodal-AddMt">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">修改原料数量</h5>
+					</div>
+					<div class="modal-body col-xl-6 row card-body " style="margin:auto">
+						<input class="form-control" style="text-align: center;" type="text" 
+						v-for="(data,index) in input" :key="index" v-model="MaterialInfo[data.mod]" :placeholder="data.placeholder" />
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger light " data-dismiss="modal">确认</button>
+						<button type="button" class="btn btn-danger light " data-dismiss="modal">取消</button>
+
 					</div>
 				</div>
-				
-			<!-- 	弹窗1end -->
+			</div>
+		</div>
+
+		<!-- 	弹窗1end -->
 
 
 		<div id="preloader">
@@ -50,10 +51,10 @@
 		<div id="main-wrapper">
 			<div class="nav-header">
 				<a href="index.html" class="brand-logo">
-						<img class="logo-abbr" src="./images/logo.png" alt="">
-						<img class="logo-compact" src="./images/logo-text.jpg" alt="">
-						<img class="brand-title" src="./images/logo-text.jpg" alt="">
-					</a>
+					<img class="logo-abbr" src="./images/logo.png" alt="">
+					<img class="logo-compact" src="./images/logo-text.jpg" alt="">
+					<img class="brand-title" src="./images/logo-text.jpg" alt="">
+				</a>
 
 				<div class="nav-control">
 					<div class="hamburger">
@@ -68,7 +69,7 @@
 						<div class="collapse navbar-collapse justify-content-between">
 							<div class="header-left">
 								<div class="dashboard_bar">
-								原料管理
+									原料管理
 								</div>
 							</div>
 							<ul class="navbar-nav header-right">
@@ -216,12 +217,12 @@
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">Product Order</a></li>
 					</ol>
                 </div> -->
-				<div class="  mb-md-4 mb-2">
-					<a href="AddProduct.html" class="btn btn-primary light fs-16 ml-3">添加原料</a>
-					<i class="fa  scale5 ml-3"></i>
-					</button>
-				</div>
-					<div class="row">
+					<div class="  mb-md-4 mb-2">
+						<a href="AddProduct.html" class="btn btn-primary light fs-16 ml-3">添加原料</a>
+						<i class="fa  scale5 ml-3"></i>
+						</button>
+					</div>
+					<div  class="row">
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-body">
@@ -230,17 +231,17 @@
 											<thead>
 												<tr>
 													<th>原料</th>
-													<th>厂商</th>
-													<th>数量</th>
+													<th>库存</th>
+													<th>价格</th>
 													<th>操作</th>
 
 												</tr>
 											</thead>
-											<tbody id="orders">
-												<tr class="btn-reveal-trigger">
-													<td>椰果</td>
-													<td class="py-2">xx加工厂</td>
-													<td class="py-2">10盒</td>
+											<tbody id="Material" >
+												<tr  class="btn-reveal-trigger" v-for="item in dynamic">
+													<td class="py-2" >{{item.materialName}}</td>
+													<td class="py-2" >{{item.materialStock}}</td>
+													<td class="py-2" >{{item.materialPrice}}</td>
 													<td class="py-2">
 														<div class="dropdown text-sans-serif"><button
 																class="btn btn-primary tp-btn-light sharp" type="button"
@@ -264,11 +265,13 @@
 																		</g>
 																	</svg></span></button>
 															<div class="dropdown-menu dropdown-menu-right">
-																<a class="dropdown-item" href="#mymodal-AddMt" data-toggle="modal" >
-																	<i class="las la-check-circle text-success mr-3 scale5" onclick="showDialog(this)"></i>修改原料库存</a>
+																<a class="dropdown-item" href="#mymodal-AddMt"
+																	data-toggle="modal">
+																	<i class="las la-check-circle text-success mr-3 scale5"
+																		@click="add()"></i>修改原料库存</a>
 																<a href="javascript:void(0);" data-dismiss="alert"
 																	aria-label="Close" class="dropdown-item"><i
-																		class="las la-times-circle text-danger mr-3 scale5 sweet-ajax"></i>删除原料</a>
+																		class="las la-times-circle text-danger mr-3 scale5 sweet-ajax " @click="del()" ></i>删除原料</a>
 															</div>
 														</div>
 													</td>
@@ -299,16 +302,89 @@
 		<script src="./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 		<script src="./js/custom.min.js"></script>
 		<script src="./js/deznav-init.js"></script>
-		
-		<script src="./js/plugins-init/select2-init.js"></script>
-		
 
-
+		<!-- <script src="./js/plugins-init/select2-init.js"></script> -->
 		<script src="./vendor/highlightjs/highlight.pack.min.js"></script>
 
-
+		<script src="https://vuejs.org/js/vue.js" type="text/javascript" charset="utf-8"></script>
 
 
 	</body>
 
 </html>
+
+<script type="text/javascript">
+
+   new Vue({
+        el:"#Material",
+        data:{
+            dynamic:[]
+        },
+        methods:{
+            show:function () {
+                let ma = this;
+                $.ajax({
+                    url:"http://localhost:8888/material/materials.do",
+					 // url:"http://192.168.2.1:8888/material/materials.do",
+                    type:"get",
+                    success:function (data) {
+                        // var list = JSON.parse(data);
+                        ma.dynamic = data.object;
+						// console.log(data.object);
+                    }
+                })
+            },
+			add:function(){
+			  var newData = {mod: 'address', placeholder: ''}   //添加循环数据
+			  this.inputData.push(newData)
+			  this.$set(this.userInfo, 'address',  '');         //添加model数据
+			            //父级数据      //key    //value
+			},
+			del:function(){
+			  this.inputData.splice(0,1)                     //删除循环里的name数据
+			  this.$delete(this.userInfo, 'name1')          //删除data里对应的model数据
+			               //父级数据      //key
+			},
+        },
+        mounted:function() {
+            this.show();
+			this.add();
+			this.del();
+			
+        },
+		
+    })
+
+</script>
+
+
+<!-- <script>
+	$(document).ready(
+		getMaterialInfo()
+	)
+
+
+	function getMaterialInfo() {
+		var ma = $('#Material')
+		$.ajax({
+			type: "get",
+			url: "http://localhost:8888//material/materials.do",
+			data: "",
+			dataType: "json",
+			success: function(response) {
+				if (response.requestServiceStatus == 'success') {
+					var material_list = response.object
+					material_list.forEach(element => {
+						ma.append(
+							' <tr class="btn-reveal-trigger"><td> '+element.materialName+
+							' </td><td class="py-2"> '+element.materialStock+
+							' </td><td class="py-2"> ￥'+element.materialPrice+
+							'</td><td class="py-2"><div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <rect x="0" y="0" width="24" height="24"> </rect> <circle fill="#000000" cx="5" cy="12" r="2"> </circle> <circle fill="#000000" cx="12" cy="12" r="2"></circle> <circle fill="#000000" cx="19" cy="12" r="2"></circle> </g> </svg></span></button> <div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item" href="#mymodal-AddMt" data-toggle="modal"> <i class="las la-check-circle text-success mr-3 scale5" onclick="showDialog(this)"></i>修改原料库存</a> <a aria-label="Close" class="dropdown-item" href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5 sweet-ajax"></i>删除原料</a> </div> </div> </td> </tr>'
+						
+						)
+					});
+				}
+			}
+		});
+	}
+</script> -->
