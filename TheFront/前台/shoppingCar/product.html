@@ -117,28 +117,6 @@
 					<section class="lattest-product-area pb-40 category-list">
 						<div id="productArea">
 							<div class="row" id="p">
-
-								<!-- <div class="col-md-6 col-lg-4"  >
-			      <div class="card text-center card-product">
-			        <div class="card-product__img" >
-			          <img class="card-img" src="image/1.png" alt="">
-			          <ul class="card-product__imgOverlay" >
-			  		 <li><h6></h6></li>
-			          </ul>
-			        </div>
-			        <div class="card-body">
-			          <p><h4 class="card-product__title" ><a href="#">名字</a></h4></p>
-			          <p class="card-product__price" id="pp">价格</p>
-					  <input class="button" type="button" value="加入购物车" onclick="a()">
-					  
-			        </div>
-			      </div>
-			    </div> -->
-
-
-
-
-
 							</div>
 						</div>
 
@@ -304,7 +282,7 @@
 			success: function (response) {
 				if (response.requestServiceStatus == 'success') {
 					response.object.forEach(element => {
-						fatherNode.append('<span class="card text-center card-product col-md-6 col-lg-4" style="display:inline-table;"><div class="card-product__img"><img class="card-img" src="http://localhost:8888/productImg/' +element.productImageId+ '" alt=""><ul class="card-product__imgOverlay"><li><h6></h6></li></ul></div><div class="card-body" ><p><h4 class="card-product__title" ><a href="#">' + element.productName + '</a></h4></p><p class="card-product__price" id="pp">' + element.productPrice + '</p><input class="button" type="button" value="加入购物车" onclick="a()"></div></span>')
+						fatherNode.append('<span class="card text-center card-product col-md-6 col-lg-4" style="display:inline-table;"><div class="card-product__img"><img class="card-img" src="http://localhost:8888/productImg/' +element.productImageId+ '" alt=""><ul class="card-product__imgOverlay"><li><h6></h6></li></ul></div><div class="card-body" ><p><h4 class="card-product__title" ><a href="#">' + element.productName + '</a></h4></p><p class="card-product__price" id="pp">' + element.productPrice + '</p><input class="button" type="button" value="加入购物车" id="add" onclick="a()"></div></span>')
 					})
 				}
 			}
@@ -325,6 +303,12 @@
 		})
 	}	
 	
+	function addToCart(){
+		$.ajax({
+			type:"post",
+			url:"http://localhost:8888/product"
+		})
+	}
 	function a(){
 		alert("加入购物车成功！")
 	}
