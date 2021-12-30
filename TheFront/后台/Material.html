@@ -324,35 +324,3 @@
     })
 
 </script>
-
-
-<!-- <script>
-	$(document).ready(
-		getMaterialInfo()
-	)
-
-
-	function getMaterialInfo() {
-		var ma = $('#Material')
-		$.ajax({
-			type: "get",
-			url: "http://localhost:8888//material/materials.do",
-			data: "",
-			dataType: "json",
-			success: function(response) {
-				if (response.requestServiceStatus == 'success') {
-					var material_list = response.object
-					material_list.forEach(element => {
-						ma.append(
-							' <tr class="btn-reveal-trigger"><td> '+element.materialName+
-							' </td><td class="py-2"> '+element.materialStock+
-							' </td><td class="py-2"> ￥'+element.materialPrice+
-							'</td><td class="py-2"><div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <rect x="0" y="0" width="24" height="24"> </rect> <circle fill="#000000" cx="5" cy="12" r="2"> </circle> <circle fill="#000000" cx="12" cy="12" r="2"></circle> <circle fill="#000000" cx="19" cy="12" r="2"></circle> </g> </svg></span></button> <div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item" href="#mymodal-AddMt" data-toggle="modal"> <i class="las la-check-circle text-success mr-3 scale5" onclick="showDialog(this)"></i>修改原料库存</a> <a aria-label="Close" class="dropdown-item" href="javascript:void(0);" data-dismiss="alert" aria-label="Close" class="dropdown-item"><i class="las la-times-circle text-danger mr-3 scale5 sweet-ajax"></i>删除原料</a> </div> </div> </td> </tr>'
-						
-						)
-					});
-				}
-			}
-		});
-	}
-</script> -->
