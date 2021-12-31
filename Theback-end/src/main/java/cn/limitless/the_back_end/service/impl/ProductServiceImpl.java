@@ -81,10 +81,17 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public boolean addProduct(String productName, String productType, Double productPrice, String productImageId, String[] materialListString) {
-		final ArrayList<String> strings = new ArrayList<>(Arrays.asList(materialListString));
-		final Product addProduct = new Product(null, productName, productType, productPrice, productImageId, strings);
-		final int ret = this.productDao.addProduct(addProduct);
-		return ret == 1;
+		int ret = 1;
+		ArrayList<String> strings = null;
+		try {
+			strings = new ArrayList<String>(Arrays.asList(materialListString));
+			final Product addProduct = new Product(null, productName, productType, productPrice, productImageId, strings);
+			ret = this.productDao.addProduct(addProduct);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			return ret == 1;
+		}
 	}
 
 	@Override
@@ -136,10 +143,7 @@ public class ProductServiceImpl implements ProductService {
 			if (product.getProductImageId() != null && !"".equals(product.getProductImageId())) {
 				oldProduct.setProductImageId(product.getProductImageId());
 			}
-			if (product.getProductMaterialList() != null && product.getProductMaterialList().size() != 0) {
-				oldProduct.setProductMaterialList(product.getProductMaterialList());
-			}
-			return this.productDao.updateProduct(product) == 1;
+			return this.productDao.updateProduct(oldProduct) == 1;
 		} else {
 			return false;
 		}
@@ -173,7 +177,7 @@ public class ProductServiceImpl implements ProductService {
 		final Product productById = this.findProductById(productId);
 		for (String materialName : productById.getProductMaterialList()) {
 			final Material material = this.materialDao.selectMaterial(materialName);
-			if (material.getMaterialStock() < 1) {
+			if (material != null && material.getMaterialStock() < 1) {
 				return false;
 			}
 		}

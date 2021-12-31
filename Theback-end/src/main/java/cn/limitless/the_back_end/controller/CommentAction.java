@@ -94,6 +94,11 @@ public class CommentAction {
 		if (userId == null || "".equals(userId) || orderId == null || "".equals(orderId) || content == null || "".equals(content)) {
 			objectModel.error();
 		} else {
+			final Comment comment = this.commentService.queryCommentByOrderId(orderId);
+			if (comment != null) {
+				objectModel.error();
+				return objectModel;
+			}
 			final boolean b = this.commentService.addComment(orderId, userId, content);
 			if (!b) {
 				objectModel.error();
@@ -115,6 +120,13 @@ public class CommentAction {
 			}
 		}
 		return objectModel;
+	}
+
+	@RequestMapping(value = {"/nums.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "获取总评论数")
+	public ObjectModel commentNum() {
+		final List<Comment> comments = this.commentService.queryComments();
+		return new ObjectModel(comments.size());
 	}
 
 

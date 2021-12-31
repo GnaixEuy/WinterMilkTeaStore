@@ -72,4 +72,12 @@ public interface UserService {
 	 * @return int 返回用户总数量
 	 */
 	Integer getAllUserNum();
+
+	/**
+	 * 查找用户
+	 *
+	 * @param id 用户ID
+	 * @return user
+	 */
+	User findUserById(String id);
 }

@@ -162,6 +162,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/**
+	 * 查找用户
+	 *
+	 * @param id 用户ID
+	 * @return user
+	 */
+	@Override
+	public User findUserById(String id) {
+		return this.userDao.selectUserById(id);
+	}
+
+	/**
 	 * 提取出来的重复代码快，用于保证更新用户数据时，竟可能地保存非空数据
 	 *
 	 * @param user    新数据

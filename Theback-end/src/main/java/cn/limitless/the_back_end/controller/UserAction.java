@@ -8,6 +8,7 @@ import cn.limitless.the_back_end.utils.DateTimeUtil;
 import cn.limitless.the_back_end.utils.FileNameUtil;
 import cn.limitless.the_back_end.utils.RedisTokenManagerUtil;
 import cn.limitless.the_back_end.utils.TokenUtil;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -37,6 +39,8 @@ import java.util.Objects;
 @RequestMapping(value = {"/user"})
 @CrossOrigin(value = {"*"})
 public class UserAction {
+
+	private static final int PAGE_SHOW_SIZE = 5;
 
 	private final UserService userService;
 	private final RedisTokenManagerUtil redisTokenManagerUtil;
@@ -120,7 +124,7 @@ public class UserAction {
 		/* 返回的图片url路径 */
 		String saveFileName = FileNameUtil.getUUIDFileName() + FileNameUtil.getFileType(Objects.requireNonNull(userImage.getOriginalFilename()));
 		//得到项目中图片存储对路径
-		final String outPath = System.getProperty("user.dir") + "/Theback-end/target/classes/static/userImg";
+		final String outPath = System.getProperty("user.dir") + File.separator + "Theback-end" + File.separator + "target" + File.separator + "classes" + File.separator + "static" + File.separator + "userImg";
 		//转存
 		final String imageOutPath = outPath + File.separator + saveFileName;
 		try {
@@ -132,5 +136,27 @@ public class UserAction {
 			objectModel.setRequestServiceStatus("failed");
 			return objectModel;
 		}
+	}
+
+
+	@RequestMapping(value = {"/allUser.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "获取所有用户信息接口", notes = "不需要参数")
+	public ObjectModel allUserInfo() {
+		final List<User> allUser = this.userService.findAllUser();
+		return new ObjectModel(allUser);
+	}
+
+
+	@RequestMapping(value = {"/spiltUsers.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "分页显示用户数据", notes = "传入页码，默认为1")
+	public ObjectModel spiltUsers(@RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum) {
+		final PageInfo<User> userPageInfo = this.userService.splitAllUser(pageNum, UserAction.PAGE_SHOW_SIZE);
+		final ObjectModel objectModel = new ObjectModel();
+		if (userPageInfo == null) {
+			objectModel.error();
+		} else {
+			objectModel.setObject(userPageInfo);
+		}
+		return objectModel;
 	}
 }

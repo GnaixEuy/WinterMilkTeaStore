@@ -8,6 +8,7 @@ import cn.limitless.the_back_end.entity.OrderItem;
 import cn.limitless.the_back_end.service.OrderService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -67,7 +68,9 @@ public class OrderServiceImpl implements OrderService {
 		}
 		final Order order = new Order(orderId, customerId, orderPrice, false, -1.0, null, false, orderCreateDateTime, orderItems);
 		final int ret = this.orderDao.insertOrder(order);
+		int flag = 0;
 		for (OrderItem orderItem : orderItems) {
+			orderItem.setItemId(orderId + flag);
 			final int i = this.orderItemDao.insertOrderItem(orderItem);
 			if (i == 0) {
 				try {
@@ -77,6 +80,7 @@ public class OrderServiceImpl implements OrderService {
 					return false;
 				}
 			}
+			flag++;
 		}
 		return ret == 1;
 	}
@@ -99,12 +103,16 @@ public class OrderServiceImpl implements OrderService {
 		}
 		if (order.getOrderCreateDateTime() != null) {
 			oldOrder.setOrderCreateDateTime(order.getOrderCreateDateTime());
+		} else {
+			oldOrder.setOrderCreateDateTime(new Date());
 		}
 		if (order.getOrderRealPay() != null) {
 			oldOrder.setOrderRealPay(order.getOrderRealPay());
 		}
 		if (order.getOrderPayDateTime() != null) {
 			oldOrder.setOrderPayDateTime(order.getOrderPayDateTime());
+		} else {
+			oldOrder.setOrderPayDateTime(new Date());
 		}
 		if (order.getOrderPrice() != null) {
 			oldOrder.setOrderPrice(order.getOrderPrice());
@@ -180,12 +188,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Override
 	public PageInfo<Order> pageOrders(Integer pageNum, Integer pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
-		final List<Order> orders = this.orderDao.selectOrders();
-		for (Order order : orders) {
-			order.setOrderItemList(this.orderItemDao.selectOrderItemByOrderId(order.getOrderId()));
-		}
-		return new PageInfo<>(orders);
+		return getOrderPageInfo(pageNum, pageSize);
 	}
 
 	/**
@@ -213,5 +216,27 @@ public class OrderServiceImpl implements OrderService {
 			}
 		}
 		return bigDecimal;
+	}
+
+	/**
+	 * 分页订单
+	 *
+	 * @param pageNum  页面号
+	 * @param pageSize 最大条目
+	 * @return pagei=Info
+	 */
+	@Override
+	public PageInfo<Order> spiltOrders(Integer pageNum, Integer pageSize) {
+		return getOrderPageInfo(pageNum, pageSize);
+	}
+
+	@NotNull
+	private PageInfo<Order> getOrderPageInfo(Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		final List<Order> orders = this.orderDao.selectOrders();
+		for (Order order : orders) {
+			order.setOrderItemList(this.orderItemDao.selectOrderItemByOrderId(order.getOrderId()));
+		}
+		return new PageInfo<>(orders);
 	}
 }
