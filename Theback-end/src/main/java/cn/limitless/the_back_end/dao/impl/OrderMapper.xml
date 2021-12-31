@@ -33,7 +33,7 @@
             order_is_pay=#{orderIsPay},
             order_price=#{orderPrice},
             order_pay_date_time=#{orderPayDateTime},
-            order_create_date_time=#{orderPayDateTime},
+            order_create_date_time=#{orderCreateDateTime},
             order_real_pay=#{orderRealPay}
         where order_id = #{orderId}
     </update>

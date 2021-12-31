@@ -82,7 +82,7 @@ public class MaterialServiceImpl implements MaterialService {
 	@Override
 	public boolean updateMaterial(String name, Integer stock, Double price) {
 		final Material material = this.materialDao.selectMaterial(name);
-		material.setMaterialPrice(price);
+//		material.setMaterialPrice(price);
 		material.setMaterialStock(stock);
 		return this.materialDao.updateMaterial(material) == 1;
 	}

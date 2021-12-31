@@ -72,7 +72,26 @@ public class MaterialAction {
 	@RequestMapping(value = {"/update.do"}, method = {RequestMethod.GET})
 	@ApiOperation(value = "更新原料接口")
 	public ObjectModel updateMaterial(Material material) {
-		return null;
+		final ObjectModel objectModel = new ObjectModel();
+		if (material.getMaterialName() == null) {
+			objectModel.error();
+			return objectModel;
+		} else {
+			final Material materialByName = this.materialService.findMaterialByName(material.getMaterialName());
+			if (material.getMaterialStock() != null) {
+				materialByName.setMaterialStock(material.getMaterialStock());
+			} else {
+				objectModel.error();
+				return objectModel;
+			}
+			final boolean b = this.materialService.updateMaterial(materialByName.getMaterialName(), material.getMaterialStock(), material.getMaterialPrice());
+			if (!b) {
+				objectModel.error();
+			} else {
+				objectModel.setObject(materialByName);
+			}
+		}
+		return objectModel;
 	}
 
 

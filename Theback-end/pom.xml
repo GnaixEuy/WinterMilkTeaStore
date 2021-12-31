@@ -10,7 +10,7 @@
     </parent>
     <groupId>cn.limitless</groupId>
     <artifactId>Theback-end</artifactId>
-    <version>developer 0.0.4</version>
+    <version>developer 0.3.0</version>
     <name>Theback-end</name>
     <description>Theback-end</description>
     <properties>

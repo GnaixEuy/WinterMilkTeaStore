@@ -7,7 +7,6 @@ import cn.limitless.the_back_end.utils.FileNameUtil;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -53,15 +52,17 @@ public class ProductAction {
 	 */
 	@RequestMapping(value = {"/addProduct.do"}, method = {RequestMethod.POST})
 	@ApiOperation(value = "增加商品")
-	public ObjectModel addProduct(@NotNull @RequestBody Product product) {
+	public ObjectModel addProduct(Product product, String[] materialList) {
 		final ObjectModel objectModel = new ObjectModel();
-		final boolean addProductBoolean = this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(), product.getProductMaterialList().toArray(new String[0]));
+		final boolean addProductBoolean = this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(), materialList);
+		System.out.println(addProductBoolean);
 		if (addProductBoolean) {
 			final Product productByName = this.productService.findProductByName(product.getProductName());
 			objectModel.setObject(productByName);
 		} else {
 			objectModel.setRequestServiceStatus("failed");
 		}
+		System.out.println(objectModel.getRequestServiceStatus());
 		return objectModel;
 	}
 
@@ -99,7 +100,7 @@ public class ProductAction {
 	 */
 	@RequestMapping(value = {"/updateProduct.do",}, method = {RequestMethod.POST})
 	@ApiOperation(value = "更新商品接口", notes = "商品名称为空时错误")
-	public ObjectModel updateProduct(@RequestParam Product product) {
+	public ObjectModel updateProduct(Product product) {
 		final ObjectModel objectModel = new ObjectModel();
 		if (product.getProductId() == null) {
 			final String productName = product.getProductName();
@@ -164,6 +165,13 @@ public class ProductAction {
 		String saveFileName = FileNameUtil.getUUIDFileName() + FileNameUtil.getFileType(Objects.requireNonNull(productImage.getOriginalFilename()));
 		//得到项目中图片存储对路径
 		final String outPath = System.getProperty("user.dir") + "/Theback-end/target/classes/static/productImg";
+		final File file = new File(outPath);
+		if (!file.exists() && !file.isDirectory()) {
+			System.out.println("//不存在");
+			file.mkdir();
+		} else {
+			System.out.println("//目录存在");
+		}
 		//转存
 		final String imageOutPath = outPath + File.separator + saveFileName;
 		try {

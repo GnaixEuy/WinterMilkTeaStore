@@ -87,4 +87,14 @@ public interface OrderService {
 	 * @return 返回所有的价格大数据
 	 */
 	BigDecimal getAllPrice();
+
+	/**
+	 * 分页订单
+	 *
+	 * @param pageNum  页面号
+	 * @param pageSize 最大条目
+	 * @return pagei=Info
+	 */
+	PageInfo<Order> spiltOrders(Integer pageNum, Integer pageSize);
+
 }

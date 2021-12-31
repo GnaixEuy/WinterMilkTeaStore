@@ -11,7 +11,7 @@
  Target Server Version : 50731
  File Encoding         : 65001
 
- Date: 29/12/2021 22:32:40
+ Date: 31/12/2021 14:58:11
 */
 
 SET NAMES utf8mb4;
@@ -49,7 +49,7 @@ CREATE TABLE `Product` (
   PRIMARY KEY (`product_id`,`product_name`) USING BTREE,
   KEY `product_name` (`product_name`),
   KEY `产品原料关联` (`product_material_list`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of Product
@@ -62,16 +62,9 @@ INSERT INTO `Product` VALUES (4, '橙汁', '饮料', 13.00, 'IMG_4603.JPG', '纯
 INSERT INTO `Product` VALUES (5, '青瓜汁', '饮品', 13.00, 'IMG_4604.JPG', '纯净水@果葡萄浆');
 INSERT INTO `Product` VALUES (6, '苹果汁', '饮品', 13.00, 'IMG_4603.JPG', '纯净水@果葡萄浆');
 INSERT INTO `Product` VALUES (7, '草莓汁', '饮品', 13.00, 'IMG_4604.JPG', '纯净水@果葡萄浆');
-INSERT INTO `Product` VALUES (9, '冬乳奶茶1', '奶茶', 11.00, 'IMG_4604.JPG', '水@糖@奶茶粉');
-INSERT INTO `Product` VALUES (10, '冬乳奶茶-1483632412', '奶茶', 18.00, 'IMG_4603.JPG', '水@糖@奶茶粉');
-INSERT INTO `Product` VALUES (11, '冬乳奶茶-595611310', '奶茶', 18.00, 'IMG_4604.JPG', '水@糖@奶茶粉');
-INSERT INTO `Product` VALUES (12, '冬乳奶茶-1160470624', '奶茶', 18.00, 'IMG_4603.JPG', '水@糖@奶茶粉');
-INSERT INTO `Product` VALUES (21, '冬乳奶茶-2081995926', '奶茶', 18.00, 'IMG_4604.JPG', '水@糖@奶茶粉');
-INSERT INTO `Product` VALUES (22, '冬乳奶茶-1358763659', '奶茶', 18.00, 'IMG_4604.JPG', '水@糖@奶茶粉');
-INSERT INTO `Product` VALUES (23, '冬乳奶茶661572984', '奶茶', 18.00, 'IMG_4603.JPG', '水@糖@奶茶粉');
 INSERT INTO `Product` VALUES (27, '冬乳奶茶', '奶茶', 18.00, 'IMG_4604.JPG', '水@糖@奶茶粉');
 INSERT INTO `Product` VALUES (28, '椰汁', '饮料', 4.00, 'IMG_4604.JPG', '水@椰汁');
-INSERT INTO `Product` VALUES (29, '测试水', '果汁', 13.00, 'IMG_4602.JPG', '水@果葡萄浆');
+INSERT INTO `Product` VALUES (93, '来测试', '测试', 4.00, '50d6fa8db09b4c199a4b867879d6880d.jpeg', '奶茶粉@果葡萄浆');
 COMMIT;
 
 -- ----------------------------
@@ -95,8 +88,7 @@ CREATE TABLE `comment` (
 -- Records of comment
 -- ----------------------------
 BEGIN;
-INSERT INTO `comment` VALUES ('0001', '202112252103051', '1', '焯', 1);
-INSERT INTO `comment` VALUES ('testtest', 'test', 'test', '测试123222222333333', 1);
+INSERT INTO `comment` VALUES ('6bb22f1a9be94d929136641119ca6f3d2839e85d202112311444396bb22f1a9be94d929136641119ca6f3d2839e85d', '202112311444396bb22f1a9be94d929136641119ca6f3d2839e85d', '6bb22f1a9be94d929136641119ca6f3d2839e85d', '还可以', 1);
 COMMIT;
 
 -- ----------------------------
@@ -114,10 +106,12 @@ CREATE TABLE `material` (
 -- Records of material
 -- ----------------------------
 BEGIN;
-INSERT INTO `material` VALUES ('奶茶粉', 50, 3.00);
+INSERT INTO `material` VALUES ('test', 250, 2.00);
+INSERT INTO `material` VALUES ('奶茶粉', 5110, 3.00);
 INSERT INTO `material` VALUES ('果葡萄浆', 230, 2.00);
-INSERT INTO `material` VALUES ('椰汁', 30, 3.00);
-INSERT INTO `material` VALUES ('纯净水', 100, 1.00);
+INSERT INTO `material` VALUES ('椰汁', 3110, 3.00);
+INSERT INTO `material` VALUES ('测试原料', 200, 3.00);
+INSERT INTO `material` VALUES ('纯净水', 200, 3.00);
 COMMIT;
 
 -- ----------------------------
@@ -142,12 +136,9 @@ CREATE TABLE `order` (
 -- Records of order
 -- ----------------------------
 BEGIN;
-INSERT INTO `order` VALUES ('202112252103051', '1', 15.00, 0, -1, NULL, 0, '2021-12-25 21:03:05.082000');
-INSERT INTO `order` VALUES ('3', '1', 1.00, 1, NULL, '2021-03-22 00:00:00.000000', 1, NULL);
-INSERT INTO `order` VALUES ('4', '1', 1.00, 1, NULL, '2021-03-22 00:00:00.000000', 1, NULL);
-INSERT INTO `order` VALUES ('test', 'test', 13.20, 1, 6667, '2021-12-24 21:19:24.770000', 1, '2021-12-24 21:19:24.770000');
-INSERT INTO `order` VALUES ('test1111', 'test', 13.20, 0, 0, '2021-12-24 21:23:46.698000', 0, '2021-12-24 21:23:46.698000');
-INSERT INTO `order` VALUES ('test1211', 'test', 13.20, 0, 0, '2021-12-24 21:25:52.396000', 0, '2021-12-24 21:25:52.396000');
+INSERT INTO `order` VALUES ('202112302334246bb22f1a9be94d929136641119ca6f3d2839e85d', '6bb22f1a9be94d929136641119ca6f3d2839e85d', 25.00, 0, -1, NULL, 0, '2021-12-30 23:34:24.939000');
+INSERT INTO `order` VALUES ('20211231134505f104b4a47c618023ec49be02c7e2f060a2f98a95', 'f104b4a47c618023ec49be02c7e2f060a2f98a95', 26.00, 1, -1, '2021-12-31 14:52:46.363000', 0, '2021-12-31 14:52:46.363000');
+INSERT INTO `order` VALUES ('202112311444396bb22f1a9be94d929136641119ca6f3d2839e85d', '6bb22f1a9be94d929136641119ca6f3d2839e85d', 26.00, 1, -1, '2021-12-31 14:54:08.183000', 1, '2021-12-31 14:54:08.183000');
 COMMIT;
 
 -- ----------------------------
@@ -169,7 +160,10 @@ CREATE TABLE `order_item` (
 -- Records of order_item
 -- ----------------------------
 BEGIN;
-INSERT INTO `order_item` VALUES ('2021122521030510', '202112252103051', 6, 3, '大杯');
+INSERT INTO `order_item` VALUES ('20211231134505f104b4a47c618023ec49be02c7e2f060a2f98a950', '20211231134505f104b4a47c618023ec49be02c7e2f060a2f98a95', 6, 1, '中杯');
+INSERT INTO `order_item` VALUES ('20211231134505f104b4a47c618023ec49be02c7e2f060a2f98a951', '20211231134505f104b4a47c618023ec49be02c7e2f060a2f98a95', 4, 1, '中杯');
+INSERT INTO `order_item` VALUES ('202112311444396bb22f1a9be94d929136641119ca6f3d2839e85d0', '202112311444396bb22f1a9be94d929136641119ca6f3d2839e85d', 6, 1, '中杯');
+INSERT INTO `order_item` VALUES ('202112311444396bb22f1a9be94d929136641119ca6f3d2839e85d1', '202112311444396bb22f1a9be94d929136641119ca6f3d2839e85d', 4, 1, '中杯');
 COMMIT;
 
 -- ----------------------------
@@ -255,6 +249,8 @@ INSERT INTO `user` VALUES ('ccb8cf16b1ab2c3f1439b1199a6a8586b7f19cd6', '苏粤�
 INSERT INTO `user` VALUES ('d9ed43826f8ebbf754a3cd0e45f68b1f4072358d', NULL, '14019988a92023b21c8fbafb2b615c6ce575da38', NULL, NULL, '3333336', NULL);
 INSERT INTO `user` VALUES ('dd99426d516c3eafc603f5453c164df054f9825c', '453', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', NULL, '2021-12-27', '98778998778', NULL);
 INSERT INTO `user` VALUES ('f060bda3112c63392d00f121c453720427522ff9', '凡人无法', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', NULL, '2021-12-27', '67387626177', NULL);
+INSERT INTO `user` VALUES ('f06bf5bbf79cf01417c8b639d5d419a69ac413ac', '名字不重复', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', NULL, '2021-12-31', '99999999999', NULL);
+INSERT INTO `user` VALUES ('f104b4a47c618023ec49be02c7e2f060a2f98a95', '我叫测试', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', NULL, '2021-12-31', '09876543211', NULL);
 INSERT INTO `user` VALUES ('id3', 'test3', 'test', 663, '2021-12-24', 'test', 'test');
 INSERT INTO `user` VALUES ('test', 'test2', 'test', 663, '2021-12-23', 'test', 'test');
 COMMIT;
