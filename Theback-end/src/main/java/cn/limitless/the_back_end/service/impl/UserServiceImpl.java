@@ -1,5 +1,6 @@
 package cn.limitless.the_back_end.service.impl;
 
+import cn.limitless.the_back_end.controller.OrderAction;
 import cn.limitless.the_back_end.dao.UserDao;
 import cn.limitless.the_back_end.entity.User;
 import cn.limitless.the_back_end.service.UserService;
@@ -21,7 +22,7 @@ import java.util.List;
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends OrderAction implements UserService {
 
 	private final UserDao userDao;
 

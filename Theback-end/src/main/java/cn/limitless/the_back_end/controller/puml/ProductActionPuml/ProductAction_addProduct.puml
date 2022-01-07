@@ -1,0 +1,38 @@
+@startuml
+participant 管理员
+管理员 -> ProductAction : addProduct 添加商品接口
+activate ProductAction
+ProductAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> ProductAction : 返回创建好的服务响应包对象
+deactivate ObjectModel
+ProductAction -> ProductService : addProduct 调用添加商品业务
+activate ProductService
+ProductService -> ProductServiceImpl : addProduct : 实现添加商品业务
+activate ProductServiceImpl
+ProductServiceImpl -> Product : new 创建商品实体类
+activate Product
+Product --> ProductServiceImpl : 返回创建好的商品实体类
+deactivate Product
+ProductServiceImpl -> ProductDao : addProduct 持久层操作
+activate ProductDao
+ProductDao --> ProductServiceImpl : 返回该操作影响到的数据行数
+deactivate ProductDao
+ProductServiceImpl --> ProductService : 返回本次操作是否成功
+deactivate ProductServiceImpl
+ProductService --> ProductAction : 返回本次操作是否成功
+deactivate ProductService
+ProductAction -> ProductService : findProductByName 查询订单项中具体的商品信息进行补充
+activate ProductService
+ProductService -> ProductServiceImpl : findProductByName 查询订单项中具体的商品信息进行补充
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : selectProductByName 持久层操作
+activate ProductDao
+ProductDao --> ProductServiceImpl : 封装并返回查询到的数据
+deactivate ProductDao
+ProductServiceImpl --> ProductService : 返回实体类对象并对信息进行填充
+deactivate ProductServiceImpl
+ProductService --> ProductAction : 分装完整的数据对象
+deactivate ProductService
+return 返回请求服务的数据
+@enduml

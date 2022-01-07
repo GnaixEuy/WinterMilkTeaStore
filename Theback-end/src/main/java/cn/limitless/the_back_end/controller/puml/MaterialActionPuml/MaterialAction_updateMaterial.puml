@@ -1,0 +1,46 @@
+@startuml
+participant 管理员
+管理员 -> MaterialAction : updateMaterial 调用更新原料接口，判断传入参数是否有误
+activate MaterialAction
+MaterialAction -> ObjectModel : new 创建响应包对象
+activate ObjectModel
+ObjectModel --> MaterialAction : 返回响应包对象实体
+deactivate ObjectModel
+MaterialAction -> MaterialService : findMaterialByName 通过名字查找原料对象
+activate MaterialService
+MaterialService -> MaterialServiceImpl : findMaterialByName 实现通过名字查找原料对象
+activate MaterialServiceImpl
+MaterialServiceImpl -> MaterialDao : selectMaterial 持久层操作
+activate MaterialDao
+MaterialDao --> MaterialServiceImpl : 返回查询到到实体对象或nil
+deactivate MaterialDao
+MaterialServiceImpl --> MaterialService : 返回查询到到实体对象或nil
+deactivate MaterialServiceImpl
+MaterialService --> MaterialAction : 返回查询到到实体对象或nil
+deactivate MaterialService
+MaterialAction -> ObjectModel : error 当获取到的对象为nil的时候修改业务响应包状态为错误
+activate ObjectModel
+ObjectModel --> MaterialAction: 返回更新后状态的状态包
+deactivate ObjectModel
+MaterialAction -> MaterialService : updateMaterial 执行更新原料信息业务
+activate MaterialService
+MaterialService -> MaterialServiceImpl : updateMaterial 实现执行更新原料信息业务
+activate MaterialServiceImpl
+MaterialServiceImpl -> MaterialDao : selectMaterial 根据原料名称查询原本的信息，对获取到到数据进行修改，保证不会出现特征nil
+activate MaterialDao
+MaterialDao --> MaterialServiceImpl : 返回获取到的原料实体对象
+deactivate MaterialDao
+MaterialServiceImpl -> MaterialDao : updateMaterial 传入修改后的原料实体对象进行更新业务
+activate MaterialDao
+MaterialDao --> MaterialServiceImpl : 传入修改后的原料实体对象进行更新业务
+deactivate MaterialDao
+MaterialServiceImpl --> MaterialService : 返回业务是否成功
+deactivate MaterialServiceImpl
+MaterialService --> MaterialAction : 返回业务是否成功
+deactivate MaterialService
+MaterialAction -> ObjectModel : error 如果业务失败则设置服务响应包状态为失败
+activate ObjectModel
+ObjectModel --> MaterialAction : 返回更新好的服务状态响应包
+deactivate ObjectModel
+return 返回业务是否成功
+@enduml

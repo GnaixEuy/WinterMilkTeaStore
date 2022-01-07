@@ -1,0 +1,30 @@
+@startuml
+participant 管理员
+管理员 -> OrderAction : queryAllOrders 请求所有订单信息服务
+activate OrderAction
+OrderAction -> OrderService : queryOrders 请求所有订单信息服务
+activate OrderService
+OrderService -> OrderServiceImpl : queryOrders 实现请求所有订单信息服务
+activate OrderServiceImpl
+OrderServiceImpl -> OrderDao : selectOrders 持久层操作
+activate OrderDao
+OrderDao --> OrderServiceImpl : 返回查询到的所有订单数据实体对象集合(List)
+deactivate OrderDao
+OrderServiceImpl -> OrderItemDao : selectOrderItemByOrderId 查询订单项目详情
+activate OrderItemDao
+OrderItemDao --> OrderServiceImpl : 填充订单项目详情数据
+deactivate OrderItemDao
+OrderServiceImpl --> OrderService : 返回封装好的数据集合
+deactivate OrderServiceImpl
+OrderService --> OrderAction : 返回封装好的数据集合
+deactivate OrderService
+OrderAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel -> ObjectModel : new 根据服务状态更新响应包状态
+activate ObjectModel
+ObjectModel --> ObjectModel : 服务状态正确则填充数据对象
+deactivate ObjectModel
+ObjectModel --> OrderAction : 返回创建好的服务响应包对象并
+deactivate ObjectModel
+return 返回封装好的服务响应对象
+@enduml

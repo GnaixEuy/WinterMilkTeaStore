@@ -1,5 +1,6 @@
 package cn.limitless.the_back_end.service.impl;
 
+import cn.limitless.the_back_end.controller.MaterialAction;
 import cn.limitless.the_back_end.dao.MaterialDao;
 import cn.limitless.the_back_end.entity.Material;
 import cn.limitless.the_back_end.service.MaterialService;
@@ -16,7 +17,7 @@ import java.util.List;
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
 @Service
-public class MaterialServiceImpl implements MaterialService {
+public class MaterialServiceImpl extends MaterialAction implements MaterialService {
 
 	private final MaterialDao materialDao;
 

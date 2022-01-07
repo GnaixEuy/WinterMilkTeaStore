@@ -1,0 +1,30 @@
+@startuml
+participant 管理员
+管理员 -> AdminAction : adminLogin登入请求
+activate AdminAction
+AdminAction -> AdminLoginModel : 创建返回的数据格式包
+activate AdminLoginModel
+AdminLoginModel --> AdminAction
+deactivate AdminLoginModel
+AdminAction -> MD5Util : getMD5 调用密码加密方法
+activate MD5Util
+MD5Util --> AdminAction : 返回重新加密后的密码
+deactivate MD5Util
+AdminAction -> AdminService : findAdminById 寻找该id的账户
+activate AdminService
+AdminService -> AdminServiceImpl : findAdminById
+activate AdminServiceImpl
+AdminServiceImpl -> AdminDao : findAdminById
+activate AdminDao
+AdminDao --> AdminServiceImpl
+deactivate AdminDao
+AdminServiceImpl --> AdminService
+deactivate AdminServiceImpl
+AdminService --> AdminAction : 返回存在的实体类,进行密码比对
+deactivate AdminService
+AdminAction -> TokenUtil : sign 成功则生成token，反之返回失败信息
+activate TokenUtil
+TokenUtil --> AdminAction
+deactivate TokenUtil
+return  返回提示信息
+@enduml

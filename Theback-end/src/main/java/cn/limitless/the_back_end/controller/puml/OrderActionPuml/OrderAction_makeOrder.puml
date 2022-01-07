@@ -1,0 +1,34 @@
+@startuml
+participant 用户
+用户 -> OrderAction : makeOrder 用户请求清算购物车内容
+activate OrderAction
+OrderAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> OrderAction : 返回创建好的服务响应包对象
+deactivate ObjectModel
+OrderAction -> OrderService : makeOrder 调用订单生成业务
+activate OrderService
+OrderService -> OrderServiceImpl : makeOrder 实现订单生成业务
+activate OrderServiceImpl
+OrderServiceImpl -> ProductDao : selectProductById  通过订单中的商品id获取对应的商品信息
+activate ProductDao
+ProductDao --> OrderServiceImpl : 返回查询到到商品信息集合(List)
+deactivate ProductDao
+OrderServiceImpl -> Order : new 创建订单对象并更具传入的信息进行封装
+activate Order
+Order --> OrderServiceImpl : 返回创建好的订单对象
+deactivate Order
+OrderServiceImpl -> OrderDao : insertOrder 进行订单的持久层操作
+activate OrderDao
+OrderDao --> OrderServiceImpl : 返回操作改变的数据行数
+deactivate OrderDao
+OrderServiceImpl -> OrderItemDao : insertOrderItem : 订单的持久层操作 将起与订单绑定
+activate OrderItemDao
+OrderItemDao --> OrderServiceImpl : 返回持久层改变的行数
+deactivate OrderItemDao
+OrderServiceImpl --> OrderService : 响应本次服务是否成功
+deactivate OrderServiceImpl
+OrderService --> OrderAction : 响应本次服务是否成功
+deactivate OrderService
+return 返回本次服务请求的具体信息
+@enduml

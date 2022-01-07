@@ -1,0 +1,14 @@
+@startuml
+participant 管理员
+管理员 -> ProductAction : ajaxProductImage ajax图片上传接口
+activate ProductAction
+ProductAction -> ObjectModel : new  创建服务响应包对象
+activate ObjectModel
+ObjectModel --> ProductAction : 返回创建好的服务响应包对象
+deactivate ObjectModel
+ProductAction -> FileNameUtil : getFileType 获取上传文件的具体信息
+activate FileNameUtil
+FileNameUtil --> ProductAction : 上传成功后返回上传的地址
+deactivate FileNameUtil
+return 返回分装好的上传地址给请求对象
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+participant 管理员
+管理员 -> OrderAction : spiltOrders 订单分页接口
+activate OrderAction
+OrderAction -> OrderService : spiltOrders 调用分页订单服务
+activate OrderService
+OrderService -> OrderServiceImpl : spiltOrders 实现分页订单服务
+activate OrderServiceImpl
+OrderServiceImpl -> OrderServiceImpl : getOrderPageInfo 创建分页信息
+activate OrderServiceImpl
+OrderServiceImpl -> OrderDao : selectOrders 持久层操作
+activate OrderDao
+OrderDao --> OrderServiceImpl : 分页后的数据集合
+deactivate OrderDao
+OrderServiceImpl -> OrderItemDao : selectOrderItemByOrderId : 对查询的订单里的详情进行操作
+activate OrderItemDao
+OrderItemDao --> OrderServiceImpl : 填充补充查询到的数据内容
+deactivate OrderItemDao
+OrderServiceImpl --> OrderServiceImpl :  对相关数据进行封装处理
+deactivate OrderServiceImpl
+OrderServiceImpl --> OrderService : 放回封装好的分页数据
+deactivate OrderServiceImpl
+OrderService --> OrderAction :  返回分装好的分页数据
+deactivate OrderService
+OrderAction -> UserService : findUserById 通过userid补全相关信息
+activate UserService
+UserService -> UserServiceImpl : findUserById 具体实现
+activate UserServiceImpl
+UserServiceImpl -> UserDao : selectUserById 持久层操作
+activate UserDao
+UserDao --> UserServiceImpl : 返回获取到到信息并进行补全
+deactivate UserDao
+UserServiceImpl --> UserService : 封装数据
+deactivate UserServiceImpl
+UserService --> OrderAction : 返回封装好的用户数据
+deactivate UserService
+OrderAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> OrderAction : 返回创建好的服务响应包对象
+deactivate ObjectModel
+OrderAction -> ObjectModel : error 当服务状态出现错误时修改服务响应包状态
+activate ObjectModel
+ObjectModel --> OrderAction : 返回更新后的服务响应包对象
+deactivate ObjectModel
+return 返回所请求的服务数据
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+participant 管理员
+管理员 -> MaterialAction : deleteMaterial 删除原料接口 需要提供原料名称并对其进行数据判断
+activate MaterialAction
+MaterialAction -> MaterialService : deleteMaterial 调用删除原料业务服务
+activate MaterialService
+MaterialService -> MaterialServiceImpl : deleteMaterial 实现删除原料业务服务
+activate MaterialServiceImpl
+MaterialServiceImpl -> MaterialDao : deleteMaterial 持久层操作
+activate MaterialDao
+MaterialDao --> MaterialServiceImpl : 持久层操作所改变的行数
+deactivate MaterialDao
+MaterialServiceImpl --> MaterialService : 判断业务是否成功
+deactivate MaterialServiceImpl
+MaterialService --> MaterialAction : 判断业务是否成功
+deactivate MaterialService
+MaterialAction -> ObjectModel : new 创建响应包对象
+activate ObjectModel
+ObjectModel --> MaterialAction : 返回创建好的响应包对象,业务失败则直接创建服务状态失败的响应包对象
+deactivate ObjectModel
+return 放回业务情况
+@enduml

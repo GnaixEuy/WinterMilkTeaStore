@@ -1,0 +1,26 @@
+@startuml
+participant 管理员或用户
+管理员或用户 -> CommentAction : deleteComment 删除评论请求
+activate CommentAction
+CommentAction -> ObjectModel : new 创建响应对象
+activate ObjectModel
+ObjectModel --> CommentAction : 返回响应对象
+deactivate ObjectModel
+CommentAction -> CommentService : deleteComment 调用删除服务
+activate CommentService
+CommentService -> CommentServiceImpl : deleteComment
+activate CommentServiceImpl
+CommentServiceImpl -> CommentDao : deleteCommentById
+activate CommentDao
+CommentDao --> CommentServiceImpl
+deactivate CommentDao
+CommentServiceImpl --> CommentService
+deactivate CommentServiceImpl
+CommentService --> CommentAction
+deactivate CommentService
+CommentAction -> ObjectModel : error 如果失败则更改响应状态
+activate ObjectModel
+ObjectModel --> CommentAction
+deactivate ObjectModel
+return 响应删除结果
+@enduml

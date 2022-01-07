@@ -1,0 +1,30 @@
+@startuml
+participant Actor
+Actor -> ProductAction : getAllProduct获取所有商品信息
+activate ProductAction
+ProductAction -> ProductService : findAllProducts查找所有商品，默认以id升序
+activate ProductService
+ProductService -> ProductServiceImpl : findAllProducts获取所有商品
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : findAllProduct查询所有产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl --> ProductService
+deactivate ProductServiceImpl
+ProductService --> ProductAction
+deactivate ProductService
+ProductAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> ObjectModel
+deactivate ObjectModel
+ObjectModel --> ProductAction
+deactivate ObjectModel
+ProductAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> ProductAction
+deactivate ObjectModel
+return 返回所有的产品集合
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+participant 管理员
+管理员 -> CommentAction : commentNum 调用统计服务
+activate CommentAction
+CommentAction -> CommentService : queryComments 查询所有评论
+activate CommentService
+CommentService -> CommentServiceImpl : queryComments
+activate CommentServiceImpl
+CommentServiceImpl -> CommentDao : selectComments
+activate CommentDao
+CommentDao --> CommentServiceImpl
+deactivate CommentDao
+CommentServiceImpl --> CommentService
+deactivate CommentServiceImpl
+CommentService --> CommentAction : 返回完整集合
+deactivate CommentService
+CommentAction -> ObjectModel : new 返回数据格式对象
+activate ObjectModel
+ObjectModel -> ObjectModel : new 创建自身对象
+activate ObjectModel
+ObjectModel --> ObjectModel
+deactivate ObjectModel
+ObjectModel --> CommentAction : 返回完整集合size
+deactivate ObjectModel
+return 响应请求
+@enduml

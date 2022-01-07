@@ -1,0 +1,26 @@
+@startuml
+participant 管理员
+管理员 -> CommentAction : spiltComments 请求分页展示评论服务，传入页码，默认1
+activate CommentAction
+CommentAction -> ObjectModel : new 创建响应包对象
+activate ObjectModel
+ObjectModel --> CommentAction : 返回响应包对象
+deactivate ObjectModel
+CommentAction -> CommentService : spiltComments 调用分页服务
+activate CommentService
+CommentService -> CommentServiceImpl : spiltComments 调用分页服务具体实现
+activate CommentServiceImpl
+CommentServiceImpl -> CommentDao : selectComments 借助PageHelper插件查询所有数据
+activate CommentDao
+CommentDao --> CommentServiceImpl : 返回数据集合对象
+deactivate CommentDao
+CommentServiceImpl --> CommentService : 返回有PageInfo包装的数据集合对象
+deactivate CommentServiceImpl
+CommentService --> CommentAction : 返回有PageInfo包装的数据集合对象,判断数据是否出错(nil)
+deactivate CommentService
+CommentAction -> ObjectModel : error 如果服务错误则将响应包状态设置成失败
+activate ObjectModel
+ObjectModel --> CommentAction : 更新后的响应包
+deactivate ObjectModel
+return 返回数据响应包
+@enduml

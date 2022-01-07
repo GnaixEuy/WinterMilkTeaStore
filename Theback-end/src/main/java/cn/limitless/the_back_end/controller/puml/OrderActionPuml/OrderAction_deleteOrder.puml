@@ -1,0 +1,26 @@
+@startuml
+participant 管理员或用户
+管理员或用户 -> OrderAction : deleteOrder 删除订单接口 提供订单id
+activate OrderAction
+OrderAction -> OrderService : deleteOrderByOrderId 调用删除订单业务
+activate OrderService
+OrderService -> OrderServiceImpl : deleteOrderByOrderId 实现删除订单业务
+activate OrderServiceImpl
+OrderServiceImpl -> OrderDao : deleteOrder 持久层操作
+activate OrderDao
+OrderDao --> OrderServiceImpl : 返回持久层操作影响到到行数
+deactivate OrderDao
+OrderServiceImpl -> OrderItemDao : deleteOrderItemByOrderId 删除订单具体详情项目的数据
+activate OrderItemDao
+OrderItemDao --> OrderServiceImpl : 返回改变的行数
+deactivate OrderItemDao
+OrderServiceImpl --> OrderService : 根据改变的信息返回业务是否成功
+deactivate OrderServiceImpl
+OrderService --> OrderAction : 根据改变的信息返回业务是否成功
+deactivate OrderService
+OrderAction -> ObjectModel : new 根据业务情况创建服务响应包
+activate ObjectModel
+ObjectModel --> OrderAction : 返回创建好的服务请求响应包
+deactivate ObjectModel
+return 返回本次服务的请求情况
+@enduml

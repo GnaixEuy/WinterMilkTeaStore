@@ -1,0 +1,34 @@
+@startuml
+participant Actor
+Actor -> ProductAction : productAvailability 原料是否能支撑该商品
+activate ProductAction
+ProductAction -> ProductService : isProductAdequate 商品是否可用
+activate ProductService
+ProductService -> ProductServiceImpl : isProductAdequate 商品是否可用
+activate ProductServiceImpl
+ProductServiceImpl -> ProductServiceImpl : findProductById 通过id查找商品信息
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : selectProductById 通过id查找产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl --> ProductServiceImpl
+deactivate ProductServiceImpl
+ProductServiceImpl -> MaterialDao : selectMaterial 通过原料名字查询原料信息
+activate MaterialDao
+MaterialDao --> ProductServiceImpl
+deactivate MaterialDao
+ProductServiceImpl --> ProductService
+deactivate ProductServiceImpl
+ProductService --> ProductAction
+deactivate ProductService
+ProductAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> ObjectModel
+deactivate ObjectModel
+ObjectModel --> ProductAction
+deactivate ObjectModel
+return 返回原料类
+@enduml

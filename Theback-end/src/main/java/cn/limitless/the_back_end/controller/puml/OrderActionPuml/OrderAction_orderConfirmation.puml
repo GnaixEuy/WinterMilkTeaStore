@@ -1,0 +1,30 @@
+@startuml
+participant 用户
+用户 -> OrderAction : orderConfirmation 用于请求购物车详情
+activate OrderAction
+OrderAction -> ProductService : findProductById 通过保存的商品id 调用查询商品服务
+activate ProductService
+ProductService -> ProductServiceImpl : findProductById 实现查询商品服务
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : selectProductById 持久层操作
+activate ProductDao
+ProductDao --> ProductServiceImpl : 返回查询到并包装好的商品信息实体类
+deactivate ProductDao
+ProductServiceImpl --> ProductService : 返回查询到并包装好的商品信息实体类
+deactivate ProductServiceImpl
+ProductService --> OrderAction : 返回查询到并包装好的商品信息实体类
+deactivate ProductService
+OrderAction -> OrderItemModel : new 创建订单项响应包
+activate OrderItemModel
+OrderItemModel --> OrderAction : 返回创建好的订单项响应包并填充数据
+deactivate OrderItemModel
+OrderAction -> ObjectModel : new 创建服务响应包
+activate ObjectModel
+ObjectModel -> ObjectModel : 判断服务是否出现错误并更新服务状态
+activate ObjectModel
+ObjectModel --> ObjectModel : 返回并填充相关数据
+deactivate ObjectModel
+ObjectModel --> OrderAction : 返回处理好的服务响应包
+deactivate ObjectModel
+return 返回服务请求数据
+@enduml

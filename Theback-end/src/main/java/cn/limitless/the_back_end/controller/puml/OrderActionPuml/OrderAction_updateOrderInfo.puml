@@ -1,0 +1,34 @@
+@startuml
+participant 管理员
+管理员 -> OrderAction : updateOrderInfo 更新订单状态接口
+activate OrderAction
+OrderAction -> Order : new 创建一个暂时储存信息的订单对象
+activate Order
+Order --> OrderAction  : 返回创建的一个暂时储存信息的订单对象
+deactivate Order
+OrderAction -> OrderService : updateOrder 调用更新订单服务
+activate OrderService
+OrderService -> OrderServiceImpl : updateOrder 实现更新订单服务
+activate OrderServiceImpl
+OrderServiceImpl -> OrderDao : selectOrderById 通过id 查询订单信息实体
+activate OrderDao
+OrderDao --> OrderServiceImpl : 返回查询的到订单信息实体
+deactivate OrderDao
+OrderServiceImpl -> OrderDao : updateOrder : 对原本查询到的订单信息进行修改并执行更改的持久层操作
+activate OrderDao
+OrderDao --> OrderServiceImpl : 返回操作后收到影响的行数
+deactivate OrderDao
+OrderServiceImpl --> OrderService : 返回业务是否成功
+deactivate OrderServiceImpl
+OrderService --> OrderAction : 返回业务是否成功
+deactivate OrderService
+OrderAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> OrderAction : 返回创建好的服务响应包对象
+deactivate ObjectModel
+OrderAction -> ObjectModel : error 如果业务失败则更新服务响应包对象的特征
+activate ObjectModel
+ObjectModel --> OrderAction : 返回更新后的服务响应对象
+deactivate ObjectModel
+return 返回服务情况
+@enduml

@@ -1,5 +1,6 @@
 package cn.limitless.the_back_end.service.impl;
 
+import cn.limitless.the_back_end.controller.OrderAction;
 import cn.limitless.the_back_end.dao.OrderDao;
 import cn.limitless.the_back_end.dao.OrderItemDao;
 import cn.limitless.the_back_end.dao.ProductDao;
@@ -24,7 +25,7 @@ import java.util.List;
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
 @Service
-public class OrderServiceImpl implements OrderService {
+public class OrderServiceImpl extends OrderAction implements OrderService {
 
 	private final OrderDao orderDao;
 	private final OrderItemDao orderItemDao;
