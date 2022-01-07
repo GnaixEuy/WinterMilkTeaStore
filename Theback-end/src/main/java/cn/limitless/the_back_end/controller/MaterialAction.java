@@ -61,8 +61,8 @@ public class MaterialAction {
 	@RequestMapping(value = "/delete.do", method = {RequestMethod.DELETE})
 	@ApiOperation(value = "原料删除接口")
 	public ObjectModel deleteMaterial(@ApiParam(value = "要删除的原料名字") String name) {
-		final boolean b = this.materialService.deleteMaterial(name);
-		final ObjectModel objectModel = new ObjectModel();
+		boolean b = this.materialService.deleteMaterial(name);
+		ObjectModel objectModel = new ObjectModel();
 		if (!b) {
 			objectModel.setRequestServiceStatus("failed");
 		}
