@@ -1,6 +1,5 @@
 package cn.limitless.the_back_end.service.impl;
 
-import cn.limitless.the_back_end.controller.OrderAction;
 import cn.limitless.the_back_end.dao.MaterialDao;
 import cn.limitless.the_back_end.dao.ProductDao;
 import cn.limitless.the_back_end.entity.Material;
@@ -23,7 +22,7 @@ import java.util.List;
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
 @Service
-public class ProductServiceImpl extends OrderAction implements ProductService {
+public class ProductServiceImpl implements ProductService {
 
 	private final ProductDao productDao;
 	private final MaterialDao materialDao;
@@ -33,6 +32,7 @@ public class ProductServiceImpl extends OrderAction implements ProductService {
 		this.productDao = productDao;
 		this.materialDao = materialDao;
 	}
+
 
 	@Override
 	public List<Product> findAllProducts() {

@@ -1,6 +1,5 @@
 package cn.limitless.the_back_end.service.impl;
 
-import cn.limitless.the_back_end.controller.OrderAction;
 import cn.limitless.the_back_end.dao.OrderDao;
 import cn.limitless.the_back_end.dao.OrderItemDao;
 import cn.limitless.the_back_end.dao.ProductDao;
@@ -10,6 +9,7 @@ import cn.limitless.the_back_end.service.OrderService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -25,12 +25,13 @@ import java.util.List;
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
 @Service
-public class OrderServiceImpl extends OrderAction implements OrderService {
-
+public class OrderServiceImpl implements OrderService {
+	
 	private final OrderDao orderDao;
 	private final OrderItemDao orderItemDao;
 	private final ProductDao productDao;
 
+	@Autowired
 	public OrderServiceImpl(OrderDao orderDao, OrderItemDao orderItemDao, ProductDao productDao) {
 		this.orderDao = orderDao;
 		this.orderItemDao = orderItemDao;
