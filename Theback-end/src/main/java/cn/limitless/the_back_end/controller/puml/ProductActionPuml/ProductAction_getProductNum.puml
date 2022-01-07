@@ -1,0 +1,6 @@
+@startuml
+participant Actor
+Actor -> ProductAction : getProductNum 获取商品总数接口
+activate ProductAction
+return 商品总数接口
+@enduml

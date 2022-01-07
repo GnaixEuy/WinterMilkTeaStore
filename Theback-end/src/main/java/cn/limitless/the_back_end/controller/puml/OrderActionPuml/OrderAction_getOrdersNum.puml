@@ -1,0 +1,26 @@
+@startuml
+participant 管理员
+管理员 -> OrderAction : getOrdersNum 获取订单的总数目接口
+activate OrderAction
+OrderAction -> ObjectModel : new 创建服务响应包
+activate ObjectModel
+ObjectModel --> OrderAction : 返回创建好的服务响应包
+deactivate ObjectModel
+OrderAction -> OrderService : querOrdersNum 调用查询订单数目服务
+activate OrderService
+OrderService -> OrderServiceImpl : querOrdersNum 实现查询订单数目服务
+activate OrderServiceImpl
+OrderServiceImpl -> OrderDao : selectOrdersNum 持久层操作
+activate OrderDao
+OrderDao --> OrderServiceImpl  : 返回数据库中的订单数目条数
+deactivate OrderDao
+OrderServiceImpl --> OrderService : 返回数据库中的订单数目条数
+deactivate OrderServiceImpl
+OrderService --> OrderAction : 返回数据库中的订单数目条数
+deactivate OrderService
+OrderAction -> ObjectModel : error 当结果为nil 的时候修改服务状态为错误
+activate ObjectModel
+ObjectModel --> OrderAction : 返回更改后的服务状态
+deactivate ObjectModel
+return 返回封装好的数据
+@enduml

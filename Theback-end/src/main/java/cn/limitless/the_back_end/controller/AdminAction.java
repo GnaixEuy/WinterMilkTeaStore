@@ -36,21 +36,23 @@ public class AdminAction {
 	@ApiOperation(value = "登入方法", notes = "开放POST")
 	@RequestMapping(value = {"/login.do",}, method = {RequestMethod.POST})
 	public AdminLoginModel adminLogin(@ApiParam(value = "管理员账号") @RequestParam("id") Integer id, @ApiParam(value = "管理员密码") @RequestParam("password") String password) {
+		final AdminLoginModel adminLoginModel = new AdminLoginModel("failed");
 		if (id == null || password == null) {
-			return new AdminLoginModel("failed");
+			return adminLoginModel;
 		} else {
 			String encryptionPassword = MD5Util.getMD5(password);
 			final Admin admin = this.adminService.findAdminById(id);
 			if (admin == null) {
-				return new AdminLoginModel("id error", DateTimeUtil.getDateTime());
+				adminLoginModel.setLoginStatus("id error");
+				return adminLoginModel;
 			} else if (admin.getAdminPassword().equals(encryptionPassword)) {
 				final String sign = TokenUtil.sign(admin);
-				return new AdminLoginModel(admin, "success", DateTimeUtil.getDateTime(), sign);
+				adminLoginModel.setLoginStatus("success");
 			} else {
-				return new AdminLoginModel("password error", DateTimeUtil.getDateTime());
+				adminLoginModel.setLoginStatus("password error");
 			}
+			adminLoginModel.setLoginTime(DateTimeUtil.getDateTime());
+			return adminLoginModel;
 		}
 	}
-
-
 }

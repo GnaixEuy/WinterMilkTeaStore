@@ -1,0 +1,22 @@
+@startuml
+participant 管理员或用户
+管理员或用户 -> CommentAction : getCommentsByOrderId 请求通过订单id获取评论接口
+activate CommentAction
+CommentAction -> ObjectModel : new 创建响应模型
+activate ObjectModel
+ObjectModel --> CommentAction : 返回响应对象
+deactivate ObjectModel
+CommentAction -> CommentService : queryCommentByOrderId 通过订单id 查询评论实体
+activate CommentService
+CommentService -> CommentServiceImpl : queryCommentByOrderId
+activate CommentServiceImpl
+CommentServiceImpl -> CommentDao : selectCommentByOrderId
+activate CommentDao
+CommentDao --> CommentServiceImpl : 返回评论对象
+deactivate CommentDao
+CommentServiceImpl --> CommentService : 返回评论对象
+deactivate CommentServiceImpl
+CommentService --> CommentAction : 返回评论对象
+deactivate CommentService
+return 响应请求数据
+@enduml

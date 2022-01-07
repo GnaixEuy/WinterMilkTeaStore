@@ -1,0 +1,6 @@
+@startuml
+participant 管理员
+管理员 -> UserAction : getUserNum 获取用户数量接口
+activate UserAction
+return 用户接口数量
+@enduml

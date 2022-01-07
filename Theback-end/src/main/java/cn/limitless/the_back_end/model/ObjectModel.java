@@ -18,9 +18,12 @@ import java.util.Date;
 @ToString
 public class ObjectModel {
 
-	private Object object;
-	private Date dateTime;
-	private String requestServiceStatus;
+	private Object object; //data
+	private Date dateTime; //去掉
+	private String requestServiceStatus;    //code
+//	private  Integer code;
+//	private  String msg;
+
 
 	public ObjectModel() {
 		this.dateTime = new Date();

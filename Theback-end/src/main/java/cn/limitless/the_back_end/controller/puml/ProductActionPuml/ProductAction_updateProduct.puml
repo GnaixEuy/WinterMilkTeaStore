@@ -1,0 +1,78 @@
+@startuml
+participant Actor
+Actor -> ProductAction : updateProduct 更新商品接口
+activate ProductAction
+ProductAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> ProductAction
+deactivate ObjectModel
+ProductAction -> ProductService : findProductByName 通过名字查找商品，商品名同为主键不可重复
+activate ProductService
+ProductService -> ProductServiceImpl : findProductByName 通过名字查找商品，商品名同为主键不可重复
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : selectProductByName 通过名字查找产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl --> ProductService
+deactivate ProductServiceImpl
+ProductService --> ProductAction
+deactivate ProductService
+ProductAction -> ProductService : updateProduct 更新商品信息，两个信息分离同步，确保商品信息不丢失
+activate ProductService
+ProductService -> ProductServiceImpl : updateProduct 更新商品信息，两个信息分离同步，确保商品信息不丢失
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : selectProductById 通过id查找产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl -> ProductDao : updateProduct 更新产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl --> ProductService
+deactivate ProductServiceImpl
+ProductService --> ProductAction
+deactivate ProductService
+ProductAction -> ProductService : findProductById 通过id查找商品信息
+activate ProductService
+ProductService -> ProductServiceImpl : findProductById 通过id查找商品信息
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : selectProductById 通过id查找产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl --> ProductService
+deactivate ProductServiceImpl
+ProductService --> ProductAction
+deactivate ProductService
+ProductAction -> ProductService : updateProduct 更新商品信息，两个信息分离同步，确保商品信息不丢失
+activate ProductService
+ProductService -> ProductServiceImpl : updateProduct 更新商品信息，两个信息分离同步，确保商品信息不丢失
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : selectProductById 通过id查找产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl -> ProductDao : updateProduct 更新产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl --> ProductService
+deactivate ProductServiceImpl
+ProductService --> ProductAction
+deactivate ProductService
+ProductAction -> ProductService : findProductById 通过id查找商品信息
+activate ProductService
+ProductService -> ProductServiceImpl : findProductById 通过id查找商品信息
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : selectProductById 通过id查找产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl --> ProductService
+deactivate ProductServiceImpl
+ProductService --> ProductAction
+deactivate ProductService
+return 返回修改的行数
+@enduml

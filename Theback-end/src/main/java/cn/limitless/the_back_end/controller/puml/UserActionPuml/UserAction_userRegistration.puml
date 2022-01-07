@@ -1,0 +1,54 @@
+@startuml
+participant Actor
+Actor -> UserAction : userRegistration注册用户
+activate UserAction
+UserAction -> User : new登入方法
+activate User
+User --> UserAction
+deactivate User
+UserAction -> UserService : addUser添加用户
+activate UserService
+UserService -> UserServiceImpl : addUser添加用户
+activate UserServiceImpl
+UserServiceImpl -> MD5Util : getMD5用户id
+activate MD5Util
+MD5Util --> UserServiceImpl
+deactivate MD5Util
+UserServiceImpl -> MD5Util : getMD5用户电话
+activate MD5Util
+MD5Util --> UserServiceImpl
+deactivate MD5Util
+UserServiceImpl -> UserDao : addUser添加用户
+activate UserDao
+UserDao --> UserServiceImpl
+deactivate UserDao
+UserServiceImpl --> UserService
+deactivate UserServiceImpl
+UserService --> UserAction
+deactivate UserService
+UserAction -> ObjectModel : new 登入方法
+activate ObjectModel
+ObjectModel --> UserAction
+deactivate ObjectModel
+UserAction -> UserService : userLogin用户登入接口
+activate UserService
+UserService -> UserServiceImpl : userLogin用户登入接口
+activate UserServiceImpl
+UserServiceImpl -> UserDao : selectUserById用户id
+activate UserDao
+UserDao --> UserServiceImpl
+deactivate UserDao
+UserServiceImpl -> UserDao : selectUserByPhone用户电话
+activate UserDao
+UserDao --> UserServiceImpl
+deactivate UserDao
+UserServiceImpl -> MD5Util : getMD5加密处理
+activate MD5Util
+MD5Util --> UserServiceImpl
+deactivate MD5Util
+UserServiceImpl --> UserService
+deactivate UserServiceImpl
+UserService --> UserAction
+deactivate UserService
+return 返回封装的登入信息
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+participant 用户
+用户 -> CommentAction : makeComment 评论接口
+activate CommentAction
+CommentAction -> ObjectModel : new 创建响应实体
+activate ObjectModel
+ObjectModel --> CommentAction : 返回创建好的响应实体
+deactivate ObjectModel
+CommentAction -> CommentService : queryCommentByOrderId 通过订单id查询评论信息是否存在
+activate CommentService
+CommentService -> CommentServiceImpl : queryCommentByOrderId 查询该订单的评论
+activate CommentServiceImpl
+CommentServiceImpl -> CommentDao : selectCommentByOrderId 查询该订单的评论
+activate CommentDao
+CommentDao --> CommentServiceImpl
+deactivate CommentDao
+CommentServiceImpl --> CommentService : 返回nil 或 查询到到具体信息
+deactivate CommentServiceImpl
+CommentService --> CommentAction : 返回nil 或 查询到到具体信息
+deactivate CommentService
+CommentAction -> ObjectModel : error 为具体信息到时候响应包设置为失败
+activate ObjectModel
+ObjectModel --> CommentAction : 返回更新好的响应包状态
+deactivate ObjectModel
+CommentAction -> CommentService : addComment 为nil时调用创建评论方法
+activate CommentService
+CommentService -> CommentServiceImpl : addComment 具体实现
+activate CommentServiceImpl
+CommentServiceImpl -> Comment : new 创建评论实体对象
+activate Comment
+Comment --> CommentServiceImpl : 返回评论实体对象
+deactivate Comment
+CommentServiceImpl -> CommentDao : insertComment 进行insert持久层操作
+activate CommentDao
+CommentDao --> CommentServiceImpl : 返回影响到数据库行数
+deactivate CommentDao
+CommentServiceImpl --> CommentService : 返回服务是否成功
+deactivate CommentServiceImpl
+CommentService --> CommentAction : 返回服务是否成功
+deactivate CommentService
+CommentAction -> ObjectModel : error 如果服务失败则为具体信息到时候响应包设置为失败
+activate ObjectModel
+ObjectModel --> CommentAction : 返回更新好的状态包对象
+deactivate ObjectModel
+return 响应请求是否成功
+@enduml

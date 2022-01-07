@@ -1,0 +1,26 @@
+@startuml
+participant 管理员或用户
+管理员或用户 -> ProductAction : ajaxProductPagination 商品分页请求
+activate ProductAction
+ProductAction -> ProductService : splitPage 提供分页信息
+activate ProductService
+ProductService -> ProductServiceImpl : splitPage 实现获取具体分页好的商品集合
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : findAllProduct 查询所有商品并借助PageHelper插件进行封装
+activate ProductDao
+ProductDao --> ProductServiceImpl : 返回分页后的数据集合
+deactivate ProductDao
+ProductServiceImpl --> ProductService : 返回分装好的数据集合(List)
+deactivate ProductServiceImpl
+ProductService --> ProductAction : 返回分装好的数据集合(List)
+deactivate ProductService
+ProductAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel -> ObjectModel : new 填充服务是否成功信息
+activate ObjectModel
+ObjectModel --> ObjectModel : 填充数据信息
+deactivate ObjectModel
+ObjectModel --> ProductAction : 返回创建好的服务响应包对象
+deactivate ObjectModel
+return 返回本服务情况
+@enduml

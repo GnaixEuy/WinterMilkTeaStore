@@ -1,0 +1,30 @@
+@startuml
+participant 用户
+用户 -> OrderAction : userOrders 用户查询历史订单信息
+activate OrderAction
+OrderAction -> OrderService : queryOrderByCustomerId 通过用户id查询历史订单服务
+activate OrderService
+OrderService -> OrderServiceImpl : queryOrderByCustomerId 实现通过用户id查询历史订单服务
+activate OrderServiceImpl
+OrderServiceImpl -> OrderDao : selectOrderByCustomerId 持久层操作
+activate OrderDao
+OrderDao --> OrderServiceImpl : 返回查询到的数据实体
+deactivate OrderDao
+OrderServiceImpl -> OrderItemDao : selectOrderItemByOrderId 通过订单id查询订单的详情
+activate OrderItemDao
+OrderItemDao --> OrderServiceImpl : 封装查询到的信息
+deactivate OrderItemDao
+OrderServiceImpl --> OrderService  : 返回分装好的信息
+deactivate OrderServiceImpl
+OrderService --> OrderAction : 返回封装好的信息
+deactivate OrderService
+OrderAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel -> ObjectModel : new 填充正确获取的服务数据
+activate ObjectModel
+ObjectModel --> ObjectModel : 修改服务为正确状态
+deactivate ObjectModel
+ObjectModel --> OrderAction : 返回完善好的服务响应包
+deactivate ObjectModel
+return 返回请求服务的数据
+@enduml

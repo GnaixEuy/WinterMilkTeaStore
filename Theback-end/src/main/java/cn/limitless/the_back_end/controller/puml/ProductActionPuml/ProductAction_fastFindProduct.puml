@@ -1,0 +1,22 @@
+@startuml
+participant Actor
+Actor -> ProductAction : fastFindProduct
+activate ProductAction
+ProductAction -> ProductService : fuzzyQueryProduct
+activate ProductService
+ProductService -> ProductServiceImpl : fuzzyQueryProduct
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : vagueSelectProductByName
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl --> ProductService
+deactivate ProductServiceImpl
+ProductService --> ProductAction
+deactivate ProductService
+ProductAction -> ObjectModel : new
+activate ObjectModel
+ObjectModel --> ProductAction
+deactivate ObjectModel
+return
+@enduml

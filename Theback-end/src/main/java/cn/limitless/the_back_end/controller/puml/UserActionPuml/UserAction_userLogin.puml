@@ -1,0 +1,34 @@
+@startuml
+participant Actor
+Actor -> UserAction : userLogin 验证用户登入，成功则返回用户对象
+activate UserAction
+UserAction -> UserLoginModel : new 用户登录
+activate UserLoginModel
+UserLoginModel --> UserAction
+deactivate UserLoginModel
+UserAction -> UserService : userLogin 验证用户登入，成功则返回用户对象
+activate UserService
+UserService -> UserServiceImpl : userLogin 验证用户登入，成功则返回用户对象
+activate UserServiceImpl
+UserServiceImpl -> UserDao : selectUserById 通过id查找用户
+activate UserDao
+UserDao --> UserServiceImpl
+deactivate UserDao
+UserServiceImpl -> UserDao : selectUserByPhone 通过电话查找用户
+activate UserDao
+UserDao --> UserServiceImpl
+deactivate UserDao
+UserServiceImpl -> MD5Util : getMD5加密处理
+activate MD5Util
+MD5Util --> UserServiceImpl
+deactivate MD5Util
+UserServiceImpl --> UserService
+deactivate UserServiceImpl
+UserService --> UserAction
+deactivate UserService
+UserAction -> TokenUtil : sign验证用户登入，成功则返回用户对象
+activate TokenUtil
+TokenUtil --> UserAction
+deactivate TokenUtil
+return 返回封装的登入信息
+@enduml

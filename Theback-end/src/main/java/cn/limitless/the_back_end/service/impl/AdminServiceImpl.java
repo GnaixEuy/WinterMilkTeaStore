@@ -1,5 +1,6 @@
 package cn.limitless.the_back_end.service.impl;
 
+import cn.limitless.the_back_end.controller.AdminAction;
 import cn.limitless.the_back_end.dao.AdminDao;
 import cn.limitless.the_back_end.entity.Admin;
 import cn.limitless.the_back_end.service.AdminService;
@@ -14,9 +15,10 @@ import org.springframework.stereotype.Service;
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
 @Service
-public class AdminServiceImpl implements AdminService {
+public class AdminServiceImpl extends AdminAction implements AdminService {
 
 	private final AdminDao adminDao;
+
 	@Autowired
 	public AdminServiceImpl(AdminDao adminDao) {
 		this.adminDao = adminDao;

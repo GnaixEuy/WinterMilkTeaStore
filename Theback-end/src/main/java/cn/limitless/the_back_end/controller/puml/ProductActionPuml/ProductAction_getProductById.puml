@@ -1,0 +1,26 @@
+@startuml
+participant Actor
+Actor -> ProductAction : getProductById 通过id获取商品信息
+activate ProductAction
+ProductAction -> ProductService : findProductById 通过id查找商品信息
+activate ProductService
+ProductService -> ProductServiceImpl : findProductById 通过id查找商品信息
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : selectProductById 通过id查找产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl --> ProductService
+deactivate ProductServiceImpl
+ProductService --> ProductAction
+deactivate ProductService
+ProductAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> ObjectModel
+deactivate ObjectModel
+ObjectModel --> ProductAction
+deactivate ObjectModel
+return product产品
+@enduml

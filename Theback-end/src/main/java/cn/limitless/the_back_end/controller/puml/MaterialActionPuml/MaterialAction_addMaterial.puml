@@ -1,0 +1,26 @@
+@startuml
+participant 管理员
+管理员 -> MaterialAction : addMaterial 添加原料服务 判断提供所需要的数据
+activate MaterialAction
+MaterialAction -> MaterialService : addMaterial 调用添加原料业务
+activate MaterialService
+MaterialService -> MaterialServiceImpl : addMaterial 调用添加原料业务具体实现
+activate MaterialServiceImpl
+MaterialServiceImpl -> Material : new 创建原料实体类
+activate Material
+Material --> MaterialServiceImpl : 返回创建好的原料实体类
+deactivate Material
+MaterialServiceImpl -> MaterialDao : addMaterial 持久层操作
+activate MaterialDao
+MaterialDao --> MaterialServiceImpl : 返回改动的数据行数
+deactivate MaterialDao
+MaterialServiceImpl --> MaterialService : 响应业务是否成功
+deactivate MaterialServiceImpl
+MaterialService --> MaterialAction : 响应业务是否成功
+deactivate MaterialService
+MaterialAction -> ObjectModel : new 创建响应数据包对象
+activate ObjectModel
+ObjectModel --> MaterialAction : 返回创建好的响应数据包对象,如果业务失败则直接创建失败的响应对象
+deactivate ObjectModel
+return 响应业务是否成功
+@enduml

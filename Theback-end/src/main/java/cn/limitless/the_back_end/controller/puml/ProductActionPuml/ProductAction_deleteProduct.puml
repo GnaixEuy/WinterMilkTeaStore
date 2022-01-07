@@ -1,0 +1,38 @@
+@startuml
+participant 管理员
+管理员 -> ProductAction : deleteProduct 删除商品接口
+activate ProductAction
+ProductAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> ProductAction : 返回创建好的服务响应包对象
+deactivate ObjectModel
+ProductAction -> ProductService : deleteProduct 调用删除商品业务
+activate ProductService
+ProductService -> ProductServiceImpl : deleteProduct 实现删除商品业务
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : deleteProduct 持久层操作
+activate ProductDao
+ProductDao --> ProductServiceImpl : 返回操作影响到的行数
+deactivate ProductDao
+ProductServiceImpl --> ProductService : 返回此次删除是否成功
+deactivate ProductServiceImpl
+ProductService --> ProductAction : 返回此次删除是否成功
+deactivate ProductService
+ProductAction -> ProductService : deleteProductByName : 通过商品名称删除，id为nil无效数据时启用
+activate ProductService
+ProductService -> ProductServiceImpl : deleteProductByName : 调用删除商品业务
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : selectProductByName 查询商品的编号
+activate ProductDao
+ProductDao --> ProductServiceImpl : 商品的信息
+deactivate ProductDao
+ProductServiceImpl -> ProductDao : deleteProduct 通过商品编号进行删除
+activate ProductDao
+ProductDao --> ProductServiceImpl : 返回改变的行数
+deactivate ProductDao
+ProductServiceImpl --> ProductService : 返回是否成功
+deactivate ProductServiceImpl
+ProductService --> ProductAction : 返回是否成功
+deactivate ProductService
+return 返回服务运行状态
+@enduml

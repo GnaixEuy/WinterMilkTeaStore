@@ -1,0 +1,10 @@
+@startuml
+participant 用户
+用户 -> OrderAction : dropOrderItemFromOrder 将订单项目从购物车中剔除的业务 提供用户身份信息和删除的项目信息
+activate OrderAction
+OrderAction -> ObjectModel : new 根据服务项目创建服务响应包
+activate ObjectModel
+ObjectModel --> OrderAction : 返回创建好的服务响应包
+deactivate ObjectModel
+return 返回服务状态
+@enduml

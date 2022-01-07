@@ -1,5 +1,6 @@
 package cn.limitless.the_back_end.service.impl;
 
+import cn.limitless.the_back_end.controller.CommentAction;
 import cn.limitless.the_back_end.dao.CommentDao;
 import cn.limitless.the_back_end.entity.Comment;
 import cn.limitless.the_back_end.service.CommentService;
@@ -18,7 +19,7 @@ import java.util.List;
  * @see <a href='https://github.com/GnaixEuy'> GnaixEuy的GitHub </a>
  */
 @Service
-public class CommentServiceImpl implements CommentService {
+public class CommentServiceImpl extends CommentAction implements CommentService {
 
 	private final CommentDao commentDao;
 

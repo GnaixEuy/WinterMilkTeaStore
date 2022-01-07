@@ -1,0 +1,26 @@
+@startuml
+participant Actor
+Actor -> UserAction : spiltUsers用户信息分页查询
+activate UserAction
+UserAction -> UserService : splitAllUser用户信息分页查询
+activate UserService
+UserService -> UserServiceImpl : splitAllUser用户信息分页查询
+activate UserServiceImpl
+UserServiceImpl -> UserDao : findAllUser 查找所有用户
+activate UserDao
+UserDao --> UserServiceImpl
+deactivate UserDao
+UserServiceImpl --> UserService
+deactivate UserServiceImpl
+UserService --> UserAction
+deactivate UserService
+UserAction -> ObjectModel : new创建服务响应包对象
+activate ObjectModel
+ObjectModel --> UserAction
+deactivate ObjectModel
+UserAction -> ObjectModel : error 出现错误
+activate ObjectModel
+ObjectModel --> UserAction
+deactivate ObjectModel
+return 返回pageInfo 描述的装有当前页的集合
+@enduml

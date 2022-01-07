@@ -1,0 +1,22 @@
+@startuml
+participant 用户
+用户 -> CommentAction : getCommentsByUserId 通过用户id请求评论数据
+activate CommentAction
+CommentAction -> ObjectModel : new 创建响应实体
+activate ObjectModel
+ObjectModel --> CommentAction : 返回创建好的响应实体
+deactivate ObjectModel
+CommentAction -> CommentService : queryCommentsByUserId 通过用户id进行查询
+activate CommentService
+CommentService -> CommentServiceImpl : queryCommentsByUserId
+activate CommentServiceImpl
+CommentServiceImpl -> CommentDao : selectCommentByCustomerId
+activate CommentDao
+CommentDao --> CommentServiceImpl : 返回查询到的评论实体集合(List)
+deactivate CommentDao
+CommentServiceImpl --> CommentService : 返回查询到的评论实体集合(List)
+deactivate CommentServiceImpl
+CommentService --> CommentAction : 返回查询到的评论实体集合(List)并判断服务是否错误
+deactivate CommentService
+return 响应请求数据
+@enduml

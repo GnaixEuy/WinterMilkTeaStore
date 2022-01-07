@@ -1,0 +1,22 @@
+@startuml
+participant 管理员
+管理员 -> CommentAction : getAllComment 调用获取所有评论服务
+activate CommentAction
+CommentAction -> ObjectModel : new 创建响应对象
+activate ObjectModel
+ObjectModel --> CommentAction : 返回响应实体对象
+deactivate ObjectModel
+CommentAction -> CommentService : queryComments 查询所有所有评论结果集合
+activate CommentService
+CommentService -> CommentServiceImpl : queryComments
+activate CommentServiceImpl
+CommentServiceImpl -> CommentDao : selectComments
+activate CommentDao
+CommentDao --> CommentServiceImpl
+deactivate CommentDao
+CommentServiceImpl --> CommentService
+deactivate CommentServiceImpl
+CommentService --> CommentAction : 响应所有评论结果集合(List)
+deactivate CommentService
+return 展示数据
+@enduml

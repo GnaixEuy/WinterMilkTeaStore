@@ -1,0 +1,34 @@
+@startuml
+participant Actor
+Actor -> ProductAction : getProductByType 通过类型获取商品信息
+activate ProductAction
+ProductAction -> ProductService : findAllProducts 通过种类查找商品
+activate ProductService
+ProductService -> ProductServiceImpl : findAllProducts 通过种类查找商品
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : findAllProduct 通过产品类型查找产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl --> ProductService
+deactivate ProductServiceImpl
+ProductService --> ProductAction
+deactivate ProductService
+ProductAction -> ProductService : findProductByType 通过种类查找商品
+activate ProductService
+ProductService -> ProductServiceImpl : findProductByType 通过种类查找商品
+activate ProductServiceImpl
+ProductServiceImpl -> ProductDao : selectProductByType 通过产品类型查找产品
+activate ProductDao
+ProductDao --> ProductServiceImpl
+deactivate ProductDao
+ProductServiceImpl --> ProductService
+deactivate ProductServiceImpl
+ProductService --> ProductAction
+deactivate ProductService
+ProductAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> ProductAction
+deactivate ObjectModel
+return 同类型产品集合
+@enduml

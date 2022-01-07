@@ -1,0 +1,26 @@
+@startuml
+participant 管理员
+管理员 -> UserAction : allUserInfo 获取所有用户信息的操作
+activate UserAction
+UserAction -> UserService : findAllUser 调用获取所有用户信息业务
+activate UserService
+UserService -> UserServiceImpl : findAllUser 实现获取所有用户信息业务
+activate UserServiceImpl
+UserServiceImpl -> UserDao : findAllUser 持久层操作
+activate UserDao
+UserDao --> UserServiceImpl : 封装好的用户实体数据集合
+deactivate UserDao
+UserServiceImpl --> UserService : 封装好的用户实体数据集合
+deactivate UserServiceImpl
+UserService --> UserAction : 封装好的用户实体数据集合
+deactivate UserService
+UserAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel -> ObjectModel : 修改此次服务是否成功状态
+activate ObjectModel
+ObjectModel --> ObjectModel : 包装数据
+deactivate ObjectModel
+ObjectModel --> UserAction :  返回创建好的服务响应包对象
+deactivate ObjectModel
+return 返回装有所有用户信息的集合
+@enduml

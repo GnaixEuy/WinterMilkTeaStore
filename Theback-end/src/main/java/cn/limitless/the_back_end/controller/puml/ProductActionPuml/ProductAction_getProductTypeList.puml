@@ -1,0 +1,14 @@
+@startuml
+participant Actor
+Actor -> ProductAction : getProductTypeList 获取所有商品的种类列表
+activate ProductAction
+ProductAction -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel -> ObjectModel : new 创建服务响应包对象
+activate ObjectModel
+ObjectModel --> ObjectModel
+deactivate ObjectModel
+ObjectModel --> ProductAction
+deactivate ObjectModel
+return 所有商品的种类列表
+@enduml
