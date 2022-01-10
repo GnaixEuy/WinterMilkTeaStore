@@ -46,8 +46,10 @@ public class AdminAction {
 				adminLoginModel.setLoginStatus("id error");
 				return adminLoginModel;
 			} else if (admin.getAdminPassword().equals(encryptionPassword)) {
-				final String sign = TokenUtil.sign(admin);
+				final String token = TokenUtil.sign(admin);
 				adminLoginModel.setLoginStatus("success");
+				adminLoginModel.setAdmin(admin);
+				adminLoginModel.setToken(token);
 			} else {
 				adminLoginModel.setLoginStatus("password error");
 			}

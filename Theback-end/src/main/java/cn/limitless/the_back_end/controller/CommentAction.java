@@ -3,6 +3,8 @@ package cn.limitless.the_back_end.controller;
 import cn.limitless.the_back_end.entity.Comment;
 import cn.limitless.the_back_end.model.ObjectModel;
 import cn.limitless.the_back_end.service.CommentService;
+import cn.limitless.the_back_end.service.OrderService;
+import cn.limitless.the_back_end.service.UserService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,10 +30,14 @@ public class CommentAction {
 	private static final int PAGE_SHOW_SIZE = 5;
 
 	private final CommentService commentService;
+	private final UserService userService;
+	private final OrderService orderService;
 
 	@Autowired
-	public CommentAction(CommentService commentService) {
+	public CommentAction(CommentService commentService, UserService userService, OrderService orderService) {
 		this.commentService = commentService;
+		this.userService = userService;
+		this.orderService = orderService;
 	}
 
 	@RequestMapping(value = {"/all.do"}, method = {RequestMethod.GET})
@@ -39,7 +45,11 @@ public class CommentAction {
 	public ObjectModel getAllComment() {
 		final ObjectModel objectModel = new ObjectModel();
 		final List<Comment> comments = this.commentService.queryComments();
-		if (comments == null) {
+		for (Comment comment : comments) {
+			comment.setCommentUserId(this.userService.findUserById(comment.getCommentUserId()).getUserName());
+			comment.setCommentId(this.orderService.queryOrderByOrderId(comment.getCommentOrderId()).getOrderCreateDateTime().toString());
+		}
+		if (comments.size() < 1) {
 			objectModel.setRequestServiceStatus("failed");
 		} else {
 			objectModel.setObject(comments);
