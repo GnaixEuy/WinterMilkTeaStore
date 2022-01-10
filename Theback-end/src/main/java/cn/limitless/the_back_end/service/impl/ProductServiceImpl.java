@@ -83,9 +83,9 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public boolean addProduct(String productName, String productType, Double productPrice, String productImageId, String[] materialListString) {
 		int ret = 1;
-		ArrayList<String> strings = null;
+		ArrayList<String> strings;
 		try {
-			strings = new ArrayList<String>(Arrays.asList(materialListString));
+			strings = new ArrayList<>(Arrays.asList(materialListString));
 			final Product addProduct = new Product(null, productName, productType, productPrice, productImageId, strings);
 			ret = this.productDao.addProduct(addProduct);
 		} catch (Exception e) {

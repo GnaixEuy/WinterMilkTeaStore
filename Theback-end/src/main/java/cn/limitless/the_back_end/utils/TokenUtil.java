@@ -83,7 +83,8 @@ public class TokenUtil {
 			//创建token验证器
 			JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(TOKEN_SECRET)).withIssuer("auth0").build();
 			DecodedJWT decodedJWT = jwtVerifier.verify(token);
-			if (decodedJWT.getClaim("admin").asBoolean()) {
+			if (decodedJWT.getClaim("" +
+					"").asBoolean()) {
 				System.out.println("认证通过：");
 				System.out.println("adminName: " + decodedJWT.getClaim("adminName").asString());
 				System.out.println("过期时间：      " + decodedJWT.getExpiresAt());
