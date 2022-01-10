@@ -29,6 +29,14 @@ public interface MaterialService {
 	Material findMaterialByName(String name);
 
 	/**
+	 * 模糊查询原料
+	 *
+	 * @param likeName 模糊字段
+	 * @return 返回原料实体集合
+	 */
+	List<Material> quickFindMaterialByName(String likeName);
+
+	/**
 	 * 增加原料
 	 *
 	 * @param name  原料名字
