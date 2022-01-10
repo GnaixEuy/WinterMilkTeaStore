@@ -48,6 +48,17 @@ public class MaterialServiceImpl implements MaterialService {
 	}
 
 	/**
+	 * 模糊查询原料
+	 *
+	 * @param likeName 模糊字段
+	 * @return 返回原料实体集合
+	 */
+	@Override
+	public List<Material> quickFindMaterialByName(String likeName) {
+		return this.materialDao.likeMaterialName(likeName);
+	}
+
+	/**
 	 * 增加原料
 	 *
 	 * @param name  原料名字
