@@ -1,326 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>冬至奶茶店--原料管理</title>
-		<!-- Favicon icon -->
-		<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
-		<link href="./vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
-		<link href="./css/style.css" rel="stylesheet">
-		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
-			rel="stylesheet">
-	</head>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>冬至奶茶店--原料管理</title>
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+	<link href="./vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+	<link href="./css/style.css" rel="stylesheet">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+		rel="stylesheet">
+		<link rel="stylesheet" href="https://blog.gnaixeuy.cn/wp-content/themes/master-blog/css/APlayer.min.css">
+		<script src="https://blog.gnaixeuy.cn/wp-content/themes/master-blog/js/APlayer.min.js"></script>
+</head>
 
-	<body>
+<body>
 
-		<!-- 弹窗1 -->
-		<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="mymodal-AddMt">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">修改原料数量</h5>
-					</div>
-					<div class="modal-body col-xl-6 row card-body " style="margin:auto">
-						<input class="form-control" style="text-align: center;" type="text" 
-						v-for="(data,index) in input" :key="index" v-model="MaterialInfo[data.mod]" :placeholder="data.placeholder" />
+	<!-- 弹窗1 -->
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="UpdMymodal">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">修改原料数量</h5>
+				</div>
+				<div id="stock" class="modal-body col-xl-6 row card-body " style="margin:auto">
+					<input id="materialStock" class="form-control" style="text-align: center;" type="text"
+						v-model="message" />
 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger light " data-dismiss="modal">确认</button>
-						<button type="button" class="btn btn-danger light " data-dismiss="modal">取消</button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger light " data-dismiss="modal">确认</button>
+					<button type="button" class="btn btn-danger light " data-dismiss="modal">取消</button>
 
-					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 	弹窗1end -->
+
+
+	<div id="preloader">
+		<div class="sk-three-bounce">
+			<div class="sk-child sk-bounce1"></div>
+			<div class="sk-child sk-bounce2"></div>
+			<div class="sk-child sk-bounce3"></div>
+		</div>
+	</div>
+	<div id="main-wrapper">
+		<div class="nav-header">
+			<a href="index.html" class="brand-logo">
+				<img class="logo-abbr" src="./images/logo.png" alt="">
+			</a>
+
+			<div class="nav-control">
+				<div class="hamburger">
+					<span class="line"></span><span class="line"></span><span class="line"></span>
 				</div>
 			</div>
 		</div>
 
-		<!-- 	弹窗1end -->
-
-
-		<div id="preloader">
-			<div class="sk-three-bounce">
-				<div class="sk-child sk-bounce1"></div>
-				<div class="sk-child sk-bounce2"></div>
-				<div class="sk-child sk-bounce3"></div>
-			</div>
-		</div>
-		<div id="main-wrapper">
-			<div class="nav-header">
-				<a href="index.html" class="brand-logo">
-					<img class="logo-abbr" src="./images/logo.png" alt="">
-					<img class="logo-compact" src="./images/logo-text.jpg" alt="">
-					<img class="brand-title" src="./images/logo-text.jpg" alt="">
-				</a>
-
-				<div class="nav-control">
-					<div class="hamburger">
-						<span class="line"></span><span class="line"></span><span class="line"></span>
-					</div>
-				</div>
-			</div>
-
-			<div class="header">
-				<div class="header-content">
-					<nav class="navbar navbar-expand">
-						<div class="collapse navbar-collapse justify-content-between">
-							<div class="header-left">
-								<div class="dashboard_bar">
-									原料管理
-								</div>
+		<div class="header">
+			<div class="header-content">
+				<nav class="navbar navbar-expand">
+					<div class="collapse navbar-collapse justify-content-between">
+						<div class="header-left">
+							<div class="dashboard_bar">
+								原料管理
 							</div>
-							<ul class="navbar-nav header-right">
-								<li class="nav-item">
-									<div class="input-group search-area d-xl-inline-flex d-none">
-										<input type="text" class="form-control" placeholder="搜索...">
-										<div class="input-group-append">
-											<span class="input-group-text"><a href="javascript:void(0)"><i
-														class="flaticon-381-search-2"></i></a></span>
-										</div>
-									</div>
-								</li>
-								<li class="nav-item dropdown header-profile">
-									<a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
-										<img src="images/profile/17.jpg" width="20" alt="" />
-										<div class="header-info">
-											<span class="text-black"><strong>店员x</strong></span>
-											<p class="fs-12 mb-0">管理员</p>
-										</div>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right">
-
-										<a href="Login.html" class="dropdown-item ai-icon">
-											<svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
-												width="18" height="18" viewBox="0 0 24 24" fill="none"
-												stroke="currentColor" stroke-width="2" stroke-linecap="round"
-												stroke-linejoin="round">
-												<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-												<polyline points="16 17 21 12 16 7"></polyline>
-												<line x1="21" y1="12" x2="9" y2="12"></line>
-											</svg>
-											<span class="ml-2">退出 </span>
-										</a>
-									</div>
-								</li>
-							</ul>
 						</div>
-					</nav>
-				</div>
+						<ul class="navbar-nav header-right">
+							<li class="nav-item">
+								<div class="input-group search-area d-xl-inline-flex d-none">
+									<input type="text" class="form-control" placeholder="搜索...">
+									<div class="input-group-append">
+										<span class="input-group-text"><a href="javascript:void(0)"><i
+													class="flaticon-381-search-2"></i></a></span>
+									</div>
+								</div>
+							</li>
+							<li class="nav-item dropdown header-profile">
+								<a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
+									<img src="images/profile/17.jpg" width="20" alt="" />
+									<div class="header-info">
+										<span class="text-black"><strong>店员x</strong></span>
+										<p class="fs-12 mb-0">管理员</p>
+									</div>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right">
+
+									<a href="Login.html" class="dropdown-item ai-icon">
+										<svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
+											width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+											<polyline points="16 17 21 12 16 7"></polyline>
+											<line x1="21" y1="12" x2="9" y2="12"></line>
+										</svg>
+										<span class="ml-2">退出 </span>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</nav>
 			</div>
-			<!--**********************************
+		</div>
+		<!--**********************************
          Header end ti-comment-alt
      ***********************************-->
 
-			<!--**********************************
+		<!--**********************************
          Sidebar start
      ***********************************-->
-			<div class="deznav">
-				<div class="deznav-scroll">
-					<ul class="metismenu" id="menu">
-						<li><a href="index.html" aria-expanded="false">
-								<i class="flaticon-381-networking"></i>
-								<span class="nav-text">主页</span>
-							</a>
-							<ul aria-expanded="false">
-								<li><a href="index.html">主页</a></li>
-							</ul>
-						</li>
-						<li><a href="Products.html">
-								<i class="flaticon-381-television"></i>
-								<span class="nav-text">商品管理</span>
-							</a>
-							<ul aria-expanded="false">
-								<li><a href="Products.html">商品列表</a></li>
-								<li><a href="Material.html">原料管理</a></li>
-							</ul>
+		<div class="deznav">
+			<div class="deznav-scroll">
+				<ul class="metismenu" id="menu">
+					<li><a href="index.html" aria-expanded="false">
+							<i class="flaticon-381-networking"></i>
+							<span class="nav-text">主页</span>
+						</a>
+						<ul aria-expanded="false">
+							<li><a href="index.html">主页</a></li>
+						</ul>
+					</li>
+					<li><a href="Products.html">
+							<i class="flaticon-381-television"></i>
+							<span class="nav-text">商品管理</span>
+						</a>
+						<ul aria-expanded="false">
+							<li><a href="Products.html">商品列表</a></li>
+							<li><a href="Material.html">原料管理</a></li>
+						</ul>
 
-						</li>
-						<li><a href="orders.html" aria-expanded="false">
-								<i class="flaticon-381-layer-1"></i>
-								<span class="nav-text">订单列表</span>
-							</a>
-							<ul aria-expanded="false">
-								<li><a href="orders.html">订单列表</a></li>
-							</ul>
-						</li>
-						<li><a href="users.html" aria-expanded="false">
-								<i class="flaticon-381-heart"></i>
-								<span class="nav-text">用户</span>
-							</a>
-							<ul aria-expanded="false">
-								<li><a href="users.html">用户</a></li>
-							</ul>
+					</li>
+					<li><a href="orders.html" aria-expanded="false">
+							<i class="flaticon-381-layer-1"></i>
+							<span class="nav-text">订单列表</span>
+						</a>
+						<ul aria-expanded="false">
+							<li><a href="orders.html">订单列表</a></li>
+						</ul>
+					</li>
+					<li><a href="users.html" aria-expanded="false">
+							<i class="flaticon-381-heart"></i>
+							<span class="nav-text">用户</span>
+						</a>
+						<ul aria-expanded="false">
+							<li><a href="users.html">用户</a></li>
+						</ul>
 
-						</li>
-						<li><a href="reviews.html" aria-expanded="false">
-								<i class="flaticon-381-notepad"></i>
-								<span class="nav-text">评价</span>
-							</a>
-							<ul aria-expanded="false">
-								<li><a href="reviews.html">评价</a></li>
-							</ul>
-						</li>
+					</li>
+					<li><a href="reviews.html" aria-expanded="false">
+							<i class="flaticon-381-notepad"></i>
+							<span class="nav-text">评价</span>
+						</a>
+						<ul aria-expanded="false">
+							<li><a href="reviews.html">评价</a></li>
+						</ul>
+					</li>
 
-					</ul>
+				</ul>
 
-				</div>
 			</div>
-			<!--**********************************
+		</div>
+		<!--**********************************
             Sidebar end
         ***********************************-->
 
-			<!--**********************************
+		<!--**********************************
             Content body start
         ***********************************-->
-			<div class="content-body">
-				<div class="container-fluid">
-					<!-- Add Order -->
+		<div class="content-body">
+			<div class="container-fluid">
+				<!-- Add Order -->
 
-					<!-- <div class="page-titles">
+				<!-- <div class="page-titles">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="javascript:void(0)">Shop</a></li>
 						<li class="breadcrumb-item active"><a href="javascript:void(0)">Product Order</a></li>
 					</ol>
                 </div> -->
-					<div class="  mb-md-4 mb-2">
+				<div>
+					<label>原料名称：</label>
+					<input type="text" v-model:value="id" style="width: 150px;" id="mname">
+					<label>原料库存：</label>
+					<input type="text" v-model:value="name" style="width: 150px;" id="mstore">
+					<label>原料价格：</label>
+					<input type="text" v-model:value="name" style="width: 150px;" id="mprice" " > 
+						<button type=" button" class="btn btn-primary light fs-16 ml-3" onclick="add()" id="add">添加</button>
+
+				</div>
+				<br>
+				<!-- <div class="  mb-md-4 mb-2">
 						<a href="AddProduct.html" class="btn btn-primary light fs-16 ml-3">添加原料</a>
 						<i class="fa  scale5 ml-3"></i>
 						</button>
-					</div>
-					<div  class="row">
-						<div class="col-lg-12">
-							<div class="card">
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table table-sm mb-0 table-responsive-lg text-black">
-											<thead>
-												<tr>
-													<th>原料</th>
-													<th>库存</th>
-													<th>价格</th>
-													<th>操作</th>
-
-												</tr>
-											</thead>
-											<tbody id="Material" >
-												<tr  class="btn-reveal-trigger" v-for="item in dynamic">
+					</div> -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-sm mb-0 table-responsive-lg text-black">
+										<thead>
+											<tr>
+												<th>原料</th>
+												<th>库存</th>
+												<th>进价</th>
+												<th>修改库存</th>
+											</tr>
+										</thead>
+										<tbody id="material">
+											<!-- <tr  class="btn-reveal-trigger" v-for="(item,index) in dynamic":key="item.id" >
 													<td class="py-2" >{{item.materialName}}</td>
 													<td class="py-2" >{{item.materialStock}}</td>
 													<td class="py-2" >{{item.materialPrice}}</td>
 													<td class="py-2">
-														<div class="dropdown text-sans-serif"><button
+														<div class="dropdown text-sans-serif"><button 
 																class="btn btn-primary tp-btn-light sharp" type="button"
 																id="order-dropdown-0" data-toggle="dropdown"
 																data-boundary="viewport" aria-haspopup="true"
-																aria-expanded="false"><span><svg
-																		xmlns="http://www.w3.org/2000/svg"
-																		xmlns:xlink="http://www.w3.org/1999/xlink"
-																		width="18px" height="18px" viewBox="0 0 24 24"
-																		version="1.1">
-																		<g stroke="none" stroke-width="1" fill="none"
-																			fill-rule="evenodd">
-																			<rect x="0" y="0" width="24" height="24">
-																			</rect>
-																			<circle fill="#000000" cx="5" cy="12" r="2">
-																			</circle>
-																			<circle fill="#000000" cx="12" cy="12"
-																				r="2"></circle>
-																			<circle fill="#000000" cx="19" cy="12"
-																				r="2"></circle>
-																		</g>
-																	</svg></span></button>
-															<div class="dropdown-menu dropdown-menu-right">
-																<a class="dropdown-item" href="#mymodal-AddMt"
-																	data-toggle="modal">
-																	<i class="las la-check-circle text-success mr-3 scale5"
-																		@click="add()"></i>修改原料库存</a>
-																<a href="javascript:void(0);" data-dismiss="alert"
-																	aria-label="Close" class="dropdown-item"><i
-																		class="las la-times-circle text-danger mr-3 scale5 sweet-ajax " @click="del()" ></i>删除原料</a>
-															</div>
+																aria-expanded="false">修改库存</button>
 														</div>
 													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
+												</tr> -->
+
+										</tbody>
+									</table>
+
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 
 
-			<div class="footer">
+		<div class="footer">
 				<div class="copyright">
 					<p>Copyright © Designed &amp; Developed by <a href="http://www.bootstrapmb.com"
 							target="_blank">DexignZone</a> 2020</p>
 				</div>
+				<div class="aplayer" data-id="8045906002"     data-fixed="true" data-server="tencent" data-volume="0.7"
+				data-type="playlist" data-autoplay="true">
+			</div>
+			<script src="https://blog.gnaixeuy.cn/wp-content/themes/master-blog/js/Meting.min.js"></script>
 			</div>
 
 
-		</div>
+	</div>
 
 
-		<script src="./vendor/global/global.min.js"></script>
-		<script src="./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-		<script src="./js/custom.min.js"></script>
-		<script src="./js/deznav-init.js"></script>
+	<script src="./vendor/global/global.min.js"></script>
+	<script src="./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<script src="./js/custom.min.js"></script>
+	<script src="./js/deznav-init.js"></script>
 
-		<!-- <script src="./js/plugins-init/select2-init.js"></script> -->
-		<script src="./vendor/highlightjs/highlight.pack.min.js"></script>
+	<!-- <script src="./js/plugins-init/select2-init.js"></script> -->
+	<script src="./vendor/highlightjs/highlight.pack.min.js"></script>
 
-		<script src="https://vuejs.org/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="https://vuejs.org/js/vue.js" type="text/javascript" charset="utf-8"></script> -->
 
 
-	</body>
+</body>
+<script>
+	$(document).ready(() => {
+		show()
+		reflashAdminInfo()
+	})
+
+	function show() {
+		$.get({
+			url: "http://localhost:8888/material/materials.do",
+			data: '',
+			success: function (res) {
+				var temp = $("#material")
+				temp.html('')
+				res.object.forEach(element => {
+					temp.append('<tr  class="btn-reveal-trigger"  ><td class="py-2" >' +
+						element.materialName + '</td><td class="py-2" >' +
+						element.materialStock + '</td><td class="py-2" >' +
+						element.materialPrice +
+						'</td><td class="py-2"><div class="dropdown text-sans-serif"><input type="text"  style="width: 50px;" id="updstock" placeholder="' +
+						element.materialStock + '" value="" ><button type="button" class="btn btn-primary light fs-16 ml-3" id="submitStock" onclick="upd(\'' +
+						element.materialName + '\')">确认</button> </div> </td> </tr>')
+				})
+			}
+		})
+	}
+
+
+	function add() {
+		var mname = $("#mname").val();
+		var mstore = $("#mstore").val();
+		var mprice = $("#mprice").val();
+		$.ajax({
+			type: "get",
+			url: "http://localhost:8888/material/add.do",
+			data: {
+				"name": mname,
+				"stock": mstore,
+				"price": mprice,
+			},
+			success: function (res) {
+				if ("success" == res.requestServiceStatus) {
+					alert("添加成功")
+					window.location.href = "Material.html"
+
+				} else if ("failed" == res.requestServiceStatus) {
+					alert("原料已经存在，您可以选择修改他的库存！")
+				}
+			},
+			async: false,
+			error: function () {
+				// alert('服务器出现问题啦，请稍后再试试！')
+
+			}
+		})
+	}
+
+
+	function upd(materialName) {
+		var materialStock = $("#updstock").val();
+		$.ajax({
+			type: "get",
+			url: "http://localhost:8888/material/update.do",
+			data: {
+				"materialName": materialName,
+				"materialStock": materialStock,
+			},
+			dataType: "json",
+			success: function (response) {
+				if (response.requestServiceStatus == 'success') {
+					alert('库存修改成功')
+					show()
+				} else {
+					alert('库存修改失败，请重试！')
+				}
+			},
+			async: false,
+			error: function () {
+				// alert('服务器出错！')
+
+			}
+		});
+	}
+
+	function reflashAdminInfo() {
+		let adminName = localStorage.getItem('adminName')
+		$('#main-wrapper > div.header > div > nav > div > ul > li.nav-item.dropdown.header-profile > a > div > span').html(adminName)
+	}
+</script>
 
 </html>
-
-<script type="text/javascript">
-
-   new Vue({
-        el:"#Material",
-        data:{
-            dynamic:[]
-        },
-        methods:{
-            show:function () {
-                let ma = this;
-                $.ajax({
-                    url:"http://localhost:8888/material/materials.do",
-					 // url:"http://192.168.2.1:8888/material/materials.do",
-                    type:"get",
-                    success:function (data) {
-                        // var list = JSON.parse(data);
-                        ma.dynamic = data.object;
-						// console.log(data.object);
-                    }
-                })
-            },
-			add:function(){
-			  var newData = {mod: 'address', placeholder: ''}   //添加循环数据
-			  this.inputData.push(newData)
-			  this.$set(this.userInfo, 'address',  '');         //添加model数据
-			            //父级数据      //key    //value
-			},
-			del:function(){
-			  this.inputData.splice(0,1)                     //删除循环里的name数据
-			  this.$delete(this.userInfo, 'name1')          //删除data里对应的model数据
-			               //父级数据      //key
-			},
-        },
-        mounted:function() {
-            this.show();
-			this.add();
-			this.del();
-			
-        },
-		
-    })
-
-</script>

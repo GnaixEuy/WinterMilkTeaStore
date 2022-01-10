@@ -14,6 +14,8 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
 		rel="stylesheet">
+	<link rel="stylesheet" href="https://blog.gnaixeuy.cn/wp-content/themes/master-blog/css/APlayer.min.css">
+	<script src="https://blog.gnaixeuy.cn/wp-content/themes/master-blog/js/APlayer.min.js"></script>
 </head>
 
 <body>
@@ -28,8 +30,6 @@
 		<div class="nav-header">
 			<a href="index.html" class="brand-logo">
 				<img class="logo-abbr" src="./images/logo.png" alt="">
-				<img class="logo-compact" src="./images/logo-text.png" alt="">
-				<img class="brand-title" src="./images/logo-text.png" alt="">
 			</a>
 
 			<div class="nav-control">
@@ -58,6 +58,38 @@
 									</div>
 								</div>
 							</li>
+							<li class="nav-item dropdown notification_dropdown">
+								<a class="nav-link  ai-icon" href="javascript:void(0)" role="button"
+									data-toggle="dropdown">
+									<svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+										xmlns="http://www.w3.org/2000/svg">
+										<path
+											d="M22.75 15.8385V13.0463C22.7471 10.8855 21.9385 8.80353 20.4821 7.20735C19.0258 5.61116 17.0264 4.61555 14.875 4.41516V2.625C14.875 2.39294 14.7828 2.17038 14.6187 2.00628C14.4546 1.84219 14.2321 1.75 14 1.75C13.7679 1.75 13.5454 1.84219 13.3813 2.00628C13.2172 2.17038 13.125 2.39294 13.125 2.625V4.41534C10.9736 4.61572 8.97429 5.61131 7.51794 7.20746C6.06159 8.80361 5.25291 10.8855 5.25 13.0463V15.8383C4.26257 16.0412 3.37529 16.5784 2.73774 17.3593C2.10019 18.1401 1.75134 19.1169 1.75 20.125C1.75076 20.821 2.02757 21.4882 2.51969 21.9803C3.01181 22.4724 3.67904 22.7492 4.375 22.75H9.71346C9.91521 23.738 10.452 24.6259 11.2331 25.2636C12.0142 25.9013 12.9916 26.2497 14 26.2497C15.0084 26.2497 15.9858 25.9013 16.7669 25.2636C17.548 24.6259 18.0848 23.738 18.2865 22.75H23.625C24.321 22.7492 24.9882 22.4724 25.4803 21.9803C25.9724 21.4882 26.2492 20.821 26.25 20.125C26.2486 19.117 25.8998 18.1402 25.2622 17.3594C24.6247 16.5786 23.7374 16.0414 22.75 15.8385ZM7 13.0463C7.00232 11.2113 7.73226 9.45223 9.02974 8.15474C10.3272 6.85726 12.0863 6.12732 13.9212 6.125H14.0788C15.9137 6.12732 17.6728 6.85726 18.9703 8.15474C20.2677 9.45223 20.9977 11.2113 21 13.0463V15.75H7V13.0463ZM14 24.5C13.4589 24.4983 12.9316 24.3292 12.4905 24.0159C12.0493 23.7026 11.716 23.2604 11.5363 22.75H16.4637C16.284 23.2604 15.9507 23.7026 15.5095 24.0159C15.0684 24.3292 14.5411 24.4983 14 24.5ZM23.625 21H4.375C4.14298 20.9999 3.9205 20.9076 3.75644 20.7436C3.59237 20.5795 3.50014 20.357 3.5 20.125C3.50076 19.429 3.77757 18.7618 4.26969 18.2697C4.76181 17.7776 5.42904 17.5008 6.125 17.5H21.875C22.571 17.5008 23.2382 17.7776 23.7303 18.2697C24.2224 18.7618 24.4992 19.429 24.5 20.125C24.4999 20.357 24.4076 20.5795 24.2436 20.7436C24.0795 20.9076 23.857 20.9999 23.625 21Z"
+											fill="#4C8147" />
+									</svg>
+									<span class="badge light text-white bg-primary rounded-circle">12</span>
+								</a>
+								<div class="dropdown-menu rounded dropdown-menu-right">
+									<div id="DZ_W_Notification1" class="widget-media dz-scroll p-3 height380">
+										<ul class="timeline">
+											<li>
+												<div class="timeline-panel">
+													<div class="media mr-2">
+														<img alt="image" width="50" src="images/avatar/1.jpg">
+													</div>
+													<div class="media-body">
+														<h6 class="mb-1">顾客1</h6>
+														<small class="d-block">29 July 2020 - 02:26 PM</small>
+													</div>
+												</div>
+											</li>
+
+										</ul>
+									</div>
+									<!-- <a class="all-notification" href="javascript:void(0)">See all notifications <i
+											class="ti-arrow-right"></i></a> -->
+								</div>
+							</li>
 							<li class="nav-item dropdown header-profile">
 								<a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
 									<img src="images/profile/17.jpg" width="20" alt="" />
@@ -84,8 +116,8 @@
 				</nav>
 			</div>
 		</div>
-		
-<!-- 左侧导航栏 -->
+
+		<!-- 左侧导航栏 -->
 		<div class="deznav">
 			<div class="deznav-scroll">
 				<ul class="metismenu" id="menu">
@@ -103,7 +135,7 @@
 						</a>
 						<ul aria-expanded="false">
 							<li><a href="Products.html">商品列表</a></li>
-							<li><a href="Material.html" >原料管理</a></li>
+							<li><a href="Material.html">原料管理</a></li>
 						</ul>
 					</li>
 					<li><a href="orders.html" aria-expanded="false">
@@ -136,26 +168,28 @@
 		</div>
 
 
-<!-- 主要内容 -->
+		<!-- 主要内容 -->
 		<div class="content-body">
 			<!-- row -->
 			<div class="container-fluid">
-				
+
 				<div class="row">
 					<div class="col-xl-3 col-xxl-6 col-sm-6">
 						<div class="card grd-card">
 							<div class="card-body">
 								<div class="media align-items-center">
 									<div class="media-body mr-2">
-										
-										<h2 id="productNum" class="text-white font-w600"></h2>
+
+										<h2 id="productNum" class="text-white font-w600">NAN</h2>
 										<span class="text-white">上架奶茶</span>
 									</div>
 									<div class="d-inline-block position-relative donut-chart-sale">
-										<span class="donut1" data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'>6/8</span>
+										<span class="donut1"
+											data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'>1/2</span>
 										<small class="text-primary">
-										<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<g clip-path="url(#clip0)">
+											<svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+												xmlns="http://www.w3.org/2000/svg">
+												<g clip-path="url(#clip0)">
 													<path
 														d="M30 7.03697H21.4497V1.75781H27.7137V0H19.6918V7.03697H11.1417V12.3132H12.9572L13.1193 14.7549H8.50227C5.03494 14.7549 2.17072 17.3859 1.80038 20.7561C0.75531 21.1073 0 22.0953 0 23.2571C0 24.4244 0.762405 25.4164 1.81526 25.7632C2.1769 28.1582 4.24873 30 6.74286 30H27.0115L28.1845 12.3132H30V7.03697ZM8.50227 16.5127H16.2202C18.669 16.5127 20.7097 18.2881 21.1263 20.6188H3.59619C4.01276 18.2881 6.05324 16.5127 8.50227 16.5127ZM2.63809 22.3766H22.0841C22.5696 22.3766 22.9646 22.7717 22.9646 23.2569C22.9646 23.7424 22.5696 24.1372 22.0841 24.1372H2.63809C2.15263 24.1372 1.75781 23.7424 1.75781 23.2569C1.75781 22.7717 2.15263 22.3766 2.63809 22.3766ZM6.74286 28.2422C5.26886 28.2422 4.02351 27.2479 3.63968 25.8952H21.0825C20.6989 27.2479 19.4536 28.2422 17.9794 28.2422H6.74286ZM25.3665 28.2422H21.7738C22.3618 27.5517 22.7655 26.7002 22.907 25.7632C23.9598 25.4164 24.7224 24.4244 24.7224 23.2571C24.7224 22.0953 23.9671 21.1073 22.9221 20.7561C22.5517 17.3859 19.6877 14.7549 16.2202 14.7549H14.881L14.7189 12.3132H26.4228L25.3665 28.2422ZM28.2422 10.5553H12.8996V8.79478H28.2422V10.5553Z"
 														fill="#46c150" />
@@ -178,12 +212,12 @@
 							<div class="card-body">
 								<div class="media align-items-center">
 									<div class="media-body mr-2">
-										<h2 class="text-white font-w600">￥1887620.00</h2>
+										<h2 class="text-white font-w600">￥NAN</h2>
 										<span class="text-white">总收入</span>
 									</div>
 									<div class="d-inline-block position-relative donut-chart-sale">
 										<span class="donut1"
-											data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'>3/8</span>
+											data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'>1/2</span>
 										<small class="text-primary">
 											<svg width="20" height="36" viewBox="0 0 20 36" fill="none"
 												xmlns="http://www.w3.org/2000/svg">
@@ -204,12 +238,12 @@
 							<div class="card-body">
 								<div class="media align-items-center">
 									<div class="media-body mr-2">
-										<h2 class="text-white font-w600">247</h2>
+										<h2 class="text-white font-w600">NAN</h2>
 										<span class="text-white">订单量</span>
 									</div>
 									<div class="d-inline-block position-relative donut-chart-sale">
 										<span class="donut1"
-											data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'>4/8</span>
+											data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'>1/2</span>
 										<small class="text-primary">
 											<svg width="40" height="40" viewBox="0 0 40 40" fill="none"
 												xmlns="http://www.w3.org/2000/svg">
@@ -217,7 +251,8 @@
 													d="M10 32.5H28.75C29.7442 32.4989 30.6974 32.1035 31.4004 31.4004C32.1035 30.6974 32.4989 29.7442 32.5 28.75V18.75C32.5 18.4185 32.3683 18.1005 32.1339 17.8661C31.8995 17.6317 31.5815 17.5 31.25 17.5C30.9185 17.5 30.6005 17.6317 30.3661 17.8661C30.1317 18.1005 30 18.4185 30 18.75V28.75C29.9997 29.0814 29.8679 29.3992 29.6336 29.6336C29.3992 29.8679 29.0814 29.9997 28.75 30H10C9.66857 29.9997 9.3508 29.8679 9.11645 29.6336C8.88209 29.3992 8.7503 29.0814 8.75 28.75V11.25C8.7503 10.9186 8.88209 10.6008 9.11645 10.3664C9.3508 10.1321 9.66857 10.0003 10 10H21.25C21.5815 10 21.8995 9.8683 22.1339 9.63388C22.3683 9.39946 22.5 9.08152 22.5 8.75C22.5 8.41848 22.3683 8.10054 22.1339 7.86612C21.8995 7.6317 21.5815 7.5 21.25 7.5H10C9.00577 7.50109 8.05258 7.89653 7.34956 8.59956C6.64653 9.30258 6.25109 10.2558 6.25 11.25V28.75C6.25109 29.7442 6.64653 30.6974 7.34956 31.4004C8.05258 32.1035 9.00577 32.4989 10 32.5Z"
 													fill="#46c150" />
 												<path
-													d="M31.25 2.5C30.0138 2.5 28.8055 2.86656 27.7777 3.55331C26.7498 4.24007 25.9488 5.21619 25.4757 6.35823C25.0027 7.50027 24.8789 8.75693 25.1201 9.96931C25.3612 11.1817 25.9565 12.2953 26.8306 13.1694C27.7046 14.0435 28.8183 14.6388 30.0307 14.8799C31.243 15.1211 32.4997 14.9973 33.6417 14.5242C34.7838 14.0512 35.7599 13.2501 36.4466 12.2223C37.1334 11.1945 37.5 9.98613 37.5 8.75C37.498 7.093 36.8389 5.50442 35.6672 4.33274C34.4955 3.16106 32.907 2.50195 31.25 2.5ZM31.25 12.5C30.5083 12.5 29.7833 12.2801 29.1666 11.868C28.5499 11.456 28.0692 10.8703 27.7854 10.1851C27.5016 9.49984 27.4273 8.74584 27.572 8.01841C27.7167 7.29098 28.0739 6.6228 28.5983 6.09835C29.1228 5.5739 29.7909 5.21675 30.5184 5.07206C31.2458 4.92736 31.9998 5.00162 32.685 5.28545C33.3702 5.56928 33.9559 6.04993 34.368 6.66661C34.78 7.2833 35 8.00832 35 8.75C34.9989 9.74423 34.6034 10.6974 33.9004 11.4004C33.1974 12.1035 32.2442 12.4989 31.25 12.5Z" fill="#46c150" />
+													d="M31.25 2.5C30.0138 2.5 28.8055 2.86656 27.7777 3.55331C26.7498 4.24007 25.9488 5.21619 25.4757 6.35823C25.0027 7.50027 24.8789 8.75693 25.1201 9.96931C25.3612 11.1817 25.9565 12.2953 26.8306 13.1694C27.7046 14.0435 28.8183 14.6388 30.0307 14.8799C31.243 15.1211 32.4997 14.9973 33.6417 14.5242C34.7838 14.0512 35.7599 13.2501 36.4466 12.2223C37.1334 11.1945 37.5 9.98613 37.5 8.75C37.498 7.093 36.8389 5.50442 35.6672 4.33274C34.4955 3.16106 32.907 2.50195 31.25 2.5ZM31.25 12.5C30.5083 12.5 29.7833 12.2801 29.1666 11.868C28.5499 11.456 28.0692 10.8703 27.7854 10.1851C27.5016 9.49984 27.4273 8.74584 27.572 8.01841C27.7167 7.29098 28.0739 6.6228 28.5983 6.09835C29.1228 5.5739 29.7909 5.21675 30.5184 5.07206C31.2458 4.92736 31.9998 5.00162 32.685 5.28545C33.3702 5.56928 33.9559 6.04993 34.368 6.66661C34.78 7.2833 35 8.00832 35 8.75C34.9989 9.74423 34.6034 10.6974 33.9004 11.4004C33.1974 12.1035 32.2442 12.4989 31.25 12.5Z"
+													fill="#46c150" />
 												<path
 													d="M12.5 15H18.75C19.0815 15 19.3995 14.8683 19.6339 14.6339C19.8683 14.3995 20 14.0815 20 13.75C20 13.4185 19.8683 13.1005 19.6339 12.8661C19.3995 12.6317 19.0815 12.5 18.75 12.5H12.5C12.1685 12.5 11.8505 12.6317 11.6161 12.8661C11.3817 13.1005 11.25 13.4185 11.25 13.75C11.25 14.0815 11.3817 14.3995 11.6161 14.6339C11.8505 14.8683 12.1685 15 12.5 15Z"
 													fill="#46c150" />
@@ -237,12 +272,12 @@
 							<div class="card-body">
 								<div class="media align-items-center">
 									<div class="media-body mr-2">
-										<h2 id="userNum" class="text-white font-w600"></h2>
+										<h2 id="userNum" class="text-white font-w600">NAN</h2>
 										<span class="text-white">客户量</span>
 									</div>
 									<div class="d-inline-block position-relative donut-chart-sale">
 										<span class="donut1"
-											data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'>7/8</span>
+											data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0)"],   "innerRadius": 41, "radius": 10}'>1/2</span>
 										<small class="text-primary">
 											<svg width="40" height="40" viewBox="0 0 40 40" fill="none"
 												xmlns="http://www.w3.org/2000/svg">
@@ -268,9 +303,9 @@
 							<div class="card-header d-sm-flex flex-wrap d-block pb-0 border-0">
 								<div class="mr-auto pr-3">
 									<h4 class="text-black fs-20">订单汇总</h4>
-									<p class="fs-13 mb-0 text-black">当月/周/日的订单总量</p>
+									<!-- <p class="fs-13 mb-0 text-black">订单总量</p> -->
 								</div>
-								<div class="card-action card-tabs mt-3 mt-sm-0 mt-3 mb-sm-0 mb-3 mt-sm-0">
+								<!-- <div class="card-action card-tabs mt-3 mt-sm-0 mt-3 mb-sm-0 mb-3 mt-sm-0">
 									<ul class="nav nav-tabs" role="tablist">
 										<li class="nav-item">
 											<a class="nav-link active" data-toggle="tab" href="#Monthly" role="tab"
@@ -291,25 +326,29 @@
 											</a>
 										</li>
 									</ul>
-								</div>
+								</div> -->
 							</div>
 							<div class="card-body">
 								<div class="tab-content">
 									<div class="tab-pane fade show active" id="Monthly">
 										<div class="row align-items-center">
-											<div class="col-sm-6">
+											<!-- <div class="col-sm-6">
 												<div id="radialBar" class="orderChart"></div>
-											</div>
-											<div class="col-sm-6 mb-sm-0 mb-3 text-center">
-												<h3 class="fs-28 text-black font-w600">￥456,005.56</h3>
-												<span class="mb-3 d-block">from ￥500,000.00</span>
-												<p class="fs-14">未达到目标金额 </p>
-												<a href="orders.html" class="btn btn-primary light btn-rounded">查看详情</a>
+											</div> -->
+											<div class="col-sm-6 mb-sm-0 mb-3 text-center" style="margin: auto;">
+												<h3 class="fs-28 text-black font-w600"></h3>
+
+												<!-- <span class="mb-3 d-block">from ￥500,000.00</span> -->
+												<!-- <p class="fs-14">未达到目标金额 </p> -->
+												<!-- <a href="orders.html" class="btn btn-primary light btn-rounded">查看详情</a> --><a
+													href="orders.html"
+													class="btn btn-primary light btn-rounded">查看详情</a>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-sm-4 mb-md-0 mb-3">
 												<div class="p-3 border rounded">
+
 													<h3 class="fs-32 text-black font-w600 mb-1">25</h3>
 													<span class="fs-18">未支付</span>
 												</div>
@@ -323,73 +362,7 @@
 											<div class="col-sm-4">
 												<div class="p-3 border rounded">
 													<h3 class="fs-32 text-black font-w600 mb-1">7</h3>
-													<span class="fs-18">取消</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="tab-pane fade" id="Weekly">
-										<div class="row align-items-center">
-											<div class="col-sm-6">
-												<div id="radialBar2" class="orderChart"></div>
-											</div>
-											<div class="col-sm-6 mb-sm-0 mb-3 text-center">
-												<h3 class="fs-28 text-black font-w600">￥150,002.00</h3>
-												<span class="mb-3 d-block">from ￥400,000.00</span>
-												<p class="fs-14">未完成目标金额 </p>
-												<a href="orders.html" class="btn btn-primary light btn-rounded">查看详情</a>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-4 mb-md-0 mb-3">
-												<div class="p-3 border rounded">
-													<h3 class="fs-32 text-black font-w600 mb-1">30</h3>
-													<span class="fs-18">未支付</span>
-												</div>
-											</div>
-											<div class="col-sm-4 mb-md-0 mb-3">
-												<div class="p-3 border rounded">
-													<h3 class="fs-32 text-black font-w600 mb-1">55</h3>
-													<span class="fs-18">已支付</span>
-												</div>
-											</div>
-											<div class="col-sm-4">
-												<div class="p-3 border rounded">
-													<h3 class="fs-32 text-black font-w600 mb-1">9</h3>
-													<span class="fs-18">取消</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="tab-pane fade" id="Today">
-										<div class="row align-items-center">
-											<div class="col-sm-6">
-												<div id="radialBar3" class="orderChart"></div>
-											</div>
-											<div class="col-sm-6 mb-sm-0 mb-3 text-center">
-												<h3 class="fs-28 text-black font-w600">￥856,005.56</h3>
-												<span class="mb-3 d-block">from ￥800,000.00</span>
-												<p class="fs-14">超额完成目标 </p>
-												<a href="orders.html" class="btn btn-primary light btn-rounded">查看详情</a>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-4 mb-md-0 mb-3">
-												<div class="p-3 border rounded">
-													<h3 class="fs-32 text-black font-w600 mb-1">45</h3>
-													<span class="fs-18">未支付</span>
-												</div>
-											</div>
-											<div class="col-sm-4 mb-md-0 mb-3">
-												<div class="p-3 border rounded">
-													<h3 class="fs-32 text-black font-w600 mb-1">90</h3>
-													<span class="fs-18">已支付</span>
-												</div>
-											</div>
-											<div class="col-sm-4">
-												<div class="p-3 border rounded">
-													<h3 class="fs-32 text-black font-w600 mb-1">3</h3>
-													<span class="fs-18">取消</span>
+													<span class="fs-18">已完成</span>
 												</div>
 											</div>
 										</div>
@@ -403,18 +376,6 @@
 							<div class="card-header d-sm-flex d-block pb-0 border-0">
 								<div class="mr-auto pr-3">
 									<h4 class="text-black fs-20">收入</h4>
-									<p class="fs-13 mb-0 text-black">每年/月/日的收入曲线图</p>
-								</div>
-								<div class="dropdown mt-sm-0 mt-3">
-									<button type="button" class="btn btn-primary light btn-rounded dropdown-toggle"
-										data-toggle="dropdown" aria-expanded="false">
-										日
-									</button>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="javascript:void(0);">年</a>
-										<a class="dropdown-item" href="javascript:void(0);">月</a>
-										<a class="dropdown-item" href="javascript:void(0);">日</a>
-									</div>
 								</div>
 							</div>
 							<div class="card-body" id="user-activity">
@@ -438,12 +399,12 @@
 									<div class="card-action revenue-tabs">
 										<ul class="nav nav-tabs" role="tablist">
 											<li class="nav-item">
-												<a class="nav-link active" data-toggle="tab" href="#user" role="tab"
-													aria-selected="true">
+												<a href="Products.html" class="nav-link active" data-toggle="tab"
+													role="tab" aria-selected="true">
 													所有饮品
 												</a>
 											</li>
-											<li class="nav-item">
+											<!-- <li class="nav-item">
 												<a class="nav-link" data-toggle="tab" href="#bounce" role="tab"
 													aria-selected="false">
 													奶茶
@@ -454,7 +415,7 @@
 													role="tab" aria-selected="false">
 													果茶
 												</a>
-											</li>
+											</li> -->
 										</ul>
 									</div>
 								</div>
@@ -469,49 +430,6 @@
 					<div class="col-xl-9 col-xxl-8">
 						<div class="row">
 							<div class="col-xl-12">
-								<div class="card">
-									<div class="card-header d-sm-flex d-block pb-0 border-0">
-										<div class="mr-auto pr-3">
-											<h4 class="text-black fs-20">客户详情</h4>
-											<p class="fs-13 mb-0 text-black">每月/周/日的客户量情况</p>
-										</div>
-										<div class="card-action card-tabs mt-3 mt-sm-0 mt-3 mb-sm-0 mb-3 mt-sm-0">
-											<ul class="nav nav-tabs" role="tablist">
-												<li class="nav-item">
-													<a class="nav-link active" data-toggle="tab" href="#tab1" role="tab"
-														aria-selected="true">
-														月
-													</a>
-												</li>
-												<li class="nav-item">
-													<a class="nav-link" data-toggle="tab" href="#tab2" role="tab"
-														aria-selected="false">
-														周
-													</a>
-												</li>
-												<li class="nav-item">
-													<a class="nav-link" data-toggle="tab" href="#tab3" role="tab"
-														aria-selected="false">
-														日
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="card-body pb-0">
-										<div class="tab-content">
-											<div class="tab-pane fade show active" id="tab1">
-												<div id="chartTimeline"></div>
-											</div>
-											<div class="tab-pane fade" id="tab2">
-												<div id="chartTimeline2"></div>
-											</div>
-											<div class="tab-pane fade" id="tab3">
-												<div id="chartTimeline3"></div>
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 							<div class="col-xl-8 col-xxl-12 col-lg-8">
 								<div class="card">
@@ -524,11 +442,6 @@
 												<div class="media align-items-center">
 													<div
 														class="d-inline-block mr-3 position-relative donut-chart-sale2">
-														<span class="donut2"
-															data-peity='{ "fill": ["rgb(84, 205, 81)", "rgba(255, 255, 255, 1)"],   "innerRadius": 27, "radius": 10}'>6/8</span>
-														<small class="text-black">
-															89%
-														</small>
 													</div>
 													<div>
 														<h4 class="fs-28 font-w600 text-black mb-0">789</h4>
@@ -540,11 +453,11 @@
 												<div class="media align-items-center">
 													<div
 														class="d-inline-block mr-3 position-relative donut-chart-sale2">
-														<span class="donut2"
-															data-peity='{ "fill": ["rgb(255, 55, 112)", "rgba(255, 255, 255, 1)"],   "innerRadius": 27, "radius": 10}'>3/8</span>
-														<small class="text-black">
+														<!-- <span class="donut2"
+															data-peity='{ "fill": ["rgb(255, 55, 112)", "rgba(255, 255, 255, 1)"],   "innerRadius": 27, "radius": 10}'>3/8</span> -->
+														<!-- <small class="text-black">
 															11%
-														</small>
+														</small> -->
 													</div>
 													<div>
 														<h4 class="fs-28 font-w600 text-black mb-0">105</h4>
@@ -585,7 +498,7 @@
 
 										</div>
 									</div>
-									<div class="card-body">
+									<div id="topTeaArea" class="card-body">
 										<div class="d-flex pb-3 mb-3 border-bottom tr-row align-items-center">
 											<span class="num">#1</span>
 											<div class="mr-auto pr-3">
@@ -597,50 +510,7 @@
 											</div>
 											<img src="images/menus/9.png" alt="" width="60" class="rounded">
 										</div>
-										<div class="d-flex pb-3 mb-3 border-bottom tr-row align-items-center">
-											<span class="num">#2</span>
-											<div class="mr-auto pr-3">
-												<a href="post-details.html">
-													<h2 class="text-black fs-18">椰果奶茶</h2>
-												</a>
-												<span class="text-black font-w600 d-inline-block mr-3">￥5.6 </span>
-												<span class="fs-14">已销 89单</span>
-											</div>
-											<img src="images/menus/10.png" alt="" width="60" class="rounded">
-										</div>
-										<div class="d-flex pb-3 mb-3 border-bottom tr-row align-items-center">
-											<span class="num">#3</span>
-											<div class="mr-auto pr-3">
-												<a href="post-details.html">
-													<h2 class="text-black fs-18">脏脏奶茶</h2>
-												</a>
-												<span class="text-black font-w600 d-inline-block mr-3">￥5.6 </span>
-												<span class="fs-14">已销 89单</span>
-											</div>
-											<img src="images/menus/11.png" alt="" width="60" class="rounded">
-										</div>
-										<div class="d-flex pb-3 mb-3 border-bottom tr-row align-items-center">
-											<span class="num">#4</span>
-											<div class="mr-auto pr-3">
-												<a href="post-details.html">
-													<h2 class="text-black fs-18">双拼奶茶</h2>
-												</a>
-												<span class="text-black font-w600 d-inline-block mr-3">￥5.6 </span>
-												<span class="fs-14">已销 89单</span>
-											</div>
-											<img src="images/menus/12.png" alt="" width="60" class="rounded">
-										</div>
-										<div class="d-flex tr-row align-items-center">
-											<span class="num">#5</span>
-											<div class="mr-auto pr-3">
-												<a href="post-details.html">
-													<h2 class="text-black fs-18">布丁奶茶</h2>
-												</a>
-												<span class="text-black font-w600 d-inline-block mr-3">￥5.6 </span>
-												<span class="fs-14">已销 89单</span>
-											</div>
-											<img src="images/menus/9.png" alt="" width="60" class="rounded">
-										</div>
+
 									</div>
 								</div>
 							</div>
@@ -649,20 +519,24 @@
 				</div>
 			</div>
 		</div>
-		
-		
-		
+
+
+
 		<div class="footer">
 			<div class="copyright">
 				<p>Copyright © Designed &amp; Developed by <a href="http://www.bootstrapmb.com"
 						target="_blank">DexignZone</a> 2020</p>
 			</div>
+			<div class="aplayer" data-id="8045906002"     data-fixed="true" data-server="tencent" data-volume="0.7"
+				data-type="playlist" data-autoplay="true">
+			</div>
+			<script src="https://blog.gnaixeuy.cn/wp-content/themes/master-blog/js/Meting.min.js"></script>
 		</div>
 
 
 	</div>
 
-
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
 	<script src="./vendor/global/global.min.js"></script>
 	<script src="./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 	<script src="./vendor/chart.js/Chart.bundle.min.js"></script>
@@ -676,9 +550,14 @@
 </html>
 
 
+
 <script>
 	$(document).ready(
-		updateMainInfo()
+		updateMainInfo(),
+		reflashAdminInfo(),
+		reflashTopTea(),
+		getCommentsNum(),
+		updateOrderSummary()
 	)
 	function updateMainInfo() {
 		$.ajax({
@@ -697,6 +576,94 @@
 			dataType: "json",
 			success: function (response) {
 				$('#userNum').text(response)
+			}
+		});
+		$.get("http://localhost:8888/order/nums.do", {},
+			function (data, textStatus, jqXHR) {
+				$('#main-wrapper > div.content-body > div > div > div:nth-child(3) > div > div > div > div.media-body.mr-2 > h2').html(data.object)
+				$('#main-wrapper > div.content-body > div > div > div.col-xl-9.col-xxl-8 > div > div.col-xl-4.col-xxl-12.col-lg-4 > div > div.card-body > div > div:nth-child(2) > h4').html(data.object)
+			},
+			"json"
+		);
+		$.get("http://localhost:8888/order/allPrice.do",
+			function (data, textStatus, jqXHR) {
+				$('#main-wrapper > div.content-body > div > div > div:nth-child(2) > div > div > div > div.media-body.mr-2 > h2').html('￥' + data.object)
+				$('#user-activity > div.d-flex.flex-wrap.mb-4 > div.mr-auto.mb-2.pr-3.d-flex.align-items-center > div > span').html('￥' + data.object)
+				$('#Monthly > div.row.align-items-center > div.col-sm-6.mb-sm-0.mb-3.text-center > h3').html('￥' + data.object)
+				$('#SvgjsText1026').html((data.object / 5000.00) + '%')
+			},
+			"json"
+		);
+	}
+
+	function reflashAdminInfo() {
+		let adminName = localStorage.getItem('adminName')
+		$('#main-wrapper > div.header > div > nav > div > div > div').html('<div class="dashboard_bar">主页<span>欢迎进入主页,' + adminName + '!</span></div>')
+		$('#main-wrapper > div.header > div > nav > div > ul > li.nav-item.dropdown.header-profile > a > div > span').html(adminName)
+	}
+
+	function reflashTopTea() {
+		$.ajax({
+			type: "get",
+			url: "http://localhost:8888/product/ajaxPage.do",
+			data: { "pageNum": 1 },
+			dataType: "json",
+			success: function (response) {
+				var area = $('#topTeaArea')
+				var str = ''
+				var l = response.object.list
+				l.forEach((element) => {
+					str += '<div class="d-flex pb-3 mb-3 border-bottom tr-row align-items-center"><span class="num">' +
+						element.productId + '</span><div class="mr-auto pr-3"><a href=""><h2 class="text-black fs-18">' +
+						element.productName + '</h2></a><span class="text-black font-w600 d-inline-block mr-3">￥' +
+						element.productPrice + ' </span></div><img src="http://localhost:8888/productImg/' +
+						element.productImageId + '" alt="" width="60" class="rounded"></div>'
+				})
+				area.html(str)
+			}
+		});
+	}
+
+	function getCommentsNum() {
+		$.ajax({
+			type: "get",
+			url: "http://localhost:8888/comment/all.do",
+			dataType: "json",
+			success: function (response) {
+				if (response.requestServiceStatus == 'success') {
+					$('#main-wrapper > div.header > div > nav > div > ul > li.nav-item.dropdown.notification_dropdown > a > span').html(response.object.length)
+				}
+			}
+		});
+	}
+
+	function updateOrderSummary() {
+		$.ajax({
+			type: "get",
+			url: "http://localhost:8888/order/orders.do",
+			dataType: "json",
+			success: function (response) {
+				if (response.requestServiceStatus == 'success') {
+					var weizhifuNum = 0
+					var yizhifuNum = 0
+					var wanchengNum = 0
+					response.object.forEach((element) => {
+						if (element.orderIsPay == false) {
+							weizhifuNum++
+						} else {
+							if (element.orderIsFinish == false) {
+								yizhifuNum++
+							} else {
+								wanchengNum++
+							}
+						}
+					})
+					$('#Monthly > div:nth-child(2) > div:nth-child(1) > div > h3').html(weizhifuNum)
+					$('#Monthly > div:nth-child(2) > div:nth-child(2) > div > h3').html(yizhifuNum)
+					$('#Monthly > div:nth-child(2) > div:nth-child(3) > div > h3').html(wanchengNum)
+					$('#main-wrapper > div.content-body > div > div > div.col-xl-9.col-xxl-8 > div > div.col-xl-8.col-xxl-12.col-lg-8 > div > div.card-body > div > div.col-sm-6.mb-sm-0.mb-3 > div > div:nth-child(2) > h4').html(wanchengNum)
+					$('#main-wrapper > div.content-body > div > div > div.col-xl-9.col-xxl-8 > div > div.col-xl-8.col-xxl-12.col-lg-8 > div > div.card-body > div > div:nth-child(2) > div > div:nth-child(2) > h4').html(weizhifuNum)
+				}
 			}
 		});
 	}

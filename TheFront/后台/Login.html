@@ -9,7 +9,7 @@
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
     <link href="./css/style.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?
+    <link href="https://fonts.googleapis.com/css2?
 	family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:
 	wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
@@ -23,38 +23,43 @@
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
-									<div class="text-center mb-3">
-										<a href="index.html"><img src="images/logo-mmain.png" alt=""></a>
-									</div>
+                                    <div class="text-center mb-3">
+                                        <a href="index.html"><img src="images/logo-mmain.png" alt=""></a>
+                                    </div>
                                     <h1 class="text-center mb-4 text-white">登 录</h1>
                                     <!-- <form action="index.html"> -->
+                                    <div class="form-group">
+                                        <label class="mb-1 text-white"><strong>账号</strong></label>
+                                        <input id="id" name="password" type="text" class="form-control"
+                                            placeholder="输入账号">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="mb-1 text-white"><strong>密码</strong></label>
+                                        <input id="password" name="password" type="password" class="form-control"
+                                            placeholder="请输入密码">
+                                    </div>
+                                    <p id="info" style="color: red;"></p><br />
+                                    <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                         <div class="form-group">
-                                            <label class="mb-1 text-white"><strong>账号</strong></label>
-                                            <input id="id" name="password" type="text" class="form-control" placeholder="输入账号" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="mb-1 text-white"><strong>密码</strong></label>
-                                            <input id="password" name="password" type="password" class="form-control"  placeholder="请输入密码" >
-                                        </div>
-										<p id="info" style="color: red;"></p><br />
-                                        <div class="form-row d-flex justify-content-between mt-4 mb-2">
-                                            <div class="form-group">
-                                               <div class="custom-control custom-checkbox ml-1 text-white">
-													<input type="checkbox" class="custom-control-input" id="basic_checkbox_1">
-													<label class="custom-control-label" for="basic_checkbox_1">记住密码</label>
-												</div>
+                                            <div class="custom-control custom-checkbox ml-1 text-white">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="basic_checkbox_1">
+                                                <label class="custom-control-label" for="basic_checkbox_1">记住密码</label>
                                             </div>
-<!--                                            <div class="form-group">
+                                        </div>
+                                        <!--                                            <div class="form-group">
                                                 <a class="text-white" href="page-forgot-password.html">Forgot Password?</a>
                                             </div> -->
-                                        </div>
-                                        <div class="text-center">
-                                            <!-- <input type="button" id="login"  class="btn bg-white text-primary btn-block" value="点击登录"> -->
-											<button type="button" id="login"  class="btn bg-white text-primary btn-block" >点击登录</button>
-                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <!-- <input type="button" id="login"  class="btn bg-white text-primary btn-block" value="点击登录"> -->
+                                        <button type="button" id="login"
+                                            class="btn bg-white text-primary btn-block">点击登录</button>
+                                    </div>
                                     <!-- </form> -->
                                     <div class="new-account mt-3">
-                                        <p class="text-white">还没有账号？ <a class="text-white" href="./page-register.html">注册</a></p>
+                                        <p class="text-white">还没有账号？ <a class="text-white"
+                                                href="./page-register.html">注册</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -67,46 +72,43 @@
     <script src="./vendor/global/global.min.js"></script>
     <script src="./js/custom.min.js"></script>
     <script src="./js/deznav-init.js"></script>
-	<script>
-			$("#login").click(function(){
-				var id = $("#id").val();
-				var password = $("#password").val();
-				if(id.trim().length==0){
-					$("#info").text("请输入账号");
-				}else if(password.length == 0){
-							$("#info").text("请输入密码");
-						}
-						else{
-							$.ajax({
-												type:"post",
-												url:"http://localhost:8888/admin/login.do",
-												data:{
-													"id":id,
-													"password":password,
-												},
-												success:function(res){
-													if("success" == res.loginStatus){
-														window.location.href = "index.html"
-													}else if("id error" == res.loginStatus || "password error" == res.loginStatus){
-														alert("账号或密码错误！")
-													}
-													else if("failed" == res.loginStatus){
-														alert("用户不存在！")
-													}
-												},
-												async:true,
-												error:function(){
-													alert('登陆失败，请重新登录！')
-													window.location.href = "Login.html";
-												}
-											})
-											}
-							
-							})
-		</script>
-	
-	
-
+    <script>
+        $("#login").click(function () {
+            var id = $("#id").val();
+            var password = $("#password").val();
+            if (id.trim().length == 0) {
+                $("#info").text("请输入账号");
+            } else if (password.length == 0) {
+                $("#info").text("请输入密码");
+            }
+            else {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8888/admin/login.do",
+                    data: {
+                        "id": id,
+                        "password": password,
+                    },
+                    success: function (res) {
+                        if ("success" == res.loginStatus) {
+                            localStorage.setItem('adminName',res.admin.adminName)
+                            window.location.href = "index.html"
+                        } else if ("id error" == res.loginStatus || "password error" == res.loginStatus) {
+                            alert("账号或密码错误！")
+                        }
+                        else if ("failed" == res.loginStatus) {
+                            alert("用户不存在！")
+                        }
+                    },
+                    async: true,
+                    error: function () {
+                        alert('登陆失败，请重新登录！')
+                        window.location.href = "Login.html";
+                    }
+                })
+            }
+        })
+    </script>
 
 </body>
 

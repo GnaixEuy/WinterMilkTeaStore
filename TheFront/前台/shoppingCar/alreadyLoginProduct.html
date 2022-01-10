@@ -41,7 +41,11 @@
 	              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><h4>购物详情</h4></a>
 	              <ul class="dropdown-menu">
 	                <li class="nav-item"><a class="nav-link" href="cart.html">购物车</a></li>
+					<li class="nav-item"><a class="nav-link" href="order.html">我的订单</a></li>
+					
 	              </ul>
+				  
+				
 	            </li>
 	          </ul>
 	        </div>
@@ -208,7 +212,8 @@
 		   </div>
 		   
 		   
-		 
+		   
+			
            
           </div>
         </div>
@@ -284,7 +289,11 @@
 			success: function (response) {
 				if (response.requestServiceStatus == 'success') {
 					response.object.forEach(element => {
-						fatherNode.append('<span class="card text-center card-product col-md-6 col-lg-4" style="display:inline-table;"><div class="card-product__img"><img class="card-img" src="http://localhost:8888/productImg/' +element.productImageId+ '" alt=""><ul class="card-product__imgOverlay"><li><h6></h6></li></ul></div><div class="card-body" ><p><h4 class="card-product__title" ><a href="#">' + element.productName + '</a></h4></p><p class="card-product__price" id="pp">' + element.productPrice + '</p><input class="button" type="button" value="加入购物车" onclick="addToCart('+element.productId+')" ></div></span>')
+						fatherNode.append('<span class="card text-center card-product col-md-6 col-lg-4" style="display:inline-table;"><div class="card-product__img"><img class="card-img" src="http://localhost:8888/productImg/' +
+							element.productImageId+ '" alt=""><ul class="card-product__imgOverlay"><li><h6></h6></li></ul></div><div class="card-body" ><p><h4 class="card-product__title" ><a href="#">' + 
+								element.productName + '</a></h4></p><p class="card-product__price" id="pp">' + 
+									element.productPrice + '</p><button class="button" onclick="addToCart('+
+									element.productId+')" >加入购物车</button></div></span>')
 					})
 				}
 			}
@@ -294,7 +303,6 @@
 
 	function getTypeNum() {
 		$.get({
-			// type:"get",
 			url: "http://localhost:8888/product/productNum.do",
 			data: '',
 			success: function (response) {
@@ -306,15 +314,15 @@
 	}	
 	
 	function addToCart(id){
-		alert(localStorage.getItem('userId'))
+		// alert(localStorage.getItem('userId'))
 			$.ajax({
 			type:"get",
 			url:"http://localhost:8888/order/addProductToOrder.do",
 			data:{
 				"userId":localStorage.getItem('userId'),
-				"cupType":"超大杯",
+				"cupType":"中杯",
 				"productId":id,
-				"itemNum":1
+				"itemNum":"1"
 			},
 			success:function(res){
 				if("success" == res.requestServiceStatus){
@@ -323,6 +331,7 @@
 					alert("用户不存在！请先登录或注册！")
 				}
 			},
+			dataType:"json",
 			async:false,
 			error:function(){
 				alert('dd')
@@ -345,8 +354,11 @@
 					alert('查询成功')
 					checkProduct.empty();
 					response.object.forEach(element => {
-						temp +=
-						'<span class="card text-center card-product col-md-6 col-lg-4" style="display:inline-table;"><div class="card-product__img"><img class="card-img" src="http://localhost:8888/productImg/' +element.productImageId+ '" alt=""><ul class="card-product__imgOverlay"><li><h6></h6></li></ul></div><div class="card-body" ><p><h4 class="card-product__title" ><a href="#">' + element.productName + '</a></h4></p><p class="card-product__price" id="pp">' + element.productPrice + '</p><input class="button" type="button" value="加入购物车" onclick="addToCart('+element.productId+')" ></div></span>'
+						temp += '<span class="card text-center card-product col-md-6 col-lg-4" style="display:inline-table;"><div class="card-product__img"><img class="card-img" src="http://localhost:8888/productImg/' +
+							element.productImageId+ '" alt=""><ul class="card-product__imgOverlay"><li><h6></h6></li></ul></div><div class="card-body" ><p><h4 class="card-product__title" ><a href="#">' +
+								 element.productName + '</a></h4></p><p class="card-product__price" id="pp">' +
+									 element.productPrice + '</p><input class="button" type="button" value="加入购物车" onclick="addToCart('+
+									 element.productId+')" ></div></span>'
 					})
 					checkProduct.append(temp)
 				}else if(response.requestServiceStatus == 'failed'){
@@ -360,29 +372,7 @@
 		})
 	}
 	
-	// function status(id){
-	// 	temp=''
-	// 		$.ajax({
-	// 		type:"get",
-	// 		url:"http://localhost:8888/product/availability.do",
-	// 		data:{
-	// 			"id" = id;
-	// 		},
-	// 		success:function(res){
-	// 			if("success" == res.requestServiceStatus){
-	// 				if("true" == res.object)
-	// 					alert('11')
-	// 			}else if("failed" == res.requestServiceStatus){
-	// 				if("false" == res.Object)
-						
-	// 			}
-	// 		},
-	// 		async:false,
-	// 		error:function(){
-	// 			alert('dd')
-	// 		}
-	// 	})
-	// }
+
 	
 </script>
 </html>

@@ -17,7 +17,8 @@
 		rel="stylesheet">
 	<!-- Material color picker -->
 	<link href="./vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://blog.gnaixeuy.cn/wp-content/themes/master-blog/css/APlayer.min.css">
+	<script src="https://blog.gnaixeuy.cn/wp-content/themes/master-blog/js/APlayer.min.js"></script>
 </head>
 
 <body>
@@ -64,8 +65,6 @@
 		<div class="nav-header">
 			<a href="index.html" class="brand-logo">
 				<img class="logo-abbr" src="./images/logo.png" alt="">
-				<img class="logo-compact" src="./images/logo-text.png" alt="">
-				<img class="brand-title" src="./images/logo-text.png" alt="">
 			</a>
 
 			<div class="nav-control">
@@ -296,6 +295,10 @@
 				<p>Copyright © Designed &amp; Developed by <a href="http://www.bootstrapmb.com"
 						target="_blank">DexignZone</a> 2020</p>
 			</div>
+			<div class="aplayer" data-id="8045906002"     data-fixed="true" data-server="tencent" data-volume="0.7"
+				data-type="playlist" data-autoplay="true">
+			</div>
+			<script src="https://blog.gnaixeuy.cn/wp-content/themes/master-blog/js/Meting.min.js"></script>
 		</div>
 	</div>
 
@@ -311,26 +314,28 @@
 	<script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
 
 	<script>
-		(function ($) {
 
-			var table = $('#example5').DataTable({
-				searching: false,
-				paging: true,
-				select: false,
-				//info: false,         
-				lengthChange: false
-
-			});
-			$('#example tbody').on('click', 'tr', function () {
-				var data = table.row(this).data();
-
-			});
-
-		})(jQuery);
 
 		$(document).ready(() => {
 			flashOrderInfo()
+			reflashAdminInfo()
 		})
+
+			(function ($) {
+				var table = $('#example5').DataTable({
+					searching: false,
+					paging: true,
+					select: false,
+					//info: false,         
+					lengthChange: false
+
+				});
+				$('#example tbody').on('click', 'tr', function () {
+					var data = table.row(this).data();
+
+				});
+
+			})(jQuery);
 
 		function flashOrderInfo() {
 			var infoArea = $('#example5 > tbody')
@@ -359,13 +364,14 @@
 						}
 						str += '</span></td><td><div class="btn-group mb-1">' +
 							'<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" > <svg width="24" height="24"viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z"stroke="#ffffff" stroke-width="2" stroke-linecap="round"stroke-linejoin="round" /><path d="M18 12C18 12.5523 18.4477 13 19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12Z"stroke="#ffffff" stroke-width="2" stroke-linecap="round"stroke-linejoin="round" /><path d="M4 12C4 12.5523 4.44772 13 5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12Z"stroke="#ffffff" stroke-width="2" stroke-linecap="round"stroke-linejoin="round" /></svg>' +
-							'</button ><div class="dropdown-menu">' + '<button class="dropdown-item" onclick="updateOrderInfo('+element.orderId+',true,true)">订单完成</button>' +
-							'<button class="dropdown-item" onclick="updateOrderInfo(' + element.orderId + ',false,true)">已支付</button></div></div ></td ></tr >'
+							'</button ><div class="dropdown-menu">' + '<button class="dropdown-item" onclick="updateOrderInfo(\'' + element.orderId + '\',true,true)">订单完成</button>' +
+							'<button class="dropdown-item" onclick="updateOrderInfo(\'' + element.orderId +
+							'\',false,true)">已支付</button></div></div ></td ></tr >'
 
 						infoArea.append(str)
 					})
 					// $('#example5_info').html('<div class="dataTables_info" id="example5_info" role="status" aria-live="polite">显示'+'条中的 1 到 1 </div>')
-					
+
 				}
 			});
 		}
@@ -389,10 +395,16 @@
 					} else {
 						alert('状态更新失败')
 					}
-				},error: ()=>{
+				}, error: () => {
 					alert('失败')
 				}
 			});
+		}
+
+		function reflashAdminInfo() {
+			let adminName = localStorage.getItem('adminName')
+			$('#main-wrapper > div.header > div > nav > div > div > div').html('<div class="dashboard_bar">主页<span>欢迎进入主页,' + adminName + '!</span></div>')
+			$('#main-wrapper > div.header > div > nav > div > ul > li.nav-item.dropdown.header-profile > a > div > span').html(adminName)
 		}
 	</script>
 </body>
