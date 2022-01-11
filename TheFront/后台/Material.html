@@ -15,6 +15,25 @@
 		rel="stylesheet">
 	<link rel="stylesheet" href="https://blog.gnaixeuy.cn/wp-content/themes/master-blog/css/APlayer.min.css">
 	<script src="https://blog.gnaixeuy.cn/wp-content/themes/master-blog/js/APlayer.min.js"></script>
+
+	<style>
+		.alter {
+			width: 305px;
+			border: 1px solid #333;
+			/* 提示框默认隐藏 */
+			display: none;
+		}
+
+		.alter ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.alter ul li {
+			font-size: 15px;
+		}
+	</style>
 </head>
 
 <body>
@@ -74,11 +93,16 @@
 						</div>
 						<ul class="navbar-nav header-right">
 							<li class="nav-item">
-								<div class="input-group search-area d-xl-inline-flex d-none">
-									<input type="text" class="form-control" placeholder="搜索...">
-									<div class="input-group-append">
-										<span class="input-group-text"><a href="javascript:void(0)"><i
-													class="flaticon-381-search-2"></i></a></span>
+								<div id="searchArea">
+									<div class="input-group search-area d-xl-inline-flex d-none">
+										<input type="text" class="form-control" placeholder="搜索...">
+										<div class="input-group-append">
+											<span class="input-group-text"><a href="javascript:search()"><i
+														class="flaticon-381-search-2"></i></a></span>
+										</div>
+										<div class="alter">
+											<ul></ul>
+										</div>
 									</div>
 								</div>
 							</li>
@@ -363,20 +387,85 @@
 		$.ajax({
 			type: "delete",
 			url: "http://localhost:8888/material/delete.do",
-			data: {name:materialName},
+			data: { name: materialName },
 			dataType: "json",
 			success: function (response) {
-				if (response.requestServiceStatus === 'success'){
+				if (response.requestServiceStatus === 'success') {
 					alert('删除成功')
-							}else{
-					alert('删除失败')	
+				} else {
+					alert('删除失败')
 				}
 				show()
-			},error: ()=>{
+			}, error: () => {
 				alert('服务异常请联系后端')
 			}
 		});
-	  }
+	}
+
+	/*
+		捕获用户输入行为
+		1. 绑定键盘事件 - keydown、keyup、keypress
+		2. 绑定输入事件 -> input
+	*/
+	$("#searchArea > div > input").bind("input", function (event) {
+		$('.alter>ul').empty();
+		// 1.根据用户输入的内容，动态获取相关提示数据
+		var inputValue = $(this).val(); // val() 方法返回或设置被选元素的值。
+		// console.log(inputValue)
+		if (inputValue != null && inputValue !== "") {
+			$.ajax({
+				type: "get",
+				url: "http://localhost:8888/QuickFind/material.do",
+				data: { 'name': inputValue },
+				dataType: "json",
+				success: function (response) {
+					if (response.requestServiceStatus === 'success') {
+						var data = response.object
+						if (data != null && data.length > 0) {
+							// console.log(data)
+							data.forEach(material => {
+								var tmpstr = JSON.stringify(material).replace(/\"/g, "")
+								// console.log(tmpstr)
+								$('.alter>ul').append($('<li><button>' + material.materialName + '</button></li>'));
+							})
+						}
+					}
+				}
+			});
+		}
+		// 获取焦点
+		// 2.将提示框从隐藏状态切换到显示状态
+		$('.alter').css('display', 'block');
+	}).bind('blur', function () {
+		// 取消焦点
+		$('.alter').css('display', 'none');
+	});
+
+
+	function search() {
+		var name = $("#searchArea > div > input").val()
+		var temp = $("#material")
+		temp.html('')
+		$.ajax({
+			type: "get",
+			url: "http://localhost:8888/material/materialByName.do",
+			data: { 'name': name },
+			dataType: "json",
+			success: function (response) {
+				if (response.requestServiceStatus === 'success') {
+					temp.append('<tr  class="btn-reveal-trigger"  ><td class="py-2" >' +
+						response.object.materialName + '</td><td class="py-2" >' +
+						response.object.materialStock + '</td><td class="py-2" >' +
+						response.object.materialPrice + '</td><td class="py-2"><input type="text"  style="width: 50px;" id="updstock' +
+						response.object.materialName + '" placeholder="' +
+						response.object.materialStock + '" value="" ></td><td class="py-2"><button type="button" class="btn btn-primary light fs-16 ml-3" onclick="upd(\'' +
+						response.object.materialName + '\')">确认</button> </td><td class="py-2"><button type="button" class="btn btn-danger" onclick="del(\'' +
+						response.object.materialName + '\')">删除</button></td> </tr>')
+				}
+			}
+		});
+	}
+
 </script>
 
 </html>
