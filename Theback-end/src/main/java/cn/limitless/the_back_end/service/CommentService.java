@@ -61,7 +61,6 @@ public interface CommentService {
 	 * @param id 评论id
 	 * @return 返回是否成功
 	 */
-	@Deprecated
 	boolean deleteComment(String id);
 
 	/**

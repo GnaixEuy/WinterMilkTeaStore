@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -85,11 +86,27 @@ public class CommentAction {
 	}
 
 	@RequestMapping(value = {"/ajaxSpiltComments.do"}, method = {RequestMethod.GET})
-	@ApiOperation(value = "所有评论分页接口", notes = "需要提供一个参数num，不提供则默认为1")
+	@ApiOperation(value = "所有评论分页接口", notes = "需要提供一个参数num，不提供则默认为1，条目为5")
 	public ObjectModel spiltComments(@RequestParam(name = "num", defaultValue = "1") Integer pageNum) {
 		final ObjectModel objectModel = new ObjectModel();
 		final PageInfo<Comment> commentPageInfo = this.commentService.spiltComments(pageNum, CommentAction.PAGE_SHOW_SIZE);
 		if (commentPageInfo == null) {
+			objectModel.error();
+		} else {
+			objectModel.setObject(commentPageInfo);
+		}
+		return objectModel;
+	}
+
+	@RequestMapping(value = {"/frontDeskAjaxSpiltComments.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "所有评论分页接口", notes = "需要提供一个参数num，不提供则默认为1，条目为3")
+	public ObjectModel spiltComments2(@RequestParam(name = "num", defaultValue = "1") Integer pageNum) {
+		final ObjectModel objectModel = new ObjectModel();
+		final PageInfo<Comment> commentPageInfo = this.commentService.spiltComments(pageNum, 3);
+		final List<Comment> list = commentPageInfo.getList();
+		Collections.reverse(list);
+		commentPageInfo.setList(list);
+		if (commentPageInfo.getList().size() < 1) {
 			objectModel.error();
 		} else {
 			objectModel.setObject(commentPageInfo);
@@ -117,14 +134,15 @@ public class CommentAction {
 		return objectModel;
 	}
 
-	@RequestMapping(value = {"/delete.do"}, method = {RequestMethod.GET})
+	@RequestMapping(value = {"/delete.do"}, method = {RequestMethod.DELETE})
 	@ApiOperation(value = "删除评论接口", notes = "传入评论id删除该评论")
-	public ObjectModel deleteComment(@ApiParam(value = "评论的id", required = true) @RequestParam(name = "id") String commentId) {
+	public ObjectModel deleteComment(@ApiParam(value = "评论的id", required = true) @RequestParam(name = "id") String commentOrderId) {
 		final ObjectModel objectModel = new ObjectModel();
-		if (commentId == null || "".equals(commentId)) {
+		final Comment comment = this.commentService.queryCommentByOrderId(commentOrderId);
+		if (commentOrderId == null || "".equals(commentOrderId)) {
 			objectModel.error();
 		} else {
-			final boolean b = this.commentService.deleteComment(commentId);
+			final boolean b = this.commentService.deleteComment(comment.getCommentId());
 			if (!b) {
 				objectModel.error();
 			}
