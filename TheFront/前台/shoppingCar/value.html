@@ -7,21 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的订单</title>
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
-    <link rel="stylesheet" href="css2/vendor/chartist/css/chartist.min.css">
-    <link href="css2/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
-    <link href="css2/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="css2/css/style.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
-        rel="stylesheet">
-    <!-- Material color picker -->
-    <link href="css2/vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
-        rel="stylesheet">
-
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.css" rel="stylesheet">
 </head>
 
 <body>
-	
+
     <div class="container-fluid" style="width: 75%;">
         <table class="table border-no order-table mb-4 table-responsive-lg dataTablesCard dataTable no-footer"
             id="example5" role="grid" aria-describedby="example5_info">
@@ -50,13 +40,6 @@
 </body>
 
 </html>
-<script src="css2/vendor/global/global.min.js"></script>
-	<script src="css2/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-	<script src="css2/js/custom.min.js"></script>
-	<script src="css2/js/deznav-init.js"></script>
-	<script src="css2/vendor/highlightjs/highlight.pack.min.js"></script>
-<!-- <script src="https://vuejs.org/js/vue.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 <script src="static/js/jquery-3.2.1.min.js"></script>
 
 <script>
@@ -79,6 +62,7 @@
             success: function (response) {
                 if (response.requestServiceStatus == 'success') {
                     alert('评论成功')
+                    getOrders()
                 } else {
                     alert('评论失败')
                 }
@@ -90,6 +74,7 @@
     }
 
     function getOrders() {
+
         $.ajax({
             type: "get",
             url: "http://localhost:8888/order/orderByUser.do",
@@ -102,9 +87,27 @@
                         element.orderId + '</td><td>' +
                         element.orderCreateDateTime + '</td><td>' +
                         element.orderPrice + '</td><td><input type="text" class="text-primary" style="color:#0b98f2 !important;" id="content' +
-                        element.orderId + '" /></td><td><div class="btn-group mb-1"><button class="btn btn-primary btn-sm " type="button" data-toggle="dropdown" onclick="comment(\'' +
+                        element.orderId + '" '
+                    $.ajax({
+                        type: "get",
+                        url: "http://localhost:8888/comment/getCommentByOrderId.do",
+                        data: { 'id': element.orderId },
+                        dataType: "json",
+                        async: false,
+                        success: function (res) {
+                            if (res.requestServiceStatus === 'success') {
+                                if (res.object !== null) {
+                                    str += (' value=\'' + res.object.commentContent)
+                                    str += '\' readonly'
+                                    console.log(str)
+                                }
+                            }
+                        }
+                    });
+                    str += '/></td><td><div class="btn-group mb-1"><button class="btn btn-primary btn-sm " type="button" data-toggle="dropdown" onclick="comment(\'' +
                         element.orderId + '\')">评论</button></div></td></tr >'
                 })
+                $('#example5 > tbody').empty()
                 $('#example5 > tbody').append(str)
             }, error: res => {
                 console.log(res)

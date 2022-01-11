@@ -424,7 +424,7 @@
 						if (data != null && data.length > 0) {
 							// console.log(data)
 							data.forEach(material => {
-								var tmpstr = JSON.stringify(material).replace(/\"/g, "")
+								// var tmpstr = JSON.stringify(material).replace(/\"/g, "")
 								// console.log(tmpstr)
 								$('.alter>ul').append($('<li><button>' + material.materialName + '</button></li>'));
 							})
