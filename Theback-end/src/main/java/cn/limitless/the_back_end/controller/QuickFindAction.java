@@ -1,6 +1,7 @@
 package cn.limitless.the_back_end.controller;
 
 import cn.limitless.the_back_end.entity.Material;
+import cn.limitless.the_back_end.entity.Product;
 import cn.limitless.the_back_end.model.ObjectModel;
 import cn.limitless.the_back_end.service.*;
 import io.swagger.annotations.Api;
@@ -51,6 +52,19 @@ public class QuickFindAction {
 			objectModel.error();
 		} else {
 			objectModel.setObject(list);
+		}
+		return objectModel;
+	}
+
+	@ApiOperation(value = "商品提示接口", notes = "搜索框提示可以用")
+	@RequestMapping(value = {"/product.do"}, method = {RequestMethod.GET})
+	public ObjectModel fastFindProduct(String likeName) {
+		final List<Product> products = this.productService.fuzzyQueryProduct(likeName);
+		final ObjectModel objectModel = new ObjectModel();
+		if (products.size() == 0) {
+			objectModel.error();
+		} else {
+			objectModel.setObject(products);
 		}
 		return objectModel;
 	}
