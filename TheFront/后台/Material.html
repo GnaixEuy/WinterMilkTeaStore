@@ -19,7 +19,7 @@
 	<style>
 		.alter {
 			width: 305px;
-			border: 1px solid #333;
+			border: 1px solid gray;
 			/* 提示框默认隐藏 */
 			display: none;
 		}
@@ -93,16 +93,17 @@
 						</div>
 						<ul class="navbar-nav header-right">
 							<li class="nav-item">
-								<div id="searchArea">
+								<div id="searchArea" >
 									<div class="input-group search-area d-xl-inline-flex d-none">
 										<input type="text" class="form-control" placeholder="搜索...">
 										<div class="input-group-append">
 											<span class="input-group-text"><a href="javascript:search()"><i
 														class="flaticon-381-search-2"></i></a></span>
 										</div>
-										<div class="alter">
-											<ul></ul>
-										</div>
+										
+									</div>
+									<div class="alter " style="position: fixed;">
+										<ul></ul>
 									</div>
 								</div>
 							</li>
@@ -424,9 +425,9 @@
 						if (data != null && data.length > 0) {
 							// console.log(data)
 							data.forEach(material => {
-								// var tmpstr = JSON.stringify(material).replace(/\"/g, "")
+								var tmpstr = JSON.stringify(material).replace(/\"/g, "")
 								// console.log(tmpstr)
-								$('.alter>ul').append($('<li><button>' + material.materialName + '</button></li>'));
+								$('.alter>ul').append($('<li><button style="color: seagreen;">' + material.materialName + '</button></li>'));
 							})
 						}
 					}

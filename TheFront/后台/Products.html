@@ -24,6 +24,24 @@
 		color: white;
 		width: 50px
 	}
+
+		.alter {
+			width: 305px;
+			border: 1px solid gray;
+			/* 提示框默认隐藏 */
+			display: none;
+		}
+	
+		.alter ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+	
+		.alter ul li {
+			font-size: 15px;
+		}
+
 </style>
 
 <body>
@@ -76,11 +94,17 @@
 						</div>
 						<ul class="navbar-nav header-right">
 							<li class="nav-item">
-								<div class="input-group search-area d-xl-inline-flex d-none">
-									<input type="text" class="form-control" placeholder="搜索" id="keyWords">
-									<div class="input-group-append">
-										<span class="input-group-text"><a href="javascript:void(0)"><i
-													class="flaticon-381-search-2" onclick="check()"></i></a></span>
+								<div id="searchArea" >
+									<div class="input-group search-area d-xl-inline-flex d-none">
+										<input type="text" class="form-control" placeholder="搜索...">
+										<div class="input-group-append">
+											<span class="input-group-text"><a href="javascript:check()"><i
+														class="flaticon-381-search-2"></i></a></span>
+										</div>
+										
+									</div>
+									<div class="alter " style="position: fixed;">
+										<ul></ul>
 									</div>
 								</div>
 							</li>
@@ -93,7 +117,7 @@
 									</div>
 								</a>
 								<div class="dropdown-menu dropdown-menu-right">
-
+						
 									<a href="Login.html" class="dropdown-item ai-icon">
 										<svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
 											width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -172,6 +196,7 @@
 				</div>
 				<div class="  mb-md-4 mb-2">
 					<a href="AddProduct.html" class="btn btn-primary light fs-16 ml-3">添加商品</a>
+					
 					<i class="fa  scale5 ml-3"></i>
 					</button>
 				</div>
@@ -244,16 +269,56 @@
 			}
 		});
 	}
+	
+	/*
+		捕获用户输入行为
+		1. 绑定键盘事件 - keydown、keyup、keypress
+		2. 绑定输入事件 -> input
+	*/
+	$("#searchArea > div > input").bind("input", function (event) {
+		$('.alter>ul').empty();
+		// 1.根据用户输入的内容，动态获取相关提示数据
+		var inputValue = $(this).val(); // val() 方法返回或设置被选元素的值。
+		// console.log(inputValue)
+		if (inputValue != null && inputValue !== "") {
+			$.ajax({
+				type: "get",
+				url: "http://localhost:8888/QuickFind/product.do",
+				data: { 'likeName': inputValue },
+				dataType: "json",
+				success: function (response) {
+					if (response.requestServiceStatus === 'success') {
+						var data = response.object
+						if (data != null && data.length > 0) {
+							console.log(data)
+							data.forEach(productArea => {
+								var tmpstr = JSON.stringify(productArea).replace(/\"/g, "")
+								// console.log(tmpstr)
+								$('.alter>ul').append($('<li><button style="color: seagreen;">' + productArea.productName + '</button></li>'));
+							})
+						}
+					}
+				}
+			});
+		}
+		// 获取焦点
+		// 2.将提示框从隐藏状态切换到显示状态
+		$('.alter').css('display', 'block');
+	}).bind('blur', function () {
+		// 取消焦点
+		$('.alter').css('display', 'none');
+	});
+	
 
 	function check() {
-		var key = $("#keyWords").val();
+		var likeName = $("#searchArea > div > input").val()
 		var temp = ''
 		var check = $("#productArea")
 		$.ajax({
 			type: "get",
 			url: "http://localhost:8888/product/ajaxNamePrompt.do",
 			data: {
-				"likeName": key,
+				"likeName": likeName,
 			},
 			success: function (response) {
 				if (response.requestServiceStatus == 'success') {
