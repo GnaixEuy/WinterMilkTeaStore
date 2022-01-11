@@ -55,7 +55,6 @@ public class ProductAction {
 	public ObjectModel addProduct(Product product, String[] materialList) {
 		final ObjectModel objectModel = new ObjectModel();
 		final boolean addProductBoolean = this.productService.addProduct(product.getProductName(), product.getProductType(), product.getProductPrice(), product.getProductImageId(), materialList);
-		System.out.println(addProductBoolean);
 		if (addProductBoolean) {
 			final Product productByName = this.productService.findProductByName(product.getProductName());
 			objectModel.setObject(productByName);
@@ -142,11 +141,20 @@ public class ProductAction {
 	}
 
 	@RequestMapping(value = {"/ajaxPage.do"}, method = {RequestMethod.GET})
-	@ApiOperation(value = "ajax分页请求数据", notes = "不传页数page默认为1")
+	@ApiOperation(value = "ajax分页请求数据", notes = "不传页数page默认为1,5条数据")
 	public ObjectModel ajaxProductPagination(@ApiParam(value = "请求的页面数据") @RequestParam(name = "page", defaultValue = "1") Integer pageNum) {
 		final PageInfo<Product> productPageInfo = this.productService.splitPage(pageNum, PAGE_SHOW_SIZE);
 		return new ObjectModel(productPageInfo);
 	}
+
+	@RequestMapping(value = {"/frontDeskAjaxPage.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "ajax分页请求数据", notes = "不传页数page默认为1,默认5条数据一页")
+	public ObjectModel ajaxProductPaginationWithShowSize(@ApiParam(value = "请求第page页") @RequestParam(name = "page", defaultValue = "1") Integer pageNum,
+	                                                     @ApiParam(value = "请求一页showSize条") @RequestParam(name = "showSize", defaultValue = "5") Integer showSize) {
+		final PageInfo<Product> productPageInfo = this.productService.splitPage(pageNum, showSize);
+		return new ObjectModel(productPageInfo);
+	}
+
 
 	/**
 	 * 商品上传图片请求
