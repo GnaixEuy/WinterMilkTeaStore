@@ -45,6 +45,19 @@ public class MaterialAction {
 		return objectModel;
 	}
 
+	@RequestMapping(value = {"/materialByName.do"}, method = {RequestMethod.GET})
+	@ApiOperation(value = "获取原料信息", notes = "原料名字")
+	public ObjectModel getMaterialByName(String name) {
+		final Material materialByName = this.materialService.findMaterialByName(name);
+		final ObjectModel objectModel = new ObjectModel();
+		if (materialByName == null) {
+			objectModel.error();
+		} else {
+			objectModel.setObject(materialByName);
+		}
+		return objectModel;
+	}
+
 	@RequestMapping(value = {"/add.do"}, method = {RequestMethod.GET})
 	@ApiOperation(value = "添加原料接口", notes = "原料名重复时，添加失败")
 	public ObjectModel addMaterial(@ApiParam("原料名") @RequestParam(name = "name") String materialName,
