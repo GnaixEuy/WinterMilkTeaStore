@@ -128,94 +128,9 @@
         <h4 style="background-color: darkgray;">人气榜单</h4>
         <h2 style="background-color: darkseagreen;">Top <span class="section-intro__style" style="color: red;">Eight</span></h2>
       </div>
-	<div class="row mt-30">
-        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-          <div class="single-search-product-wrapper" >
-            <div class="single-search-product d-flex" style="background-color: darkgray;">
-              <a href="#"><img src="image/1.png" alt=""></a>
-              <div class="desc">
-                  <a href="#" class="title">名字</a>
-                  <div class="price">价格</div>
-              </div>
-            </div>
-            <div class="single-search-product d-flex">
-              <a href="#"><img src="image/1.png" alt=""></a>
-              <div class="desc">
-                  <a href="#" class="title">名字</a>
-                  <div class="price">价格</div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
+	<div class="row mt-30" id="top">
 		
-		
-
-        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-         <div class="single-search-product-wrapper">
-             <div class="single-search-product d-flex">
-               <a href="#"><img src="image/1.png" alt=""></a>
-               <div class="desc">
-                   <a href="#" class="title">名字</a>
-                   <div class="price">价格</div>
-               </div>
-             </div>
-             <div class="single-search-product d-flex" style="background-color: darkseagreen;">
-               <a href="#"><img src="image/1.png" alt=""></a>
-               <div class="desc">
-                   <a href="#" class="title">名字</a>
-                   <div class="price">价格</div>
-               </div>
-             </div>
-            
-           </div>
-         </div>
-		 
-		 <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-		  <div class="single-search-product-wrapper">
-		      <div class="single-search-product d-flex" style="background-color: darkgray;">
-		        <a href="#"><img src="image/1.png" alt=""></a>
-		        <div class="desc">
-		            <a href="#" class="title">名字</a>
-		            <div class="price">价格</div>
-		        </div>
-		      </div>
-		      <div class="single-search-product d-flex">
-		        <a href="#"><img src="image/1.png" alt=""></a>
-		        <div class="desc">
-		            <a href="#" class="title">名字</a>
-		            <div class="price">价格</div>
-		        </div>
-		      </div>
-		      
-		    </div>
-		  </div>
-		  
-		  <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-		   <div class="single-search-product-wrapper">
-		       <div class="single-search-product d-flex">
-		         <a href="#"><img src="image/1.png" alt=""></a>
-		         <div class="desc">
-		             <a href="#" class="title">名字</a>
-		             <div class="price">价格</div>
-		         </div>
-		       </div>
-		       <div class="single-search-product d-flex" style="background-color: darkseagreen;">
-		         <a href="#"><img src="image/1.png" alt=""></a>
-		         <div class="desc">
-		             <a href="#" class="title">名字</a>
-		             <div class="price">价格</div>
-		         </div>
-		       </div>
-		    
-		     </div>
-		   </div>
-		   
-		   
-		   
-			
-           
-          </div>
+    </div>
         </div>
       </div>
 		</div>
@@ -251,7 +166,7 @@
 		refreshProductType()
 		// setInterval(getTypeNum, 7000);
 		// setInterval(refreshProductType, 20000);
-		
+		getTop()
 		
 	})
 
@@ -372,7 +287,48 @@
 		})
 	}
 	
-
+function getTop() {
+		$.get({
+			url: "http://localhost:8888/product/frontDeskAjaxPage.do",
+			data: {
+				"page":1,
+				"showSize":8
+			},
+			success: function (response) {
+				var t3 = $("#top")
+				var l = response.object.list
+				// t3.html('')
+					t3.append('<div class="col-sm-6 col-xl-3 mb-4 mb-xl-0"><div class="single-search-product-wrapper" ><div class="single-search-product d-flex" style="background-color: darkgray;"><a href="#"><img src="http://localhost:8888/productImg/'+
+			  l[1].productImageId+ '" alt=""></a><div class="desc"><a href="#" class="title">'+
+			  l[1].productName+'</a><div class="price">'+
+			  l[1].productPrice+'</div></div></div><div class="single-search-product d-flex"><a href="#"><img src="http://localhost:8888/productImg/'+
+			  l[2].productImageId+ '" alt=""></a><div class="desc"><a href="#" class="title">'+
+			  l[2].productName+'</a><div class="price">'+
+			  l[2].productPrice+'</div></div></div></div></div> <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0"><div class="single-search-product-wrapper"><div class="single-search-product d-flex"><a href="#"><img src="http://localhost:8888/productImg/'+
+			  l[3].productImageId+'" alt=""></a><div class="desc"><a href="#" class="title">'+
+			  l[3].productName+'</a><div class="price">'+
+			  l[3].productPrice+'</div></div></div><div class="single-search-product d-flex" style="background-color: darkseagreen;"><a href="#"><img src="http://localhost:8888/productImg/'+
+			  l[0].productImageId+'" alt=""></a><div class="desc"><a href="#" class="title">'+
+			  l[0].productName+'</a><div class="price">'+
+			  l[0].productPrice+'</div></div></div></div></div><div class="col-sm-6 col-xl-3 mb-4 mb-xl-0"><div class="single-search-product-wrapper" ><div class="single-search-product d-flex" style="background-color: darkgray;"><a href="#"><img src="http://localhost:8888/productImg/'+
+			  l[4].productImageId+ '" alt=""></a><div class="desc"><a href="#" class="title">'+
+			  l[4].productName+'</a><div class="price">'+
+			  l[4].productPrice+'</div></div></div><div class="single-search-product d-flex"><a href="#"><img src="http://localhost:8888/productImg/'+
+			  l[5].productImageId+ '" alt=""></a><div class="desc"><a href="#" class="title">'+
+			  l[5].productName+'</a><div class="price">'+
+			  l[5].productPrice+'</div></div></div></div></div> <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0"><div class="single-search-product-wrapper"><div class="single-search-product d-flex"><a href="#"><img src="http://localhost:8888/productImg/'+
+			  l[6].productImageId+'" alt=""></a><div class="desc"><a href="#" class="title">'+
+			  l[6].productName+'</a><div class="price">'+
+			  l[6].productPrice+'</div></div></div><div class="single-search-product d-flex" style="background-color: darkseagreen;"><a href="#"><img src="http://localhost:8888/productImg/'+
+			  l[7].productImageId+'" alt=""></a><div class="desc"><a href="#" class="title">'+
+			  l[7].productName+'</a><div class="price">'+
+			  l[7].productPrice+'</div></div></div></div></div>');
+			  
+				
+			},
+		})
+	}	
+	
 	
 </script>
 </html>

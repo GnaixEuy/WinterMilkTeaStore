@@ -130,7 +130,7 @@
 											<h5>{{item.itemPrice}}</h5>
 										</td>
 										<td>
-											<div class="product_count">
+											<!-- <div class="product_count">
 												<input type="text" name="qty" id="sst" maxlength="12" value="1"
 													title="Quantity:" class="input-text qty">
 												<button
@@ -141,6 +141,9 @@
 													onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
 													class="reduced items-count" type="button"><i
 														class="lnr lnr-chevron-down"></i></button>
+											</div> -->
+											<div>
+												1
 											</div>
 										</td>
 										<td>
@@ -151,7 +154,7 @@
 								<tr class="out_button_area">
 									<td class="d-none-l"></td>
 									<td class="checkout_btn_inner align-items-center">
-										<a class="gray_btn" href="../products.html">继续购物</a>
+										<a class="gray_btn" href="alreadyLoginProduct.html">继续购物</a>
 									</td>
 									<td class="checkout_btn_inner align-items-center">
 										<button class="primary-btn ml-2" onclick="makeOrder()">前往结账</button>

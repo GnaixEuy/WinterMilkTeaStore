@@ -152,6 +152,7 @@
             success: function (response) {
                 if (response.requestServiceStatus == 'success') {
                     alert('评论成功')
+                    getOrders()
                 } else {
                     alert('评论失败')
                 }
@@ -163,6 +164,7 @@
     }
 
     function getOrders() {
+
         $.ajax({
             type: "get",
             url: "http://localhost:8888/order/orderByUser.do",
@@ -175,9 +177,27 @@
                         element.orderId + '</td><td>' +
                         element.orderCreateDateTime + '</td><td>' +
                         element.orderPrice + '</td><td><input type="text" class="text-primary" style="color:#0b98f2 !important;" id="content' +
-                        element.orderId + '" /></td><td><div class="btn-group mb-1"><button class="btn btn-primary btn-sm " type="button" data-toggle="dropdown" onclick="comment(\'' +
+                        element.orderId + '" '
+                    $.ajax({
+                        type: "get",
+                        url: "http://localhost:8888/comment/getCommentByOrderId.do",
+                        data: { 'id': element.orderId },
+                        dataType: "json",
+                        async: false,
+                        success: function (res) {
+                            if (res.requestServiceStatus === 'success') {
+                                if (res.object !== null) {
+                                    str += (' value=\'' + res.object.commentContent)
+                                    str += '\' readonly'
+                                    console.log(str)
+                                }
+                            }
+                        }
+                    });
+                    str += '/></td><td><div class="btn-group mb-1"><button class="btn btn-primary btn-sm " type="button" data-toggle="dropdown" onclick="comment(\'' +
                         element.orderId + '\')">评论</button></div></td></tr >'
                 })
+                $('#example5 > tbody').empty()
                 $('#example5 > tbody').append(str)
             }, error: res => {
                 console.log(res)

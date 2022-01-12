@@ -159,54 +159,8 @@
           <h2>最新<span class="section-intro__style">评论</span></h2>
         </div>
 
-        <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="static/image/s2.jpg" alt="">
-              </div>
-              <div class="card-body">
-                <ul class="card-blog__info">
-                  <li><a href="#">作者名字</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i>评论时间</a></li>
-                </ul>
-                <h4 class="card-blog__title">评论内容</p>
-                <!-- <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="static/image/s3.jpg" alt="">
-              </div>
-             <div class="card-body">
-               <ul class="card-blog__info">
-                 <li><a href="#">作者名字</a></li>
-                 <li><a href="#"><i class="ti-comments-smiley"></i>评论时间</a></li>
-               </ul>
-               <h4 class="card-blog__title">评论内容</p>
-               <!-- <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a> -->
-             </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="static/image/s2.jpg" alt="">
-              </div>
-              <div class="card-body">
-                <ul class="card-blog__info">
-                  <li><a href="#">作者名字</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i>评论时间</a></li>
-                </ul>
-                <h4 class="card-blog__title">评论内容</p>
-                <!-- <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a> -->
-              </div>
-            </div>
-          </div>
+        <div class="row" id="comment">
+          
         </div>
       </div>
 	     <div id="product"></div>
@@ -238,6 +192,7 @@ $(document).ready(() => {
 		getProduct()
 		// setInterval(getTypeNum, 7000);
 		// setInterval(refreshProductType, 20000);
+		getComments()
 	})
 function getProduct(){
 		var t1=$("#product");
@@ -264,6 +219,32 @@ function getProduct(){
 			async:false,
 			error:function(){
 				alert('dd')
+			}
+		});
+	}
+function getComments(){
+		var t2=$("#comment");
+		$.ajax({
+			type: "get",
+			url: "http://localhost:8888/comment/frontDeskAjaxSpiltComments.do",
+			data: { 
+				"page":1,
+			},
+			success: function (response) {
+				if(response.requestServiceStatus == 'success') {
+					var c = response.object.list
+					c.forEach(element => {
+						// console.log(element.productType);
+						t2.append('<div class="col-md-6 col-lg-4 mb-4 mb-lg-0"><div class="card card-blog"><div class="card-blog__img"><img class="card-img rounded-0" src="static/image/s3.jpg" alt=""></div><div class="card-body"><ul class="card-blog__info"><li><a href="#"><i class="ti-comments-smiley"></i>' + 
+						response.dateTime+ '</a></li></ul><h4 class="card-blog__title">'+
+						element.commentContent + '</p></div></div></div>')
+					}
+					)
+				}
+			},
+			async:false,
+			error:function(){
+				// alert('dd')
 			}
 		});
 	}
